@@ -41,6 +41,12 @@ python3 symlink.py
 # run the aliases file to get the pyenv out
 source $HOME/.aliases
 
+# set zsh as default
+if [[ $SHELL != '/bin/zsh' ]]; then
+	_echo "Current shell is `$SHELL`, changing to `/bin/zsh`"
+	chsh -s $(which zsh)
+fi
+
 # installing pyenv 3.6.4 and 2.7.13
 yes '' | pyenv install 3.6.4
 yes '' | pyenv install 2.7.13
