@@ -12,12 +12,10 @@ BACKUP_DIR = os.path.join(HOME_DIR, 'backup/')
 # Tuples of source and targets
 FILES_TO_LINK = (
     # profiles
-    ('profiles/.zshrc', '.zshrc'),
-    ('profiles/.aliases', '.aliases'),
-
-    # tmux and vim
-    ('profiles/.tmux.conf', '.tmux.conf'),
-    ('profiles/.vimrc', '.vimrc'),
+    ('profiles/zshrc', '.zshrc'),
+    ('profiles/aliases', '.aliases'),
+    ('profiles/tmux.conf', '.tmux.conf'),
+    ('profiles/vimrc', '.vimrc'),
 
     # oh-my-zsh
     (

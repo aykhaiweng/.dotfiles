@@ -63,6 +63,8 @@ main() {
 		echo "$(cat $HOME/.ssh/id_rsa.pub)"
 	fi
 
+	# check if there is a git email and user name, if not add it
+
 	# finalize
 	_echo "Reloading ~/.zshrc."
 	exec "$SHELL"

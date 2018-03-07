@@ -1,0 +1,3 @@
+git config --global user.email="aykhaiweng@gmail.com"
+git config --global user.name="Khai Weng Au Yeong"
+git config --global push.default simple
