@@ -39,8 +39,8 @@ _echo "Now preparing to symlink files."
 python symlink.py
 
 # installing pyenv 3.6.4 and 2.7.13
-pyenv install 3.6.4
-pyenv install 2.7.13
+yes '' | pyenv install 3.6.4
+yes '' | pyenv install 2.7.13
 
 # create an id_rsa file if it doesn't already exist
 if [ ! -f $HOME/.ssh/id_rsa ]; then

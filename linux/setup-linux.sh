@@ -62,3 +62,6 @@ fi
 
 # Specifically for servers, this is a requirement
 pip install virtualenv
+
+# installing pyenv
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv

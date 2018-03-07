@@ -7,17 +7,17 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="UTF-8"
 
 # SSH
-eval $(ssh-agent)
+eval $(ssh-agent) &> /dev/null
+# set all files to 0400 permissions
+chmod 0400 $HOME/.ssh/*
+# add all private keys to agent
+find ~/.ssh/ -type f -exec grep -l "PRIVATE" {} \; | xargs ssh-add &> /dev/null
 
 # Misc
 alias ls='ls -CF'
 alias ll='ls -al'
 alias la='ls -A'
 alias l='ls'
-
-# postgresql
-alias postgresql-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias postgresql-stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 # Personal
 alias personal='cd ~/Git/1.\ Personal'
@@ -33,7 +33,6 @@ alias travelinsurance='cd ~/Git/2.\ tigerlab/InsuranceSoftware/travelinsurance/ 
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # Tmux
-set -g default-terminal "xterm-256color"
 alias tmux="tmux -2"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
