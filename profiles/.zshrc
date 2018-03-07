@@ -19,6 +19,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="UTF-8"
+
 # powerlevel nonsense
 # put prompt on new line
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true

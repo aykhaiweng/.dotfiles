@@ -35,11 +35,8 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'mhartington/oceanic-next'
 
 " Python
-Plugin 'lambdalisue/vim-pyenv', {
-        \ 'depends': ['davidhalter/jedi-vim'],
-        \ 'autoload': {
-        \   'filetypes': ['python', 'python3'],
-        \ }}
+Plugin 'davidhalter/jedi-vim'
+Plugin 'lambdalisue/vim-pyenv'
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/indentpython.vim'
 " ...
@@ -83,6 +80,10 @@ inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 " PLUGIN SETTINGS ----------------------------------------------------------- "
 " syntastic
 syntax on
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Enable folding
 set foldmethod=indent
@@ -97,16 +98,22 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " nerdtree
 " ignore files
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swap$', '\.swp$'] 
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$'] 
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " ctrlp
-" ignore files
-set wildignore=*.swp,*.so,*.pyc,*.db
+" ignore misc files
+set wildignore=*.db
+" ignore vim files
+set wildignore+=*.swp,*.swo,*.so
+" ignore python files
+set wildignore+=*.pyc
+" ignore mac files
+set wildignore+=*.DS_Store
+" ignore folders
 let g:ctrlp_custom_ignore={
 	\ 'dir': '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|so|dll)$',
 	\ }
 " =========================================================================== "
 

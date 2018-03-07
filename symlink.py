@@ -11,9 +11,13 @@ BACKUP_DIR = os.path.join(HOME_DIR, 'backup/')
 
 # Tuples of source and targets
 FILES_TO_LINK = (
-    # profile
-    ('profile/.zshrc', '.zshrc'),
-    ('profile/.aliases', '.aliases'),
+    # profiles
+    ('profiles/.zshrc', '.zshrc'),
+    ('profiles/.aliases', '.aliases'),
+
+    # tmux and vim
+    ('profiles/.tmux.conf', '.tmux.conf'),
+    ('profiles/.vimrc', '.vimrc'),
 
     # oh-my-zsh
     (
@@ -25,9 +29,6 @@ FILES_TO_LINK = (
         '.oh-my-zsh/themes/bira-custom.zsh-theme', 
     ),
 
-    # tmux and vim
-    ('.tmux.conf', '.tmux.conf'),
-    ('.vimrc', '.vimrc'),
 )
 
 
@@ -81,11 +82,15 @@ def main():
             source=source_file,
             target=target_file
         ))
-        os.symlink(
-            source_file, 
-            target_file, 
-            target_is_directory=os.path.isdir(target_file)
-        )
+        try:
+            os.symlink(
+                source_file, 
+                target_file, 
+                target_is_directory=os.path.isdir(target_file)
+            )
+        except FileExistsError:
+            os.remove(target_file)
+            os.symlink(source_file, target_file)
 
 
 if __name__ == '__main__':
