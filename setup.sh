@@ -36,7 +36,10 @@ echo
 
 # prepare to symlink the files
 _echo "Now preparing to symlink files."
-python symlink.py
+python3 symlink.py
+
+# run the aliases file to get the pyenv out
+source $HOME/.aliases
 
 # installing pyenv 3.6.4 and 2.7.13
 yes '' | pyenv install 3.6.4
