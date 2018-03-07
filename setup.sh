@@ -48,7 +48,7 @@ if [[ $SHELL != '/bin/zsh' ]]; then
 fi
 
 # now we install .oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+yes '' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # installing pyenv 3.6.4 and 2.7.13
 yes '' | pyenv install 3.6.4
