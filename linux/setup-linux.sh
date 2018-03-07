@@ -32,8 +32,9 @@ echo "@================================================="
 echo
 
 sudo apt-get update
+sudo apt-get install build-essential curl file git -y
 sudo apt-get install vim systemd -y
-sudo apt-get install git python3-pip python-dev -y
+sudo apt-get install git python3-pip python-dev python-setuptools -y
 sudo apt-get install nginx gunicorn memcached -y
 sudo apt-get install libpq-dev postgresql postgresql-contrib gettext -y
 sudo apt-get install nodejs-legacy npm libjpeg8-dev -y
@@ -42,19 +43,16 @@ sudo apt-get install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
 sudo apt-get install letsencrypt -y
 sudo apt-get install mysql-server libmysqlclient-dev -y
 
+# terminal essentials
+sudo apt-get install zsh tmux xclip -y
+
 if ! [ $KURA_FTS ] ; then
     _echo "Setting up locales"
     sudo locale-gen en_US.UTF-8
-    sudo dpkg-reconfigure tzdata
-    echo
+    sudo timedatectl set-timezone Asia/Kuala_Lumpur
 fi
 
 # sudo -u postgres psql -c "create user $USER superuser password 'oceannexus129';" postgres
-
-_echo "Upgrading pip and installing prerequisites"
-sudo pip3 install --upgrade pip
-sudo pip3 install django django-debug-toolbar Pillow virtualenv virtualenvwrapper psycopg2
-echo
 
 if ! [ -f ~/.ssh/id_rsa.pub ]; then
     _echo "Generating SSH Keys"
@@ -62,7 +60,5 @@ if ! [ -f ~/.ssh/id_rsa.pub ]; then
     echo
 fi
 
-# Install brew
-_echo "Installing Brew."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-
+# Specifically for servers, this is a requirement
+pip install virtualenv

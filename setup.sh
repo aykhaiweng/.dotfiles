@@ -1,7 +1,7 @@
 # !/bin/bash
 
 function _echo() {
-	echo "[kurabot] - $1"
+	echo "[aykhaiweng says] - $1"
 }
 
 # prompt for sudo
@@ -23,13 +23,35 @@ else
 	_echo "Your platform is not supported yet."
 fi
 
-# install the brew bundle
-brew bundle --file=brew/Brewfile
+
+# installing Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# updating pip and it's prerequisites
+_echo "Upgrading pip and installing prerequisites."
+sudo pip3 install --upgrade pip
+sudo pip3 install django django-debug-toolbar Pillow psycopg2 ipython coverage
+echo
+
 
 # prepare to symlink the files
 _echo "Now preparing to symlink files."
 python symlink.py
 
+# installing pyenv 3.6.4 and 2.7.13
+pyenv install 3.6.4
+pyenv install 2.7.13
+
+# create an id_rsa file if it doesn't already exist
+if [ ! -f $HOME/.ssh/id_rsa ]; then
+	ssh-keygen -f id_rsa -t rsa -N ''
+	_echo "A ssh-key with the default name (~/.ssh/id_rsa) has been created for you!"
+	_echo "Here is the key:" 
+	echo "$(cat $HOME/.ssh/id_rsa.pub)"
+fi
+
+# finalize
 _echo "Reloading ~/.zshrc."
+exec "$SHELL"
 source ~/.zshrc
 _echo ".dotfiles setup complete! Enjoy living in a world of monogamy."
