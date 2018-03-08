@@ -75,6 +75,13 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <Tab>         <Esc>
+vnoremap <Tab>         <Esc>gV
+onoremap <Tab>         <Esc>
+cnoremap <Tab>         <C-C><Esc>
+inoremap <Tab>         <Esc>`^
+inoremap <Leader><Tab> <Tab>
+
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -112,6 +119,9 @@ let g:multi_cursor_quit_key='<Esc>'
 " FZF mapping
 nnoremap <C-p> :FZF<CR>
 
+" NerdTree mapping
+noremap <C-L> :NERDTreeToggle<CR>
+
 " F_keys
 noremap <silent> <F4> :set hlsearch! hlsearch?<CR>
 noremap <silent> <F5> :so $MYVIMRC<CR>
@@ -140,7 +150,6 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " nerdtree
 " ignore files
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
-noremap <C-0> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " ctrlp NOT USING CTRLP ANYMORE
@@ -195,7 +204,6 @@ set tabstop=4  " length of a tab
 set shiftwidth=4  " length of an indent
 set fileformat=unix
 set autoindent
-set hlsearch  " enable higlighting during search
 " highlights
 " v this is commented out because it is now handled by better-whitespace
 " highlight BadWhitespace ctermbg=red guibg=darkred
@@ -206,9 +214,6 @@ highlight ExtraWhitespace ctermbg=red
 "matches
 match Whitespace / \+$/
 match TabIndents /\t/
-
-highlight FunCharacter ctermbg=red
-match FunCharacter /khai/
 
 " Python
 au BufNewFile,BufRead *.py
@@ -236,8 +241,11 @@ set list
 
 " autocmds
 " redraw the page everytime you leave insert
-au InsertLeave * redraw!
+" au InsertLeave * redraw!
 
 " call Flake8 everytime the BufWritePost is called
-au BufWritePost *.py call Flake8()
+au BufRead,BufWritePost,InsertLeave *.py call Flake8()
+
+" refocusing calls GitGutter to redraw
+au BufRead,BufWritePost,InsertLeave,FocusGained * GitGutter
 " =========================================================================== "

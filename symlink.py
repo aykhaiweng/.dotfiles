@@ -8,7 +8,6 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BACKUP_DIR = os.path.join(HOME_DIR, 'backup/')
 
 
-
 # Tuples of source and targets
 FILES_TO_LINK = (
     # profiles
@@ -24,7 +23,7 @@ FILES_TO_LINK = (
     (
         '.oh-my-zsh/themes/bira-custom.zsh-theme',
         '.oh-my-zsh/themes/bira-custom.zsh-theme',
-    ),
+    )
 
 )
 
