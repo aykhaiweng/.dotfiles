@@ -92,11 +92,11 @@ nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
 " indent control
-" nnoremap <]> >>_
-" nnoremap <[> <<_
-" inoremap <S-Tab> <C-D>
-" vnoremap <]> >gv
-" vnoremap <[> <gv
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " vim style tab navigation
 " unmapping the original keys
@@ -172,6 +172,10 @@ let g:fzf_action = {
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
 
+" gitgutter configuration
+set updatetime=50
+let g:gitgutter_terminal_reports_focus=0
+
 " betterwhitespace configuration
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
@@ -204,16 +208,8 @@ set tabstop=4  " length of a tab
 set shiftwidth=4  " length of an indent
 set fileformat=unix
 set autoindent
-" highlights
-" v this is commented out because it is now handled by better-whitespace
-" highlight BadWhitespace ctermbg=red guibg=darkred
-" match BadWhitespace /\s\+$/
-highlight Whitespace ctermbg=cyan
-highlight TabIndents ctermbg=yellow
-highlight ExtraWhitespace ctermbg=red
-"matches
-match Whitespace / \+$/
-match TabIndents /\t/
+set textwidth=80
+set colorcolumn=80
 
 " Python
 au BufNewFile,BufRead *.py
@@ -233,19 +229,20 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set noexpandtab
 
 " show whitespaces
-set listchars=tab:--,eol:¬,trail:.
-highlight NonText guifg=#3a3a3a
-highlight SpecialKey guifg=#3a3a3a
-
+set listchars=tab:\ \ ,trail:·,nbsp:~,extends:>,precedes:<
 set list
 
-" autocmds
-" redraw the page everytime you leave insert
-" au InsertLeave * redraw!
+" highlights
+" v this is commented out because it is now handled by better-whitespace
+" highlight BadWhitespace ctermbg=red guibg=darkred
+" match BadWhitespace /\s\+$/
+highlight NonText ctermbg=234
+highlight SpecialKey ctermbg=234
+highlight ExtraWhitespace ctermbg=red
+"matches
 
+" autocmds
 " call Flake8 everytime the BufWritePost is called
 au BufReadPost,BufWritePost,InsertLeave *.py call Flake8()
-
-" refocusing calls GitGutter to redraw
-au BufReadPost,BufWritePost,InsertLeave,FocusGained * GitGutter
+au CursorHold,CursorHoldI * call GitGutter()
 " =========================================================================== "
