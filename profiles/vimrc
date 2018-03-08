@@ -153,6 +153,11 @@ let g:fzf_action = {
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
 
+" betterwhitespace configuration
+highlight ExtraWhitespace ctermbg=red
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
 " airline configuration
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -189,6 +194,16 @@ au BufRead,BufNewFile * match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=4
     \ set shiftwidth=4
+
+" show whitespaces
+" " Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:--,eol:¬,trail:.
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
 " =========================================================================== "
 
 " LOOK & FEEL --------------------------------------------------------------- "
@@ -202,3 +217,5 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 " endif
 colorscheme OceanicNext
 " =========================================================================== "
+
+set list
