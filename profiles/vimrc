@@ -244,5 +244,5 @@ highlight ExtraWhitespace ctermbg=red
 " autocmds
 " call Flake8 everytime the BufWritePost is called
 au BufReadPost,BufWritePost,InsertLeave *.py call Flake8()
-au CursorHold,CursorHoldI * call GitGutter()
+au CursorHold,CursorHoldI * GitGutter
 " =========================================================================== "
