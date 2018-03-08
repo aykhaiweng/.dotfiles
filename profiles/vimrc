@@ -244,8 +244,8 @@ set list
 " au InsertLeave * redraw!
 
 " call Flake8 everytime the BufWritePost is called
-au BufRead,BufWritePost,InsertLeave *.py call Flake8()
+au BufReadPost,BufWritePost,InsertLeave *.py call Flake8()
 
 " refocusing calls GitGutter to redraw
-au BufRead,BufWritePost,InsertLeave,FocusGained * GitGutter
+au BufReadPost,BufWritePost,InsertLeave,FocusGained * GitGutter
 " =========================================================================== "
