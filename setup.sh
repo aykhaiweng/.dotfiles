@@ -24,16 +24,11 @@ main() {
 		_echo "Your platform is not supported yet."
 	fi
 
-
-	# installing Vundle
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 	# updating pip and it's prerequisites
 	_echo "Upgrading pip and installing prerequisites."
 	sudo pip3 install --upgrade pip
 	sudo pip3 install django django-debug-toolbar Pillow psycopg2 ipython coverage
 	echo
-
 
 	# prepare to symlink the files
 	_echo "Now preparing to symlink files."
@@ -42,19 +37,35 @@ main() {
 	# run the aliases file to get the pyenv out
 	source $HOME/.aliases
 
+
+	# ZSH STUFF
 	# set zsh as default
 	if [[ $SHELL != '/bin/zsh' ]]; then
 		_echo "Current shell is `$SHELL`, changing to `/bin/zsh`"
 		chsh -s $(which zsh)
 	fi
 
-	# now we install .oh-my-zsh
-	yes '' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+	# VIM STUFF
+	# installing Vundle
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 
 	# installing pyenv 3.6.4 and 2.7.13
 	yes '' | pyenv install 3.6.4
 	yes '' | pyenv install 2.7.13
 
+	# install vim plugins
+	vim -c 'PluginInstall' -c 'qa!'
+
+	# install ycm from vim plugins
+	python $HOME/.vim/bundle/YouCompleteMe/install.py
+
+	# now we install .oh-my-zsh
+	yes '' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+	# SSH STUFF
 	# create an id_rsa file if it doesn't already exist
 	if [ ! -f $HOME/.ssh/id_rsa ]; then
 		ssh-keygen -f id_rsa -t rsa -N ''
@@ -62,8 +73,6 @@ main() {
 		_echo "Here is the key:" 
 		echo "$(cat $HOME/.ssh/id_rsa.pub)"
 	fi
-
-	# check if there is a git email and user name, if not add it
 
 	# finalize
 	_echo "Reloading ~/.zshrc."

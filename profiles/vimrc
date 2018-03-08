@@ -57,6 +57,9 @@ let g:autoclose_on = 0  " do not autoclose brackets
 set exrc  " allow project specific .vimrc
 set secure  " disallow .vimrc not owned by uname
 set clipboard=unnamedplus
+set background=dark
+set t_Co=256
+set backspace=2
 
 
 " CONTROLS ------------------------------------------------------------------ "
@@ -105,7 +108,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
-" ctrlp
+" ctrlp NOT USING CTRLP ANYMORE
 " ignore misc files
 set wildignore=*.db
 " ignore vim files
@@ -118,6 +121,7 @@ set wildignore+=*.DS_Store
 let g:ctrlp_custom_ignore={
 	\ 'dir': '\v[\/]\.(git|hg|svn)$',
 	\ }
+
 " =========================================================================== "
 
 " EDITOR -------------------------------------------------------------------- "
@@ -158,8 +162,8 @@ set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
 " colorscheme
-if (has("termguicolors"))
-  set termguicolors
-endif
+" if (has("termguicolors"))
+"   set termguicolors
+" endif
 colorscheme OceanicNext
 " =========================================================================== "

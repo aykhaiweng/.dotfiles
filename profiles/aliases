@@ -33,12 +33,12 @@ alias travelinsurance='cd ~/Git/2.\ tigerlab/InsuranceSoftware/travelinsurance/ 
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # Tmux
-alias tmux="tmux -2"
+alias tmux="tmux"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # python goodness
-alias python=python3
+PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
