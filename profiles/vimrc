@@ -18,12 +18,12 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " explorers
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
-
+" Plugin 'jistr/vim-nerdtree-tabs'
+" Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 
@@ -83,6 +83,26 @@ vnoremap <C-c> :w !pbcopy<CR><CR>
 nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
+" indent control
+" nnoremap <]> >>_
+" nnoremap <[> <<_
+" inoremap <S-Tab> <C-D>
+" vnoremap <]> >gv
+" vnoremap <[> <gv
+
+" Tab navigation like Firefox.
+" unmapping the original keys
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
+" FZF mapping
+nnoremap <C-p> :FZF<CR>
 " =========================================================================== "
 
 " PLUGIN SETTINGS ----------------------------------------------------------- "
@@ -124,6 +144,16 @@ let g:ctrlp_custom_ignore={
 	\ 'dir': '\v[\/]\.(git|hg|svn)$',
 	\ }
 
+" FZF
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-s': 'vsplit' }
+
+" airline configuration
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 " =========================================================================== "
 
 " EDITOR -------------------------------------------------------------------- "

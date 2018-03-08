@@ -1,7 +1,9 @@
 # Sup
 
-Like, it's really simple. Just git pull and run the setup.py
-Remember, once you have linked the files from this repo, edit your config by editting the files from this repo as it will overwrite your current configuration.
+	git clone https://github.com/aykhaiweng/.dotfiles
+	cd .dotfiles
+	chmod +x setup.sh
+	./setup.sh
 
 I did use a bunch of other nonsense like:
 * nerd-fonts
