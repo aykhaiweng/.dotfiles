@@ -32,7 +32,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'jreybert/vimagit'
 
 " status
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " ColorScheme
 Plugin 'mhartington/oceanic-next'
@@ -60,7 +62,7 @@ set clipboard=unnamedplus
 set background=dark
 set t_Co=256
 set backspace=2
-
+set ttimeoutlen=0
 
 " CONTROLS ------------------------------------------------------------------ "
 " mouse
