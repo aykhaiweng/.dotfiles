@@ -90,7 +90,7 @@ inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 " vnoremap <]> >gv
 " vnoremap <[> <gv
 
-" Tab navigation like Firefox.
+" vim style tab navigation
 " unmapping the original keys
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
@@ -103,6 +103,9 @@ nnoremap td  :tabclose<CR>
 
 " FZF mapping
 nnoremap <C-p> :FZF<CR>
+
+" F_keys - Remove Whitespace
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " =========================================================================== "
 
 " PLUGIN SETTINGS ----------------------------------------------------------- "
@@ -126,7 +129,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " nerdtree
 " ignore files
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$'] 
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
@@ -141,14 +144,14 @@ set wildignore+=*.pyc
 set wildignore+=*.DS_Store
 " ignore folders
 let g:ctrlp_custom_ignore={
-	\ 'dir': '\v[\/]\.(git|hg|svn)$',
-	\ }
+    \ 'dir': '\v[\/]\.(git|hg|svn)$',
+    \ }
 
 " FZF
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-i': 'split',
-  \ 'ctrl-s': 'vsplit' }
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-i': 'split',
+    \ 'ctrl-s': 'vsplit' }
 
 " airline configuration
 let g:airline#extensions#tabline#enabled = 1
@@ -162,11 +165,11 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 
 " Global
 set tabstop=4
+set shiftwidth=4
 set softtabstop=4
 
 " Python
 au BufNewFile,BufRead *.py
-    \ syntax enable
     \ set tabstop=4
     \ set softtabstop=4
     \ set shiftwidth=4
@@ -176,11 +179,11 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
     \ let python_highlight_all=1
     \ syntax on
-	\ set ruler
+    \ set ruler
 
 " Whitespace
 " define BadWhitespace before using in a match
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufRead,BufNewFile * match BadWhitespace /\s\+$/
 
 " HTML, JS, CSS
 au BufNewFile,BufRead *.js, *.html, *.css
