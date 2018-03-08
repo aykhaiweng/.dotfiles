@@ -16,19 +16,17 @@ FILES_TO_LINK = (
     ('profiles/aliases', '.aliases'),
     ('profiles/tmux.conf', '.tmux.conf'),
     ('profiles/vimrc', '.vimrc'),
-
     # oh-my-zsh
     (
-        '.oh-my-zsh/themes/powerlevel9k/', 
+        '.oh-my-zsh/themes/powerlevel9k/',
         '.oh-my-zsh/themes/powerlevel9k'
     ),
     (
-        '.oh-my-zsh/themes/bira-custom.zsh-theme', 
-        '.oh-my-zsh/themes/bira-custom.zsh-theme', 
+        '.oh-my-zsh/themes/bira-custom.zsh-theme',
+        '.oh-my-zsh/themes/bira-custom.zsh-theme',
     ),
 
 )
-
 
 def main():
     now = datetime.datetime.now()
@@ -44,7 +42,7 @@ def main():
             print("ERROR! Source file specified does not exist: {}".format(
                 source_file
             ))
- 
+
         # Make the backup dir
         if os.path.isdir(BACKUP_DIR) is False:
             os.makedirs(BACKUP_DIR)
@@ -58,13 +56,13 @@ def main():
                 )
                 print(target_file_bak_name)
                 target_file_bak_path = os.path.join(
-                    BACKUP_DIR, 
+                    BACKUP_DIR,
                     target_file_bak_name
                 )
                 os.rename(target_file, target_file_bak_path)
                 print("File found, backup created: "
                       "{source} --> {target}".format(
-                        source=target_file, 
+                        source=target_file,
                         target=target_file_bak_path
                     )
                 )
@@ -82,8 +80,8 @@ def main():
         ))
         try:
             os.symlink(
-                source_file, 
-                target_file, 
+                source_file,
+                target_file,
                 target_is_directory=os.path.isdir(target_file)
             )
         except FileExistsError:

@@ -19,6 +19,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ntpeters/vim-better-whitespace'
+" Plugin 'terryma/vim-multiple-cursors'
 
 " explorers
 Plugin 'scrooloose/nerdtree'
@@ -44,7 +45,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'lambdalisue/vim-pyenv'
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/indentpython.vim'
-" ...
+"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -101,11 +102,20 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
+" multicursor key mapping
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
 " FZF mapping
 nnoremap <C-p> :FZF<CR>
 
-" F_keys - Remove Whitespace
-nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+" F_keys
+noremap <F4> :set hlsearch! hlsearch?<CR>
+noremap <silent> <F5> :so $MYVIMRC<CR>
+" nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " =========================================================================== "
 
 " PLUGIN SETTINGS ----------------------------------------------------------- "
@@ -130,7 +140,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " nerdtree
 " ignore files
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
-map <C-n> :NERDTreeToggle<CR>
+noremap <C-0> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " ctrlp NOT USING CTRLP ANYMORE
@@ -154,7 +164,6 @@ let g:fzf_action = {
     \ 'ctrl-s': 'vsplit' }
 
 " betterwhitespace configuration
-highlight ExtraWhitespace ctermbg=red
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 
@@ -164,45 +173,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " =========================================================================== "
 
-" EDITOR -------------------------------------------------------------------- "
-" definitions
-highlight BadWhitespace ctermbg=red guibg=darkred
-
-" Global
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-
-" Python
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=80
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-    \ let python_highlight_all=1
-    \ syntax on
-    \ set ruler
-
-" Whitespace
-" define BadWhitespace before using in a match
-au BufRead,BufNewFile * match BadWhitespace /\s\+$/
-
-" HTML, JS, CSS
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=4
-    \ set shiftwidth=4
-
-" show whitespaces
-" " Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:--,eol:¬,trail:.
-"Invisible character colors
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
 
 " =========================================================================== "
 
@@ -218,4 +188,56 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 colorscheme OceanicNext
 " =========================================================================== "
 
+
+" EDITOR -------------------------------------------------------------------- "
+" definitions
+set tabstop=4  " length of a tab
+set shiftwidth=4  " length of an indent
+set fileformat=unix
+set autoindent
+set hlsearch  " enable higlighting during search
+" highlights
+" v this is commented out because it is now handled by better-whitespace
+" highlight BadWhitespace ctermbg=red guibg=darkred
+" match BadWhitespace /\s\+$/
+highlight Whitespace ctermbg=cyan
+highlight TabIndents ctermbg=yellow
+highlight ExtraWhitespace ctermbg=red
+"matches
+match Whitespace / \+$/
+match TabIndents /\t/
+
+highlight FunCharacter ctermbg=red
+match FunCharacter /khai/
+
+" Python
+au BufNewFile,BufRead *.py
+    \ syntax on
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=80
+    \ set expandtab
+    \ set ruler
+    \ let python_highlight_all=1
+
+" HTML, JS, CSS
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=4
+    \ set shiftwidth=4
+    \ set noexpandtab
+
+" show whitespaces
+set listchars=tab:--,eol:¬,trail:.
+highlight NonText guifg=#3a3a3a
+highlight SpecialKey guifg=#3a3a3a
+
 set list
+
+" autocmds
+" redraw the page everytime you leave insert
+au InsertLeave * redraw!
+
+" call Flake8 everytime the BufWritePost is called
+au BufWritePost *.py call Flake8()
+" =========================================================================== "

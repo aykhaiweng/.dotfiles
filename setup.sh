@@ -70,7 +70,7 @@ main() {
 	if [ ! -f $HOME/.ssh/id_rsa ]; then
 		ssh-keygen -f id_rsa -t rsa -N ''
 		_echo "A ssh-key with the default name (~/.ssh/id_rsa) has been created for you!"
-		_echo "Here is the key:" 
+		_echo "Here is the key:"
 		echo "$(cat $HOME/.ssh/id_rsa.pub)"
 	fi
 

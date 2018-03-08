@@ -1,9 +1,9 @@
 # Sup
 
-	git clone https://github.com/aykhaiweng/.dotfiles
-	cd .dotfiles
-	chmod +x setup.sh
-	./setup.sh
+    git clone https://github.com/aykhaiweng/.dotfiles
+    cd .dotfiles
+    chmod +x setup.sh
+    ./setup.sh
 
 I did use a bunch of other nonsense like:
 * nerd-fonts
