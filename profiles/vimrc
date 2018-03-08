@@ -113,7 +113,7 @@ let g:multi_cursor_quit_key='<Esc>'
 nnoremap <C-p> :FZF<CR>
 
 " F_keys
-noremap <F4> :set hlsearch! hlsearch?<CR>
+noremap <silent> <F4> :set hlsearch! hlsearch?<CR>
 noremap <silent> <F5> :so $MYVIMRC<CR>
 " nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " =========================================================================== "
