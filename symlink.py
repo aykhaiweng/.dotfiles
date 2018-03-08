@@ -15,6 +15,8 @@ FILES_TO_LINK = (
     ('profiles/aliases', '.aliases'),
     ('profiles/tmux.conf', '.tmux.conf'),
     ('profiles/vimrc', '.vimrc'),
+    ('config/flake8', '.config/flake8'),
+
     # oh-my-zsh
     (
         '.oh-my-zsh/themes/powerlevel9k/',
