@@ -41,7 +41,7 @@ main() {
 	# ZSH STUFF
 	# set zsh as default
 	if [[ $SHELL != '/bin/zsh' ]]; then
-		_echo "Current shell is `$SHELL`, changing to `/bin/zsh`"
+		_echo "Current SHELL changing to `/bin/zsh`"
 		chsh -s $(which zsh)
 	fi
 

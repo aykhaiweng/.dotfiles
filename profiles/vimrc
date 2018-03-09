@@ -228,8 +228,10 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set noexpandtab
 
 au BufNewFile,BufRead Vagrant
-    \ set tabstop=4
-    \ set shiftwidth=4
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+    \ set expandtab
 
 " show whitespaces
 set listchars=tab:\ \ ,trail:·,nbsp:~,extends:>,precedes:<
