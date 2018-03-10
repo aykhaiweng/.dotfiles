@@ -1,5 +1,4 @@
 import os
-import shutil
 import datetime
 
 
@@ -28,6 +27,7 @@ FILES_TO_LINK = (
     )
 
 )
+
 
 def main():
     now = datetime.datetime.now()
@@ -61,8 +61,9 @@ def main():
                     target_file_bak_name
                 )
                 os.rename(target_file, target_file_bak_path)
-                print("File found, backup created: "
-                      "{source} --> {target}".format(
+                print(
+                    "File found, backup created: "
+                    "{source} --> {target}".format(
                         source=target_file,
                         target=target_file_bak_path
                     )
