@@ -69,27 +69,45 @@ set ttimeoutlen=0
 " mouse
 set mouse=a
 
+" leader
+let mapleader = ","
+
+" explicitly binding keys
+vnoremap <Up>    k
+vnoremap <Down>  j
+vnoremap <Left>  h
+vnoremap <Right> l
+nnoremap <Up>    k
+nnoremap <Down>  j
+nnoremap <Left>  h
+nnoremap <Right> l
+
 " key shortcuts for pane switching
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <C-Left>  <C-W><C-H>
+nnoremap <C-Right> <C-W><C-L>
+nnoremap <C-Up>    <C-W><C-K>
+nnoremap <C-Down>  <C-W><C-J>
 
-nnoremap <Tab>         <Esc>
-vnoremap <Tab>         <Esc>gV
-onoremap <Tab>         <Esc>
-cnoremap <Tab>         <C-C><Esc>
-inoremap <Tab>         <Esc>`^
-inoremap <Leader><Tab> <Tab>
+" Replace Escape with Tab
+" nnoremap <Tab>         <Esc>
+" vnoremap <Tab>         <Esc>gV
+" onoremap <Tab>         <Esc>
+" cnoremap <Tab>         <C-C><Esc>
+" inoremap <Tab>         <Esc>`^
+" inoremap <Leader><Tab> <Tab>
 
 " Enable folding with the spacebar
 nnoremap <space> za
 
 " copy and pasting like a boss for MAC
-nnoremap <C-c> :.w !pbcopy<CR><CR>
-vnoremap <C-c> :w !pbcopy<CR><CR>
-nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nnoremap <C-S-c> :.w !pbcopy<CR><CR>
+vnoremap <C-S-c> :w !pbcopy<CR><CR>
+nnoremap <C-S-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+inoremap <C-S-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
 " indent control
 nnoremap <Tab> >>_
@@ -98,8 +116,15 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-" vim style tab navigation
-" unmapping the original keys
+" Tab navigation like Firefox.
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+" Vim-style tab navigation
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
@@ -108,9 +133,17 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+" Alternatively use
+"nnoremap th :tabnext<CR>
+"nnoremap tl :tabprev<CR>
+"nnoremap tn :tabnew<CR>
+
+" vim style buffer navigation
+nnoremap <leader>b] :bnext<CR>
+nnoremap <leader>b[ :bprev<CR>
+nnoremap <leader>bx :bd<CR>
 
 " Change tabs to spacing:
-nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
 " multicursor key mapping
 " let g:multi_cursor_use_default_mapping=0
@@ -123,11 +156,12 @@ nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 nnoremap <C-p> :FZF<CR>
 
 " NerdTree mapping
-noremap <C-L> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
 
 " F_keys
 noremap <silent> <F4> :set hlsearch! hlsearch?<CR>
-noremap <silent> <F5> :so $MYVIMRC<CR>
+nnoremap <silent> <F5> :so $MYVIMRC<CR>
+nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 " nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " =========================================================================== "
 
@@ -220,6 +254,8 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set ruler
     \ let python_highlight_all=1
+    \ let g:syntastic_python_checkers = ['flake8']
+    \ syn match pythonBoolean "\<self\ze\."
 
 " HTML, JS, CSS
 au BufNewFile,BufRead *.js, *.html, *.css

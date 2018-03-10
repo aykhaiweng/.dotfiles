@@ -39,5 +39,5 @@ precmd() {
             local pyenv_version="(pyenv $version) "
         fi
     fi
-    PROMPT="╭─%{$fg[cyan]%}<%{$fg[red]%}$(pyenv_prompt_info)%{$fg[yellow]%}>%{$reset_color%} ${current_dir} ${git_branch}${NEWLINE}╰─%B${user_symbol}%{$reset_color%}%b "
+    PROMPT="╭─<$(pyenv_prompt_info)> ${current_dir} ${git_branch}${NEWLINE}╰─%B${user_symbol}%{$reset_color%}%b "
 }
