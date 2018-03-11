@@ -7,7 +7,7 @@ NEWLINE=$'\n'
 if [[ $UID -eq 0 ]]; then
     local user_symbol='λ'
 else
-    local user_symbol='>'
+    local user_symbol='λ'
 fi
 
 # Local DIR
