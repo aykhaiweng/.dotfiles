@@ -136,16 +136,17 @@ nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
-" Alternatively use
-"nnoremap th :tabnext<CR>
-"nnoremap tl :tabprev<CR>
-"nnoremap tn :tabnew<CR>
+nnoremap tx  :tabclose<CR>
 
 " vim style buffer navigation
-nnoremap <leader>b] :bnext<CR>
-nnoremap <leader>b[ :bprev<CR>
+" ^ This line is reliant on fzf
+nnoremap <leader>bl :bnext<CR>
+nnoremap <leader>bh :bprev<CR>
 nnoremap <leader>bx :bd<CR>
+
+" other fzf keybindings
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fm :Marks<CR>
 
 " Hotkeys for $ and 0
 map L $
@@ -246,9 +247,17 @@ highlight CursorLine cterm=None ctermbg=236
 highlight CursorColumn cterm=None ctermbg=235
 augroup CursorLine
     au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline setlocal cursorcolumn
-    au WinLeave * setlocal nocursorline setlocal nocursorcolumn
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
 augroup end
+
+" highlights
+" v this is commented out because it is now handled by better-whitespace
+" highlight BadWhitespace ctermbg=red guibg=darkred
+" match BadWhitespace /\s\+$/
+highlight NonText ctermbg=234
+highlight SpecialKey ctermbg=234
+highlight ExtraWhitespace ctermbg=red
 " =========================================================================== "
 
 
@@ -289,15 +298,6 @@ au BufNewFile,BufRead Vagrant
 " show whitespaces
 set listchars=tab:\ \ ,trail:·,nbsp:~,extends:>,precedes:<
 set list
-
-" highlights
-" v this is commented out because it is now handled by better-whitespace
-" highlight BadWhitespace ctermbg=red guibg=darkred
-" match BadWhitespace /\s\+$/
-highlight NonText ctermbg=234
-highlight SpecialKey ctermbg=234
-highlight ExtraWhitespace ctermbg=red
-"matches
 
 " autocmds
 " call Flake8 everytime the BufWritePost is called
