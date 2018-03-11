@@ -31,7 +31,7 @@ main() {
 
 	# add the oceanic item colors
 	_echo "Activating iterm2 colors based on OceanicNext"
-	open iterm2/OceanicNext.itermcolors
+	open $THIS_DIR/iterm2/OceanicNext.itermcolors
 }
 
 # invoke main

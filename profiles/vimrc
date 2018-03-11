@@ -40,7 +40,9 @@ Plugin 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
 " Plugin 'kien/ctrlp.vim'
 " prefer this over ctrlp
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" ^ Commenting this out because i decided to install fzf locally
+set rtp+=~/.fzf
 Plugin 'junegunn/fzf.vim'
 
 " git
@@ -87,6 +89,8 @@ set mouse=a
 
 " leader
 let mapleader=","
+" Funny way to setup the leader key so it echos something when it is pressed
+noremap <Leader> :echo '-- LEADER --'<CR><Leader>
 
 " explicitly binding keys
 vnoremap <Up>    k
@@ -126,8 +130,8 @@ nnoremap <C-Down>  <C-W><C-J>
 " inoremap <Tab>         <Esc>`^
 " inoremap <Leader><Tab> <Tab>
 
-" Enable folding with the spacebar
-nnoremap <space> za
+" Repeat last command with spacebar
+nnoremap <space> @@
 
 " copy and pasting like a boss for MAC
 nnoremap <C-c> :.w !pbcopy<CR><CR>

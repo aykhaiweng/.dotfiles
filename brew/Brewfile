@@ -6,7 +6,6 @@ tap "caskroom/cask"
 cask "xquartz"
 brew "cmake"
 brew "flake8", link: false
-brew "fzf"
 brew "git"
 brew "jpeg"
 brew "mysql", restart_service: true

@@ -1,8 +1,11 @@
 #!/bin/bash
+trap "exit" INT
 
 
 # Get the color definitions
 source colordefinitions.sh
+# declare current directory
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 _echo() {
 	echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] - $1"
@@ -35,9 +38,9 @@ main() {
 	sudo pip3 install flake8 virtualenv gunicorn ipython
 	# prepare to symlink the files
 	_echo "Now preparing to symlink files."
-	python3 symlink.py
+	python3 $THIS_DIR/symlink.py
 	# run the aliases file to get the pyenv out
-	_echo "Running the ~/.aliases file that we symlinked earlier"
+	_echo "Running the $HOME/.aliases file that we symlinked earlier"
 	source $HOME/.aliases
 	# Now that all that is done, install python into pyenv
 	# installing pyenv 3.6.4 and 2.7.13
@@ -45,9 +48,15 @@ main() {
 	yes '' | pyenv install 2.7.13
 
 
+	# FZF STUFF
+	_echo "Installing FZF"
+	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+	$HOME/.fzf/install --all
+
+
 	# TMUX STUFF
 	_echo "Downloading tpm for Tmux!"
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 
 	# ZSH STUFF
@@ -60,7 +69,7 @@ main() {
 
 	# VIM STUFF
 	# installing Vundle
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 	# install vim plugins
 	vim -c 'PluginInstall' -c 'qa!'
 	# install ycm from vim plugins
@@ -73,16 +82,16 @@ main() {
 	# create an id_rsa file if it doesn't already exist
 	if [ ! -f $HOME/.ssh/id_rsa ]; then
 		ssh-keygen -f id_rsa -t rsa -N ''
-		_echo "A ssh-key with the default name (~/.ssh/id_rsa) has been created for you!"
+		_echo "A ssh-key with the default name ($HOME/.ssh/id_rsa) has been created for you!"
 		_echo "Here is the key:"
 		echo "$(cat $HOME/.ssh/id_rsa.pub)"
 	fi
 
 
 	# finalize
-	_echo "Reloading ~/.zshrc."
+	_echo "Reloading $HOME/.zshrc."
 	exec "$SHELL"
-	source ~/.zshrc
+	source $HOME/.zshrc
 	_echo ".dotfiles setup complete! Enjoy living in a world of monogamy."
 }
 

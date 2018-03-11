@@ -75,11 +75,6 @@ main() {
 	_echo "Installing pyenv"
 	git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 	git clone https://github.com/pyenv/pyenv-virtualenv.git $HOME/.pyenv/plugins/pyenv-virtualenv
-
-	# installing fzf
-	_echo "Installing FZF"
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	source ~/.fzf/install
 }
 
 # invoke main

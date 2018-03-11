@@ -21,3 +21,6 @@ source $HOME/.aliases
 
 # git shit
 # ...
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
