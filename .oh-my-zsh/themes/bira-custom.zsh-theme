@@ -22,8 +22,6 @@ else
 fi
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
-
-
 RPS1="%B${return_code}%b"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"

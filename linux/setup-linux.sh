@@ -4,14 +4,20 @@
 # Linux Setup
 ###############################################################################
 
+
+# Get the color definitions
+source colordefinitions.sh
+
 _echo() {
-	echo "[aykhaiweng says][Linux] - $1"
+	echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${ORANGE}LINUX${NOCOLOR}] - $1"
 }
 
-main() {
-	# prompt for sudo
-	sudo -v
 
+# prompt for sudo
+sudo -v
+
+
+main() {
 	# Install essentials
 	_echo "Installing essentials."
 	_echo

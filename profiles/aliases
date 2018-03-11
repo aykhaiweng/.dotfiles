@@ -38,7 +38,6 @@ alias travelinsurance='cd ~/Git/2.\ tigerlab/InsuranceSoftware/travelinsurance/ 
 
 # Sublime Text 3
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias cleansubl='rm'
 
 # Tmux
 alias tmux="tmux"

@@ -14,7 +14,12 @@ FILES_TO_LINK = (
     ('profiles/aliases', '.aliases'),
     ('profiles/tmux.conf', '.tmux.conf'),
     ('profiles/vimrc', '.vimrc'),
+
+    # flake8
     ('config/flake8', '.config/flake8'),
+
+    # tmux-gitbar
+    ('config/.tmux-gitbar.conf', '.tmux-gitbar.conf'),
 
     # oh-my-zsh
     (
@@ -25,7 +30,6 @@ FILES_TO_LINK = (
         '.oh-my-zsh/themes/bira-custom.zsh-theme',
         '.oh-my-zsh/themes/bira-custom.zsh-theme',
     )
-
 )
 
 

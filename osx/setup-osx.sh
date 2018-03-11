@@ -1,12 +1,17 @@
-# !/bin/bash
+#!/bin/bash
 
 ###############################################################################
 # OSX Setup
 ###############################################################################
 
-function _echo() {
-	echo "[aykhaiweng says][OSX] - $1"
+
+# Get the color definitions
+source colordefinitions.sh
+
+_echo() {
+	echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${CYAN}OSX${NOCOLOR}] - $1"
 }
+
 
 # prompt for sudo
 sudo -v
@@ -14,14 +19,19 @@ sudo -v
 
 main() {
 	# Install brew
-	_echo "Installing Brew."
-	yes '' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
+	if ! which brew >/dev/null; then
+		_echo "Installing Brew."
+		yes '' | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	else
+		_echo "Brew already installed, skipping installation"
+	fi
 	# install the brew bundle
+	_echo "Installing Brewfile"
 	brew bundle --file=brew/Brewfile
 
 	# add the oceanic item colors
-	source $HOME/.dotfiles/iterm2/OceanicNext.itermcolors
+	_echo "Activating iterm2 colors based on OceanicNext"
+	open iterm2/OceanicNext.itermcolors
 }
 
 # invoke main
