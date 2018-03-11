@@ -178,13 +178,11 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 " FZF mapping
-nnoremap <C-p> :FZF<CR>
+nnoremap <Leader>fzf :FZF<CR>
 
 " NerdTree mapping
-noremap <C-n> :NERDTreeToggle<CR>
-
-" vim-commentary
-vnoremap <C-/> Commentary
+noremap <Leader>0 :NERDTreeToggle<CR>
+noremap <Leader>- :NERDTreeFind<CR>
 
 " F_keys
 noremap <silent> <F4> :set hlsearch! hlsearch?<CR>
