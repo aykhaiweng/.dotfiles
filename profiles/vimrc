@@ -246,8 +246,8 @@ highlight CursorLine cterm=None ctermbg=236
 highlight CursorColumn cterm=None ctermbg=235
 augroup CursorLine
     au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline setlocal cursorcolumn
+    au WinLeave * setlocal nocursorline setlocal nocursorcolumn
 augroup end
 " =========================================================================== "
 
