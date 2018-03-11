@@ -14,25 +14,37 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
+" workspace
+Plugin 'thaerkh/vim-workspace'
+
 " editor
+" because who doesn't want to see indents?
+Plugin 'thaerkh/vim-indentguides'
+" folding for python
 Plugin 'tmhedberg/SimpylFold'
+" autocompletion
 Plugin 'Valloric/YouCompleteMe'
+" using this instead of the normal flake8 for python ac
 Plugin 'vim-syntastic/syntastic'
+" I needed a way to trim whitespaces faster
 Plugin 'ntpeters/vim-better-whitespace'
+" because I miss sublime text
 Plugin 'terryma/vim-multiple-cursors'
+" for noobs like me who have no idea how to use motions
 Plugin 'easymotion/vim-easymotion'
+" comment out blocks
 Plugin 'tpope/vim-commentary'
 
 " explorers
 Plugin 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
 " Plugin 'kien/ctrlp.vim'
+" prefer this over ctrlp
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 
 " git
 Plugin 'airblade/vim-gitgutter'
-" Plugin 'jreybert/vimagit'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 
@@ -183,8 +195,8 @@ nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 " PLUGIN SETTINGS ----------------------------------------------------------- "
 " syntastic
 syntax on
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -251,7 +263,7 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 colorscheme OceanicNext
 
 " current line highlights
-highlight CursorLine cterm=None ctermbg=236
+highlight CursorLine cterm=None ctermbg=234
 highlight CursorColumn cterm=None ctermbg=235
 augroup CursorLine
     au!
@@ -263,8 +275,8 @@ augroup end
 " v this is commented out because it is now handled by better-whitespace
 " highlight BadWhitespace ctermbg=red guibg=darkred
 " match BadWhitespace /\s\+$/
-highlight NonText ctermbg=234
-highlight SpecialKey ctermbg=234
+highlight NonText ctermfg=236
+highlight SpecialKey ctermfg=236
 highlight ExtraWhitespace ctermbg=red
 " =========================================================================== "
 
@@ -304,7 +316,7 @@ au BufNewFile,BufRead Vagrant
     \ set expandtab
 
 " show whitespaces
-set listchars=tab:\ \ ,trail:·,nbsp:~,extends:>,precedes:<
+set listchars=tab:\ \ ,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
 set list
 
 " autocmds
