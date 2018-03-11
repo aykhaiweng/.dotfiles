@@ -48,8 +48,6 @@ main() {
 	# TMUX STUFF
 	_echo "Downloading tpm for Tmux!"
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	_echo "Downloading tmux-gitbar"
-	git clone https://github.com/aurelien-rainone/tmux-gitbar.git ~/.tmux/tmux-gitbar
 
 
 	# ZSH STUFF
