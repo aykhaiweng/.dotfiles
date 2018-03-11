@@ -35,4 +35,5 @@ precmd() {
         fi
     fi
     PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
+	PROMPT="$(retval=$?;tput cup "$LINES";exit $retval)"$PROMPT
 }
