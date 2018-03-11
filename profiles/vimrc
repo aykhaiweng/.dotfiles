@@ -91,10 +91,10 @@ nnoremap <S-H> 0
 vnoremap <S-L> $
 vnoremap <S-H> 0
 " Page up and down
-nnoremap <S-K> k
-nnoremap <S-J> <ScrollWheelDown>
-vnoremap <S-K> k
-vnoremap <S-J> j
+nnoremap <S-K> 15k
+nnoremap <S-J> 15j
+vnoremap <S-K> 15k
+vnoremap <S-J> 15j
 
 " key shortcuts for pane switching
 nnoremap <C-J> <C-W><C-J>
@@ -159,11 +159,11 @@ nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fm :Marks<CR>
 
 " multicursor key mapping
-" let g:multi_cursor_use_default_mapping=0
-" let g:multi_cursor_next_key='<C-d>'
-" let g:multi_cursor_prev_key='<C-p>'
-" let g:multi_cursor_skip_key='<C-x>'
-" let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " FZF mapping
 nnoremap <C-p> :FZF<CR>
@@ -171,11 +171,13 @@ nnoremap <C-p> :FZF<CR>
 " NerdTree mapping
 noremap <C-n> :NERDTreeToggle<CR>
 
+" vim-commentary
+vnoremap <C-/> Commentary
+
 " F_keys
 noremap <silent> <F4> :set hlsearch! hlsearch?<CR>
 nnoremap <silent> <F5> :so $MYVIMRC<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
-" nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " =========================================================================== "
 
 " PLUGIN SETTINGS ----------------------------------------------------------- "
