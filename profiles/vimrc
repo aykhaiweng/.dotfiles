@@ -19,7 +19,9 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ntpeters/vim-better-whitespace'
-" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-commentary'
 
 " explorers
 Plugin 'scrooloose/nerdtree'
@@ -35,7 +37,7 @@ Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 
 " status
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" because airline is just way more light weight than powerline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
@@ -72,7 +74,7 @@ set ttimeoutlen=0
 set mouse=a
 
 " leader
-let mapleader = ","
+let mapleader=","
 
 " explicitly binding keys
 vnoremap <Up>    k
@@ -207,6 +209,12 @@ let g:ctrlp_custom_ignore={
     \ 'dir': '\v[\/]\.(git|hg|svn)$',
     \ }
 
+
+" vim-commentary
+" If your filetype isn't supported, just add a new line for this:
+" autocmd FileType apache setlocal commentstring=#\ %s
+
+
 " FZF
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
@@ -223,7 +231,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " =========================================================================== "
 
-
 " =========================================================================== "
 
 " LOOK & FEEL --------------------------------------------------------------- "
@@ -232,10 +239,16 @@ set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
 " colorscheme
-" if (has("termguicolors"))
-"   set termguicolors
-" endif
 colorscheme OceanicNext
+
+" current line highlights
+highlight CursorLine cterm=None ctermbg=236
+highlight CursorColumn cterm=None ctermbg=235
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup end
 " =========================================================================== "
 
 
