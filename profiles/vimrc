@@ -85,6 +85,16 @@ nnoremap <Up>    k
 nnoremap <Down>  j
 nnoremap <Left>  h
 nnoremap <Right> l
+" Hotkeys for $ and 0
+nnoremap <S-L> $
+nnoremap <S-H> 0
+vnoremap <S-L> $
+vnoremap <S-H> 0
+" Page up and down
+nnoremap <S-K> k
+nnoremap <S-J> <ScrollWheelDown>
+vnoremap <S-K> k
+vnoremap <S-J> j
 
 " key shortcuts for pane switching
 nnoremap <C-J> <C-W><C-J>
@@ -108,10 +118,10 @@ nnoremap <C-Down>  <C-W><C-J>
 nnoremap <space> za
 
 " copy and pasting like a boss for MAC
-nnoremap <C-S-c> :.w !pbcopy<CR><CR>
-vnoremap <C-S-c> :w !pbcopy<CR><CR>
-nnoremap <C-S-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-inoremap <C-S-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nnoremap <C-c> :.w !pbcopy<CR><CR>
+vnoremap <C-c> :w !pbcopy<CR><CR>
+nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
 " indent control
 nnoremap <Tab> >>_
@@ -147,10 +157,6 @@ nnoremap <leader>bx :bd<CR>
 " other fzf keybindings
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fm :Marks<CR>
-
-" Hotkeys for $ and 0
-map L $
-map H 0
 
 " multicursor key mapping
 " let g:multi_cursor_use_default_mapping=0
