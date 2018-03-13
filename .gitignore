@@ -3,3 +3,5 @@
 *.swo
 **.swo
 *.sublime*
+.undodir
+Session.vim

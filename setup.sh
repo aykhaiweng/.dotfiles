@@ -17,6 +17,7 @@ main() {
 	_echo "Before I start installing anything, I'm going to need your password for sudo access."
 	sudo -v
 
+
 	# declare variable for os type
 	uname=$(uname)
 	_echo "$uname detected."

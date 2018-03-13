@@ -23,11 +23,11 @@ FILES_TO_LINK = (
 
     # oh-my-zsh
     (
-        '.oh-my-zsh/themes/powerlevel9k/',
+        'oh-my-zsh/themes/powerlevel9k/',
         '.oh-my-zsh/themes/powerlevel9k'
     ),
     (
-        '.oh-my-zsh/themes/bira-custom.zsh-theme',
+        'oh-my-zsh/themes/bira-custom.zsh-theme',
         '.oh-my-zsh/themes/bira-custom.zsh-theme',
     )
 )
