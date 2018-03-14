@@ -9,6 +9,12 @@ let mapleader=","
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+
+set directory=$HOME/.vim/swapfiles//
+set backupdir=$HOME/.vim/backup//
+
+
 Plugin 'gmarik/Vundle.vim'
 
 
@@ -274,8 +280,8 @@ au BufNewFile,BufRead *.py
     \ set softtabstop=4
     \ set shiftwidth=4
     \ set expandtab
-    \ set colorcolumn=80
-    \ set syntax=python
+    \ setlocal colorcolumn=80
+    \ setlocal syntax=python
     \ let python_highlight_all=1
     \ let g:syntastic_python_checkers = ['flake8']
 
