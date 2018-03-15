@@ -9,6 +9,7 @@ export LC_CTYPE="UTF-8"
 # Setup the colors used for the terminal
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+export EDITOR=vim
 
 # default dotfiles folder
 export DOTFILES_PATH="$HOME/.dotfiles/"
@@ -38,6 +39,11 @@ alias travelinsurance='cd ~/Git/2.\ tigerlab/InsuranceSoftware/travelinsurance/ 
 
 # Sublime Text 3
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+# Checking for rust
+if [ -d "~/.cargo" ]; then
+	source $HOME/.cargo/env
+fi
 
 # Tmux
 alias tmux="tmux"

@@ -7,6 +7,13 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BACKUP_DIR = os.path.join(HOME_DIR, 'backup/')
 
 
+DIRECTORIES_TO_MAKE = (
+    '.config',
+    '.config/nvim',
+    '.config/alacritty',
+)
+
+
 # Tuples of source and targets
 FILES_TO_LINK = (
     # profiles
@@ -17,6 +24,12 @@ FILES_TO_LINK = (
 
     # flake8
     ('config/flake8', '.config/flake8'),
+    # nvim
+    ('config/nvim', '.config/nvim/init.vim'),
+    # alacritty
+    ('config/alacritty_macos.yml', '.config/alacritty/alacritty.yml'),
+    # kitty
+    ('config/kitty.conf', '.config/kitty/kitty.conf'),
 
     # tmux-gitbar
     ('config/.tmux-gitbar.conf', '.tmux-gitbar.conf'),
@@ -36,6 +49,18 @@ FILES_TO_LINK = (
 def main():
     now = datetime.datetime.now()
 
+    # Make directories
+    for DIRNAME in DIRECTORIES_TO_MAKE:
+        target_directory = os.path.join(HOME_DIR, DIRNAME)
+        if os.path.exists(target_directory):
+            print("Path for directory found, skipping make: {}".format(
+                target_directory)
+            )
+            pass  # pass if directory already exists
+        else:
+            print("Creating directory: {}".format(target_directory))
+            os.makedirs(target_directory)
+    # Symlink files
     for SOURCE, TARGET in FILES_TO_LINK:
         print("Attempting to create symlink for " + TARGET)
 

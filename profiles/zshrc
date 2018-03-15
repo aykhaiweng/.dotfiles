@@ -24,3 +24,6 @@ source $HOME/.aliases
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /Users/aykhaiweng/.travis/travis.sh ] && source /Users/aykhaiweng/.travis/travis.sh

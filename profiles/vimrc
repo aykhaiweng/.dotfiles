@@ -9,30 +9,23 @@ let mapleader=","
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-
-set directory=$HOME/.vim/swapfiles//
-set backupdir=$HOME/.vim/backup//
-
-
 Plugin 'gmarik/Vundle.vim'
 
 
-""" ColorScheme
 Plugin 'mhartington/oceanic-next'
+set rtp+=~/.vim/bundle/oceanic-next/colors
 
 
 """ Editor
 Plugin 'thaerkh/vim-workspace'
+nnoremap <leader>s :ToggleWorkspace<CR>
+let g:workspace_session_name='workspace.vim'
+let g:workspace_session_disable_on_args=1
+let g:workspace_persist_undo_history=0        " enabled = 1 (default), disabled = 0
+" let g:workspace_undodir='~/.vim/workspace-undodir'
 "
 " because who doesn't want to see indents?
 " Plugin 'thaerkh/vim-indentguides'
-
-" folding for python
-Plugin 'tmhedberg/SimpylFold'
-set foldmethod=indent
-set foldlevel=99
-let g:SimpylFold_docstring_preview=1
 
 " autocompletion
 Plugin 'Valloric/YouCompleteMe'
@@ -112,6 +105,12 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 """ Python
+" folding for python
+Plugin 'tmhedberg/SimpylFold'
+set foldmethod=indent
+set foldlevel=99
+let g:SimpylFold_docstring_preview=1
+
 " jedi integration for vim
 Plugin 'davidhalter/jedi-vim'
 let g:jedi#goto_command = "<Leader>jc"
@@ -121,8 +120,10 @@ let g:jedi#documentation_command = "<Leader>jk"
 let g:jedi#usages_command = "<Leader>ju"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<Leader>jr"
+
 " penv wrapper for vim
 Plugin 'lambdalisue/vim-pyenv'
+
 " python indentation for vim
 Plugin 'vim-scripts/indentpython.vim'
 
@@ -214,22 +215,31 @@ nnoremap <Leader>bx :bd<CR>
 " F_keys
 nnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> F :set hlsearch! hlsearch?<CR>
-nnoremap <silent> <F5> :%sort!<CR>
+vnoremap <silent> <F5> :%sort!<CR>
+nnoremap <silent> <F5> :so $MYVIMRC<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 " =========================================================================== "
 
 
 " LOOK & FEEL --------------------------------------------------------------- "
+" ColorScheme
+if (has("termguicolors"))
+    set termguicolors
+endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+syntax enable
+set background=dark
+set t_Co=256
+colorscheme OceanicNext
+" some modifications to OceanicNex:
+
 " statusline
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
-" colorscheme
-colorscheme OceanicNext
-
 " current line highlights
-highlight CursorLine cterm=None ctermbg=234
-highlight CursorColumn cterm=None ctermbg=235
+" highlight CursorLine cterm=None ctermbg=234 guibg=#000000
+" highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
 augroup CursorLine
     au!
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -240,9 +250,9 @@ augroup end
 " v this is commented out because it is now handled by better-whitespace
 " highlight BadWhitespace ctermbg=red guibg=darkred
 " match BadWhitespace /\s\+$/
-highlight Comment ctermfg=245
-highlight NonText ctermfg=238
-highlight SpecialKey ctermfg=238
+" highlight Comment ctermfg=245
+" highlight NonText ctermfg=238
+" highlight SpecialKey ctermfg=238
 highlight ExtraWhitespace ctermbg=red
 " =========================================================================== "
 
@@ -272,6 +282,7 @@ set smartcase        " case ignored if the search is all lower case
 set lazyredraw
 set undolevels=1000  " more undo levels
 set ttyfast
+set so=10
 
 " Python
 au BufNewFile,BufRead *.py
@@ -280,8 +291,8 @@ au BufNewFile,BufRead *.py
     \ set softtabstop=4
     \ set shiftwidth=4
     \ set expandtab
-    \ setlocal colorcolumn=80
-    \ setlocal syntax=python
+    \ set colorcolumn=80
+    \ set syntax=python
     \ let python_highlight_all=1
     \ let g:syntastic_python_checkers = ['flake8']
 
@@ -309,3 +320,16 @@ set list
 " au CursorHold,CursorHoldI * GitGutter
 
 " =========================================================================== "
+"
+"
+
+set directory=$HOME/.vim/swapfiles//
+set backupdir=$HOME/.vim/backup//
+set undodir=$HOME/.vim/undodir//
+silent execute '!mkdir -p ~/.vim/swapfiles'
+silent execute '!mkdir -p ~/.vim/backup'
+silent execute '!mkdir -p ~/.vim/undodir'
+
+
+" MACVIM FIX
+let macvim_skip_colorscheme=1
