@@ -14,7 +14,14 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'mhartington/oceanic-next'
 set rtp+=~/.vim/bundle/oceanic-next/colors
-
+Plugin 'hzchirs/vim-material'
+set rtp+=~/.vim/bundle/vim-material/colors
+Plugin 'tyrannicaltoucan/vim-quantum'
+set rtp+=~/.vim/bundle/vim-quantum/colors
+Plugin 'agude/vim-eldar'
+set rtp+=~/.vim/bundle/vim-eldar/colors
+Plugin 'flazz/vim-colorschemes'
+set rtp+=~/.vim/bundle/vim-colorschemes/colors
 
 """ Editor
 Plugin 'thaerkh/vim-workspace'
@@ -100,8 +107,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='quantum'
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 """ Python
@@ -120,6 +128,7 @@ let g:jedi#documentation_command = "<Leader>jk"
 let g:jedi#usages_command = "<Leader>ju"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<Leader>jr"
+let g:jedi#show_call_signatures = "2"
 
 " penv wrapper for vim
 Plugin 'lambdalisue/vim-pyenv'
@@ -175,6 +184,10 @@ nnoremap <C-Down>  <C-W><C-J>
 " Repeat last command with spacebar
 " nnoremap <space> @@
 
+" location list
+nnoremap <Leader>ll :lopen<CR>
+nnoremap <Leader>lx :lclose<CR>
+
 " copy and pasting like a boss for MAC
 nnoremap <C-c> :.w !pbcopy<CR><CR>
 vnoremap <C-c> :w !pbcopy<CR><CR>
@@ -198,11 +211,11 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Vim-style tab navigation
 nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
 nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
+nnoremap tn  :tabnew<Space>
 nnoremap tm  :tabm<Space>
 nnoremap tx  :tabclose<CR>
 
@@ -226,12 +239,11 @@ nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 if (has("termguicolors"))
     set termguicolors
 endif
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
+" let g:quantum_black=1
+" let g:quantum_italics=1
+colorscheme wombat
 set background=dark
-set t_Co=256
-colorscheme OceanicNext
-" some modifications to OceanicNex:
 
 " statusline
 set laststatus=2
@@ -254,8 +266,6 @@ augroup end
 " highlight NonText ctermfg=238
 " highlight SpecialKey ctermfg=238
 highlight ExtraWhitespace ctermbg=red
-" =========================================================================== "
-
 
 " EDITOR -------------------------------------------------------------------- "
 " definitions
@@ -282,7 +292,7 @@ set smartcase        " case ignored if the search is all lower case
 set lazyredraw
 set undolevels=1000  " more undo levels
 set ttyfast
-set so=10
+set so=3
 
 " Python
 au BufNewFile,BufRead *.py
@@ -309,6 +319,10 @@ au BufNewFile,BufRead Vagrant
     \ set expandtab
     \ set syntax=ruby
 
+" Refresh Airline theme on entering a buffer
+au! BufEnter *
+    \ :AirlineRefresh
+
 " show whitespaces
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
 set list
@@ -320,8 +334,7 @@ set list
 " au CursorHold,CursorHoldI * GitGutter
 
 " =========================================================================== "
-"
-"
+
 
 set directory=$HOME/.vim/swapfiles//
 set backupdir=$HOME/.vim/backup//
@@ -329,6 +342,10 @@ set undodir=$HOME/.vim/undodir//
 silent execute '!mkdir -p ~/.vim/swapfiles'
 silent execute '!mkdir -p ~/.vim/backup'
 silent execute '!mkdir -p ~/.vim/undodir'
+
+
+" After Directories
+set rtp+=~/.vim/after
 
 
 " MACVIM FIX

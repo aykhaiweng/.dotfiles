@@ -11,6 +11,9 @@ DIRECTORIES_TO_MAKE = (
     '.config',
     '.config/nvim',
     '.config/alacritty',
+    '.config/kitty',
+    '.vim/after',
+    '.vim/after/plugins/',
 )
 
 
@@ -20,7 +23,8 @@ FILES_TO_LINK = (
     ('profiles/zshrc', '.zshrc'),
     ('profiles/aliases', '.aliases'),
     ('profiles/tmux.conf', '.tmux.conf'),
-    ('profiles/vimrc', '.vimrc'),
+    ('vim/vimrc', '.vimrc'),
+    ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
 
     # flake8
     ('config/flake8', '.config/flake8'),
@@ -30,6 +34,7 @@ FILES_TO_LINK = (
     ('config/alacritty_macos.yml', '.config/alacritty/alacritty.yml'),
     # kitty
     ('config/kitty.conf', '.config/kitty/kitty.conf'),
+    ('config/kitty.conf', 'Library/Preferences/kitty/kitty.conf'),
 
     # tmux-gitbar
     ('config/.tmux-gitbar.conf', '.tmux-gitbar.conf'),

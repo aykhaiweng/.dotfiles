@@ -48,6 +48,9 @@ fi
 # Tmux
 alias tmux="tmux"
 
+# Kitty
+export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
+
 # python goodness
 PYTHON_CONFIGURE_OPTS="--enable-framework"
 
