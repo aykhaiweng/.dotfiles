@@ -45,13 +45,13 @@ main() {
 	sudo apt-get install nginx gunicorn memcached -y
 	sudo apt-get install libpq-dev postgresql postgresql-contrib gettext -y
 	sudo apt-get install nodejs-legacy npm libjpeg8-dev -y
-	sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules -y
+	# sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules -y
 	sudo apt-get install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
-	sudo apt-get install letsencrypt -y
+	# sudo apt-get install letsencrypt -y
 	sudo apt-get install mysql-server libmysqlclient-dev -y
 
 	# terminal essentials
-	sudo apt-get install zsh tmux xclip -y
+	sudo apt-get install cmake zsh tmux xclip -y
 
 	if ! [ $KURA_FTS ] ; then
 		_echo "Setting up locales"
@@ -59,17 +59,7 @@ main() {
 		sudo timedatectl set-timezone Asia/Kuala_Lumpur
 	fi
 
-	# sudo -u postgres psql -c "create user $USER superuser password 'oceannexus129';" postgres
-
-	if ! [ -f ~/.ssh/id_rsa.pub ]; then
-		_echo "Generating SSH Keys"
-		ssh-keygen
-		echo
-	fi
-
-	# Specifically for servers, this is a requirement
-	_echo "Pip Installing virtualenv"
-	pip install virtualenv
+	sudo -u postgres psql -c "create user $USER WITH SUPERUSER PASSWORD 'topkek';" postgres
 
 	# installing pyenv
 	_echo "Installing pyenv"
