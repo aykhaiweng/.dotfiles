@@ -30,6 +30,22 @@ main() {
 	else
 		_echo "Your platform is not supported yet."
 	fi
+	
+	# ZSH STUFF
+	# set zsh as default
+	# if [[ $SHELL != '/bin/zsh' ]]; then
+	# 	_echo "Current SHELL changing to `/bin/zsh`"
+	# 	chsh -s $(which zsh)
+	# fi
+	# now we install .oh-my-zsh
+	_echo "Installing .oh-my-zsh"
+	yes '' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	
+	
+	# VIM STUFF
+	# installing Vundle
+	_echo "Cloning Vundle..."
+	git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
 
 	# PYTHON STUFF
@@ -64,24 +80,13 @@ main() {
 	git clone https://github.com/aurelien-rainone/tmux-gitbar.git $HOME/.tmux/tmux-gitbar
 
 
-	# ZSH STUFF
-	# set zsh as default
-	if [[ $SHELL != '/bin/zsh' ]]; then
-		_echo "Current SHELL changing to `/bin/zsh`"
-		chsh -s $(which zsh)
-	fi
-
-
-	# VIM STUFF
-	# installing Vundle
-	git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 	# install vim plugins
+	_echo "Installing VIM Plugins..."
 	vim -c 'PluginInstall' -c 'qa!'
 	# install ycm from vim plugins
+	_echo "Compiling YCM..."
 	python $HOME/.vim/bundle/YouCompleteMe/install.py
-	# now we install .oh-my-zsh
-	yes '' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
+	
 
 	# SSH STUFF
 	# create an id_rsa file if it doesn't already exist
@@ -97,7 +102,7 @@ main() {
 	_echo "Reloading $HOME/.zshrc."
 	exec "$SHELL"
 	source $HOME/.zshrc
-	_echo ".dotfiles setup complete! Enjoy living in a world of monogamy."
+	_echo ".dotfiles setup complete! Enjoy."
 }
 
 # invoke main
