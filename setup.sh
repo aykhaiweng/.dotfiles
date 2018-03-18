@@ -91,7 +91,7 @@ main() {
 	# SSH STUFF
 	# create an id_rsa file if it doesn't already exist
 	if [ ! -f $HOME/.ssh/id_rsa ]; then
-		ssh-keygen -f id_rsa -t rsa -N ''
+		ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
 		_echo "A ssh-key with the default name ($HOME/.ssh/id_rsa) has been created for you!"
 		_echo "Here is the key:"
 		echo "$(cat $HOME/.ssh/id_rsa.pub)"

@@ -123,6 +123,10 @@ def main():
         except FileExistsError:
             os.remove(target_file)
             os.symlink(source_file, target_file)
+        except FileNotFoundError:
+            print("Could not create the symlink for {target}".format(
+                target=target_file
+            ))
 
 
 if __name__ == '__main__':

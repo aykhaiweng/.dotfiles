@@ -14,18 +14,18 @@ badd +1 profiles/vimrc
 badd +1 NERD_tree_2
 badd +131 config/kitty.conf
 badd +1 config/flake8
-badd +1 vim/vimrc
+badd +95 vim/vimrc
 badd +1 vim/after/highlights.vim
 badd +109 profiles/tmux.conf
 badd +20 profiles/zshrc
 badd +226 config/alacritty_macos.yml
-badd +0 \[Vundle]\ Installer
+badd +1 \[Vundle]\ Installer
 argglobal
 silent! argdel *
-edit vim/vimrc
+edit profiles/tmux.conf
 set splitbelow splitright
 wincmd t
-set winminheight=1 winheight=1 winminwidth=1 winwidth=1
+set winheight=1 winwidth=1
 argglobal
 setlocal fdm=indent
 setlocal fde=0
@@ -35,11 +35,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 200 - ((68 * winheight(0) + 36) / 72)
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-200
+1
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
@@ -47,7 +47,6 @@ if exists('s:wipebuf')
 endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20 shortmess=filnxtToOc
-set winminheight=1 winminwidth=1
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
