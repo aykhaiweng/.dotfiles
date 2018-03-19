@@ -242,7 +242,7 @@ endif
 syntax enable
 " let g:quantum_black=1
 " let g:quantum_italics=1
-colorscheme wombat
+colorscheme OceanicNext
 set background=dark
 
 " statusline
