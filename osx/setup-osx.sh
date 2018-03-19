@@ -6,7 +6,7 @@
 
 
 # Get the color definitions
-source colordefinitions.sh
+source $THIS_DIR/colordefinitions.sh
 
 _echo() {
 	echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${CYAN}OSX${NOCOLOR}] - $1"
