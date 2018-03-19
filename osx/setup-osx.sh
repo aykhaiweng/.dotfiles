@@ -29,9 +29,9 @@ main() {
 	_echo "Installing Brewfile"
 	brew bundle --file=brew/Brewfile
 
-	# add the oceanic item colors
-	_echo "Activating iterm2 colors based on OceanicNext"
-	open $THIS_DIR/iterm2/OceanicNext.itermcolors
+	# Applying prefered settings
+	_echo "Applying prefered MacOSX settings"
+	source $THIS_DIR/osx/mac-osx-settings.sh
 }
 
 # invoke main

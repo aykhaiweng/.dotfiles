@@ -22,9 +22,13 @@ FILES_TO_LINK = (
     # profiles
     ('profiles/zshrc', '.zshrc'),
     ('profiles/aliases', '.aliases'),
-    ('profiles/tmux.conf', '.tmux.conf'),
     ('vim/vimrc', '.vimrc'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
+
+    # tmux
+    ('tmux/tmux.conf', '.tmux.conf'),
+    ('tmux/tmux-osx.conf', '.tmux-osx.conf'),
+    ('tmux/tmux-linux.conf', '.tmux-linux.conf'),
 
     # flake8
     ('config/flake8', '.config/flake8'),
