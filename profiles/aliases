@@ -16,8 +16,6 @@ export DOTFILES_PATH="$HOME/.dotfiles/"
 
 # SSH
 # eval $(ssh-agent) &> /dev/null
-# set all files to 0400 permissions
-chmod 0400 $HOME/.ssh/*
 # add all private keys to agent
 find ~/.ssh/ -type f -exec grep -l "PRIVATE" {} \; | xargs ssh-add &> /dev/null
 
