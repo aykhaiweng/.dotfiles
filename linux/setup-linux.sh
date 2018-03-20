@@ -53,7 +53,7 @@ main() {
 	# sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules -y
 	sudo apt-get install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
 	# sudo apt-get install letsencrypt -y
-	sudo apt-get install mysql-server libmysqlclient-dev -yq
+	# sudo apt-get install mysql-server libmysqlclient-dev -yq
 
 	# terminal essentials
 	sudo apt-get install cmake zsh tmux xclip -y
