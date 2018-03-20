@@ -12,6 +12,8 @@ _echo() {
 	echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${ORANGE}LINUX${NOCOLOR}] - $1"
 }
 
+DBPASSWRD = 'topkek'
+
 
 # prompt for sudo
 sudo -v
@@ -37,6 +39,9 @@ main() {
 	echo "|                    And loads of other goodies! |"
 	echo "@================================================="
 	echo
+
+	debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
+	debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DBPASSWD"
 
 	sudo apt-get update
 	sudo apt-get install build-essential curl file git -y
