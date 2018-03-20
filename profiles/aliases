@@ -50,7 +50,7 @@ alias tmux="tmux"
 export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
 
 # python goodness
-PYTHON_CONFIGURE_OPTS="--enable-framework"
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"

@@ -65,8 +65,13 @@ main() {
 	source $HOME/.aliases
 	# Now that all that is done, install python into pyenv
 	# installing pyenv 3.6.4 and 2.7.13
+	export PYTHON_CONFIGURE_OPTS="--enable-framework"
+	_echo "Installing python 3.6.4 with pyenv..."
 	yes '' | pyenv install 3.6.4
+	_echo "Installing python 2.7.13 with  pyenv..."
 	yes '' | pyenv install 2.7.13
+	_echo "Setting python 3.6.4 as the global default"
+	pyenv global 3.6.4
 
 
 	# FZF STUFF
