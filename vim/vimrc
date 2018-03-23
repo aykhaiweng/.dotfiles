@@ -28,7 +28,7 @@ Plugin 'thaerkh/vim-workspace'
 nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
-let g:workspace_persist_undo_history=0        " enabled = 1 (default), disabled = 0
+let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
 " let g:workspace_undodir='~/.vim/workspace-undodir'
 "
 " because who doesn't want to see indents?
@@ -39,11 +39,21 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_autoclose_preview_window_after_completion=1
 map <Leader>yg  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+Plugin 'sirver/ultisnips'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-E>"
+let g:UltiSnipsJumpForwardTrigger="<C-B>"
+let g:UltiSnipsJumpBackwardTrigger="<C-Z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
+map <Leader>use :UltiSnipsEdit<CR>
+
 " using this instead of the normal flake8 for python ac
 Plugin 'vim-syntastic/syntastic'
 syntax on
 let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -128,7 +138,7 @@ let g:jedi#documentation_command = "<Leader>jk"
 let g:jedi#usages_command = "<Leader>ju"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<Leader>jr"
-let g:jedi#show_call_signatures = "2"
+let g:jedi#show_call_signatures = "1"
 
 " penv wrapper for vim
 Plugin 'lambdalisue/vim-pyenv'
@@ -136,6 +146,9 @@ Plugin 'lambdalisue/vim-pyenv'
 " python indentation for vim
 Plugin 'vim-scripts/indentpython.vim'
 
+
+" devicons fun fun fun
+Plugin 'ryanoasis/vim-devicons'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -242,7 +255,7 @@ endif
 syntax enable
 " let g:quantum_black=1
 " let g:quantum_italics=1
-colorscheme OceanicNext
+colorscheme Molokai
 set background=dark
 
 " statusline
