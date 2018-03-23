@@ -39,7 +39,7 @@ main() {
 	# fi
 	# now we install .oh-my-zsh
 	_echo "Installing .oh-my-zsh"
-	yes '' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 	_echo "Installing zsh-competions"
 	git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
 	_echo "Installing zsh-autosuggestions"
