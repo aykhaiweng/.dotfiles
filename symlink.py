@@ -12,6 +12,7 @@ DIRECTORIES_TO_MAKE = (
     '.config/nvim',
     '.config/alacritty',
     '.config/kitty',
+    '.vim/workspace-undodir/',
     '.vim/after',
     '.vim/after/plugins/',
 )

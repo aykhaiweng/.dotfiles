@@ -1,45 +1,42 @@
 set nocompatible              " required
 filetype off                  " required
 
-
 " leader
 let mapleader=","
 
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+" Initializing Plug
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
 
-Plugin 'mhartington/oceanic-next'
+Plug 'mhartington/oceanic-next'
 set rtp+=~/.vim/bundle/oceanic-next/colors
-Plugin 'hzchirs/vim-material'
+Plug 'hzchirs/vim-material'
 set rtp+=~/.vim/bundle/vim-material/colors
-Plugin 'tyrannicaltoucan/vim-quantum'
+Plug 'tyrannicaltoucan/vim-quantum'
 set rtp+=~/.vim/bundle/vim-quantum/colors
-Plugin 'agude/vim-eldar'
+Plug 'agude/vim-eldar'
 set rtp+=~/.vim/bundle/vim-eldar/colors
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 set rtp+=~/.vim/bundle/vim-colorschemes/colors
 
 """ Editor
-Plugin 'thaerkh/vim-workspace'
+Plug 'thaerkh/vim-workspace'
 nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
-let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
+" let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
 " let g:workspace_undodir='~/.vim/workspace-undodir'
 "
 " because who doesn't want to see indents?
-" Plugin 'thaerkh/vim-indentguides'
+" Plug 'thaerkh/vim-indentguides'
 
 " autocompletion
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 let g:ycm_autoclose_preview_window_after_completion=1
 map <Leader>yg  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-Plugin 'sirver/ultisnips'
+Plug 'sirver/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-E>"
 let g:UltiSnipsJumpForwardTrigger="<C-B>"
@@ -50,20 +47,20 @@ let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
 map <Leader>use :UltiSnipsEdit<CR>
 
 " using this instead of the normal flake8 for python ac
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 syntax on
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " I needed a way to trim whitespaces faster
-" Plugin 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 " let g:better_whitespace_enabled=1
 " let g:strip_whitespace_on_save=1
 
 " because I miss sublime text
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=1
 " let g:multi_cursor_next_key='<C-d>'
 " let g:multi_cursor_prev_key='<C-p>'
@@ -71,14 +68,14 @@ let g:multi_cursor_use_default_mapping=1
 " let g:multi_cursor_quit_key='<Esc>'
 
 " for noobs like me who have no idea how to use motions
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 " comment out blocks
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 
 """ Explorers
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 noremap <Leader>0 :NERDTreeToggle<CR>
@@ -90,7 +87,7 @@ noremap <Leader>- :NERDTreeFind<CR>
 " autocmd VimEnter *
 "     \ if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 set rtp+=~/.fzf
 let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
@@ -102,20 +99,20 @@ nnoremap <Leader>fm :Marks<CR>
 
 
 """ git
-" Plugin 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 " let g:gitgutter_terminal_reports_focus=0
 
 " git integration for vim
-Plugin 'tpope/vim-git'
+Plug 'tpope/vim-git'
 
 " git wrapper for vim
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 
 """ status
 " because airline is just way more light weight than powerline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='quantum'
 " let g:airline#extensions#tabline#left_sep = ' '
@@ -124,13 +121,13 @@ let g:airline_theme='quantum'
 
 """ Python
 " folding for python
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 set foldmethod=indent
 set foldlevel=99
 let g:SimpylFold_docstring_preview=1
 
 " jedi integration for vim
-Plugin 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 let g:jedi#goto_command = "<Leader>jc"
 let g:jedi#goto_assignments_command = "<Leader>ja"
 let g:jedi#goto_definitions_command = "<Leader>jd"
@@ -140,19 +137,23 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<Leader>jr"
 let g:jedi#show_call_signatures = "1"
 
+" Better python syntax highlighting
+Plug 'vim-python/python-syntax', {'for': 'python'}
+
+
 " penv wrapper for vim
-Plugin 'lambdalisue/vim-pyenv'
+Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 
 " python indentation for vim
-Plugin 'vim-scripts/indentpython.vim'
+Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 
 " devicons fun fun fun
-Plugin 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" All of your Plugs must be added before the following line
+" Initialize plugin system
+call plug#end()
 " =========================================================================== "
 
 
@@ -244,6 +245,36 @@ vnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> <F5> :%sort!<CR>
 nnoremap <silent> <F5> :so $MYVIMRC<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
+
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+nmap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " =========================================================================== "
 
 
@@ -316,7 +347,8 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set colorcolumn=80
     \ set syntax=python
-    \ let python_highlight_all=1
+    \ let g:python_highlight_all=1
+	\ let g:python_self_cls_highlight=1
     \ let g:syntastic_python_checkers = ['flake8']
 
 " HTML, JS, CSS
