@@ -78,6 +78,7 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
+let g:NERDTreeQuitOnOpen=1
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 " autocmd BufEnter *
@@ -139,7 +140,9 @@ let g:jedi#show_call_signatures = "1"
 
 " Better python syntax highlighting
 Plug 'vim-python/python-syntax', {'for': 'python'}
-
+let g:python_highlight_all=1
+let g:python_self_cls_highlight=1
+let g:syntastic_python_checkers = ['flake8']
 
 " penv wrapper for vim
 Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
@@ -296,11 +299,11 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 " current line highlights
 " highlight CursorLine cterm=None ctermbg=234 guibg=#000000
 " highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
-augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup end
+" augroup CursorLine
+"     au!
+"     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"     au WinLeave * setlocal nocursorline
+" augroup end
 
 " highlights
 " v this is commented out because it is now handled by better-whitespace
@@ -347,9 +350,7 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set colorcolumn=80
     \ set syntax=python
-    \ let g:python_highlight_all=1
-	\ let g:python_self_cls_highlight=1
-    \ let g:syntastic_python_checkers = ['flake8']
+
 
 " HTML, JS, CSS
 au BufNewFile,BufRead *.js, *.html, *.css
