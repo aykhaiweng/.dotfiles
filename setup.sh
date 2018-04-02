@@ -36,20 +36,16 @@ main() {
     _echo "$uname detected."
     if [[ $uname == 'Darwin' ]]; then
         _echo "Setting up for Darwin platform."
+        export PYTHON_CONFIGURE_OPTS="--enable-framework"
         source osx/setup-osx.sh
     elif [[ $uname == 'Linux' ]]; then
         _echo "Setting up for Linux platform."
+        export PYTHON_CONFIGURE_OPTS="--enable-shared"
         source linux/setup-linux.sh
     else
         _echo "Your platform is not supported yet."
     fi
 
-    # ZSH STUFF
-    # set zsh as default
-    # if [[ $SHELL != '/bin/zsh' ]]; then
-    #   _echo "Current SHELL changing to `/bin/zsh`"
-    #   chsh -s $(which zsh)
-    # fi
     # now we install .oh-my-zsh
     _echo "Installing .oh-my-zsh"
     git clone git://github.com/aykhaiweng/oh-my-zsh.git $HOME/.oh-my-zsh
@@ -76,7 +72,6 @@ main() {
     source $HOME/.aliases
     # Now that all that is done, install python into pyenv
     # installing pyenv 3.6.4 and 2.7.13
-    export PYTHON_CONFIGURE_OPTS="--enable-framework"
     _echo "Installing python 3.6.4 with pyenv..."
     yes '' | pyenv install 3.6.4
     _echo "Installing python 2.7.13 with  pyenv..."

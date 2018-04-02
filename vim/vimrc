@@ -168,6 +168,7 @@ let g:jedi#usages_command = "<Leader>ju"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<Leader>jr"
 let g:jedi#show_call_signatures = "1"
+let g:jedi#smart_auto_mappings = 0
 
 " Better python syntax highlighting
 Plug 'vim-python/python-syntax', {'for': 'python'}
