@@ -7,8 +7,21 @@ source colordefinitions.sh
 # declare current directory
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+
 _echo() {
     echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] - $1"
+}
+
+
+_check_pyenv_versions() {
+    local __result_var=$1
+    if [[ $(pyenv versions | grep $2) ]]; then
+        local __pyenv_exists=true
+    else
+        local __pyenv_exists=false
+    fi
+
+    eval $__result_var=$__pyenv_exists
 }
 
 
@@ -55,7 +68,6 @@ main() {
     # updating pip and it's prerequisites
     _echo "Upgrading pip and installing prerequisites."
     sudo pip3 install --upgrade pip
-    sudo pip3 install flake8 virtualenv gunicorn ipython
     # prepare to symlink the files
     _echo "Now preparing to symlink files."
     python3 $THIS_DIR/symlink.py
@@ -74,12 +86,24 @@ main() {
 
 
     # Setting up python for neovim
-    pyenv virtualenv 3.6.4 neovim3
-    pyenv activate neovim3
-    pip install neovim
-    pyenv virtualenv 2.7.13 neovim2
-    pyenv activate neovim2
-    pip install neovim
+    _check_pyenv_versions neovim3_exists neovim3
+    if [ '$neovim3_exists' = false ] ; then
+        _echo "Setting up virtualenv for neovim3"
+        pyenv virtualenv 3.6.4 neovim3
+        pyenv activate neovim3
+        pip install neovim
+    else
+        _echo "Virtualenv neovim3 already set up!"
+    fi
+    _check_pyenv_versions neovim2_exists neovim2
+    if [ '$neovim2_exists' = false ] ; then
+        _echo "Setting up virtualenv for neovim3"
+        pyenv virtualenv 2.7.13 neovim2
+        pyenv activate neovim2
+        pip install neovim
+    else
+        _echo "Virtualenv neovim2 already set up!"
+    fi
 
 
     # FZF STUFF
