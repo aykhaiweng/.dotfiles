@@ -20,6 +20,40 @@ set rtp+=~/.vim/bundle/vim-eldar/colors
 Plug 'flazz/vim-colorschemes'
 set rtp+=~/.vim/bundle/vim-colorschemes/colors
 
+
+""" ASYNC STUFF
+" Deoplete
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+let g:python_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
+
+" Async Jedi
+if has('nvim')
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    let g:jedi#completions_enabled = 0
+endif
+
+" Asynchronous Linting
+Plug 'w0rp/ale'
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_set_highlights = 1
+let g:ale_lint_delay = 5000
+let g:ale_lint_on_text_changed = 'never'
+
+" Asynchronous Highlighting
+if has('nvim')
+    Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
+
 """ Editor
 Plug 'thaerkh/vim-workspace'
 nnoremap <leader>s :ToggleWorkspace<CR>
@@ -30,6 +64,8 @@ let g:workspace_session_disable_on_args=1
 "
 " because who doesn't want to see indents?
 " Plug 'thaerkh/vim-indentguides'
+
+Plug 'nathanaelkane/vim-indent-guides'
 
 " autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -47,17 +83,12 @@ let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
 map <Leader>use :UltiSnipsEdit<CR>
 
 " using this instead of the normal flake8 for python ac
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 syntax on
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" I needed a way to trim whitespaces faster
-" Plug 'ntpeters/vim-better-whitespace'
-" let g:better_whitespace_enabled=1
-" let g:strip_whitespace_on_save=1
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -116,14 +147,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='quantum'
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 """ Python
 " folding for python
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=99
 let g:SimpylFold_docstring_preview=1
 
@@ -150,6 +181,14 @@ Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
+
+""" HTML
+Plug 'mattn/emmet-vim', {'for': 'html'}
+
+Plug 'Valloric/MatchTagAlways'
+let g:mta_use_matchparen_group = 1
+let g:mta_filetypes = {'html': 1, 'xhtml': 1, 'xml': 1, 'jinja': 1}
+nnoremap <leader>% :MtaJumpToOtherTag<cr>
 
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
@@ -246,7 +285,7 @@ nnoremap <Leader>bx :bd<CR>
 nnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> <F5> :%sort!<CR>
-nnoremap <silent> <F5> :so $MYVIMRC<CR>
+nnoremap <silent> <F5> :so $MYVIMRC<CR>:AirlineRefresh<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
 function! GetBufferList()
@@ -297,13 +336,13 @@ set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
 " current line highlights
-" highlight CursorLine cterm=None ctermbg=234 guibg=#000000
-" highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
-" augroup CursorLine
-"     au!
-"     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"     au WinLeave * setlocal nocursorline
-" augroup end
+highlight CursorLine cterm=None ctermbg=234 guibg=#000000
+highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup end
 
 " highlights
 " v this is commented out because it is now handled by better-whitespace
@@ -342,23 +381,26 @@ set ttyfast
 set so=3
 
 " Python
-au BufNewFile,BufRead *.py
-    \ syntax on
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set expandtab
-    \ set colorcolumn=80
-    \ set syntax=python
+augroup python
+    au!
+    autocmd FileType python
+        \ syntax on
+        \ set tabstop=4
+        \ set softtabstop=4
+        \ set shiftwidth=4
+        \ set expandtab
+        \ set colorcolumn=80
+        \ set syntax=python
+augroup END
 
 
 " HTML, JS, CSS
-au BufNewFile,BufRead *.js, *.html, *.css
+au! BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=4
     \ set shiftwidth=4
     \ set noexpandtab
 
-au BufNewFile,BufRead Vagrant
+au! BufNewFile,BufRead Vagrant
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2

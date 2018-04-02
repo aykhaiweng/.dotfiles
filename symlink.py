@@ -25,6 +25,7 @@ FILES_TO_LINK = (
     ('profiles/aliases', '.aliases'),
     ('vim/vimrc', '.vimrc'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
+    ('vim/ftplugin/', '.vim/ftplugin'),
     ('ultisnips/', '.vim/ultisnips'),
 
     # tmux
