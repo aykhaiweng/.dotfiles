@@ -21,7 +21,6 @@ _install_neovim() {
 }
 
 
-
 DBPASSWRD = 'topkek'
 
 
@@ -67,6 +66,9 @@ main() {
 
     # terminal essentials
     sudo apt-get install cmake zsh tmux xclip -y
+
+    # neovim installation
+    _install_neovim
 
     if ! [ $KURA_FTS ] ; then
         _echo "Setting up locales"
