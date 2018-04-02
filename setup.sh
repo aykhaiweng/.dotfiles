@@ -73,6 +73,15 @@ main() {
     pyenv global 3.6.4
 
 
+    # Setting up python for neovim
+    pyenv virtualenv 3.6.4 neovim3
+    pyenv activate neovim3
+    pip install neovim
+    pyenv virtualenv 2.7.13 neovim2
+    pyenv activate neovim2
+    pip install neovim
+
+
     # FZF STUFF
     _echo "Installing FZF"
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
