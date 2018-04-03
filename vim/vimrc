@@ -1,6 +1,11 @@
 set nocompatible              " required
 filetype off                  " required
 
+
+" python hosts
+let g:python_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
+
 " leader
 let mapleader=","
 
@@ -31,8 +36,6 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
-let g:python_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
-let g:python3_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
 
 " Async Jedi
 if has('nvim')
