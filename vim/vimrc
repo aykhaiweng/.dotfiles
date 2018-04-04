@@ -3,7 +3,7 @@ filetype off                  " required
 
 
 " python hosts
-let g:python3_host_prog = '/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog='/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
 
 " leader
 let mapleader=","
@@ -13,16 +13,25 @@ let mapleader=","
 call plug#begin('~/.vim/plugged')
 
 
-Plug 'mhartington/oceanic-next'
-set rtp+=~/.vim/bundle/oceanic-next/colors
-Plug 'hzchirs/vim-material'
-set rtp+=~/.vim/bundle/vim-material/colors
-Plug 'tyrannicaltoucan/vim-quantum'
-set rtp+=~/.vim/bundle/vim-quantum/colors
-Plug 'agude/vim-eldar'
-set rtp+=~/.vim/bundle/vim-eldar/colors
-Plug 'flazz/vim-colorschemes'
-set rtp+=~/.vim/bundle/vim-colorschemes/colors
+set rtp+=~/.vim/my-colors
+Plug 'ajmwagar/vim-deus'
+set rtp+=~/.vim/bundle/vim-deus/colors
+Plug 'morhetz/gruvbox'
+set rtp+=~/.vim/bundle/gruvbox/colors
+" Plug 'mhartington/oceanic-next'
+" set rtp+=~/.vim/bundle/oceanic-next/colors
+" Plug 'hzchirs/vim-material'
+" set rtp+=~/.vim/bundle/vim-material/colors
+" Plug 'tyrannicaltoucan/vim-quantum'
+" set rtp+=~/.vim/bundle/vim-quantum/colors
+" Plug 'agude/vim-eldar'
+" set rtp+=~/.vim/bundle/vim-eldar/colors
+" Plug 'flazz/vim-colorschemes'
+" set rtp+=~/.vim/bundle/vim-colorschemes/colors
+" Plug 'rakr/vim-one'
+" set rtp+=~/.vim/bundle/vim-one/colors
+" Plug 'Yggdroot/duoduo'
+" set rtp+=~/.vim/bundle/duoduo/colors
 
 
 """ ASYNC STUFF
@@ -40,7 +49,7 @@ let g:deoplete#enable_at_startup = 1
 if has('nvim')
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     let g:jedi#completions_enabled = 0
-endif
+    endif
 
 " Asynchronous Linting
 Plug 'w0rp/ale'
@@ -133,8 +142,8 @@ nnoremap <Leader>fm :Marks<CR>
 
 
 """ git
-" Plug 'airblade/vim-gitgutter'
-" let g:gitgutter_terminal_reports_focus=0
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_terminal_reports_focus=0
 
 " git integration for vim
 Plug 'tpope/vim-git'
@@ -148,7 +157,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='quantum'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
@@ -185,7 +193,7 @@ Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 
-""" HTML
+""" HTML & CSS
 Plug 'mattn/emmet-vim', {'for': 'html'}
 
 Plug 'Valloric/MatchTagAlways'
@@ -195,6 +203,9 @@ nnoremap <leader>% :MtaJumpToOtherTag<cr>
 
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
+
+" Css Color
+Plug 'ap/vim-css-color'
 
 " All of your Plugs must be added before the following line
 " Initialize plugin system
@@ -328,19 +339,33 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 if (has("termguicolors"))
     set termguicolors
 endif
+set t_Co=256
 syntax enable
+set background=dark
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" Airline
+let g:airline_theme='gruvbox'
 " let g:quantum_black=1
 " let g:quantum_italics=1
-colorscheme Molokai
-set background=dark
+" deus
+" let g:deus_bold=1
+" let g:deus_italic=1
+" let g:deus_contrast_dark=0
+" let g:deus_italicize_strings=1
+" let g:deus_italicize_comments=1
+let g:gruvbox_contrast_dark=1
+let g:gruvbox_italicize_comments=1
+let g:gruvbox_italicize_strings=1
+colorscheme gruvbox
 
 " statusline
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
 " current line highlights
-highlight CursorLine cterm=None ctermbg=234 guibg=#000000
-highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
+" highlight CursorLine cterm=None ctermbg=234 guibg=#000000
+" highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
 augroup CursorLine
     au!
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline

@@ -15,6 +15,7 @@ DIRECTORIES_TO_MAKE = (
     '.vim/workspace-undodir/',
     '.vim/after',
     '.vim/after/plugins/',
+    '.vim/colors/',
 )
 
 
@@ -23,10 +24,13 @@ FILES_TO_LINK = (
     # profiles
     ('profiles/zshrc', '.zshrc'),
     ('profiles/aliases', '.aliases'),
+
+    # vim
     ('vim/vimrc', '.vimrc'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
     ('vim/ftplugin/', '.vim/ftplugin'),
     ('ultisnips/', '.vim/ultisnips'),
+    ('vim/colors/aykhaiweng.vim', '.vim/colors/aykhaiweng.vim'),
 
     # tmux
     ('tmux/tmux.conf', '.tmux.conf'),
