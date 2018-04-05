@@ -76,7 +76,9 @@ let g:workspace_session_disable_on_args=1
 " because who doesn't want to see indents?
 " Plug 'thaerkh/vim-indentguides'
 
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
+" Indentation
+Plug 'Yggdroot/indentLine'
 
 " autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -310,23 +312,23 @@ function! GetBufferList()
 endfunction
 
 function! ToggleList(bufname, pfx)
-  let buflist = GetBufferList()
-  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-    if bufwinnr(bufnum) != -1
-      exec(a:pfx.'close')
-      return
+    let buflist = GetBufferList()
+    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
+    endfor
+    if a:pfx == 'l' && len(getloclist(0)) == 0
+        echohl ErrorMsg
+        echo "Location List is Empty."
+        return
     endif
-  endfor
-  if a:pfx == 'l' && len(getloclist(0)) == 0
-      echohl ErrorMsg
-      echo "Location List is Empty."
-      return
-  endif
-  let winnr = winnr()
-  exec(a:pfx.'open')
-  if winnr() != winnr
-    wincmd p
-  endif
+    let winnr = winnr()
+    exec(a:pfx.'open')
+    if winnr() != winnr
+        wincmd p
+    endif
 endfunction
 
 nmap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
@@ -346,17 +348,11 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " Airline
 let g:airline_theme='gruvbox'
-" let g:quantum_black=1
-" let g:quantum_italics=1
-" deus
-" let g:deus_bold=1
-" let g:deus_italic=1
-" let g:deus_contrast_dark=0
-" let g:deus_italicize_strings=1
-" let g:deus_italicize_comments=1
-let g:gruvbox_contrast_dark=1
+let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
+let g:gruvbox_improved_strings=0
+let g:gruvbox_improved_warnings=0
 colorscheme gruvbox
 
 " statusline
