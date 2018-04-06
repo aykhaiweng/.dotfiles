@@ -34,6 +34,8 @@ precmd() {
 			local pyenv_version="(pyenv $version) "
 		fi
 	fi
+	
+	eval "$PROMPT_COMMAND"
 	PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
 	# Make it look like a prompt out of Quake
 	# PROMPT="$(retval=$?;tput cup "$(( LINES ))";exit $retval)"$PROMPT

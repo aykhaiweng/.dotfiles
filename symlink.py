@@ -48,7 +48,7 @@ FILES_TO_LINK = (
     ('config/kitty.conf', 'Library/Preferences/kitty/kitty.conf'),
 
     # tmux-gitbar
-    ('config/.tmux-gitbar.conf', '.tmux-gitbar.conf'),
+    ('tmux/tmux-gitbar.conf', '.tmux-gitbar.conf'),
 
     # oh-my-zsh
     (
