@@ -1,19 +1,24 @@
 #!/bin/bash
 trap "exit" INT
 
-
 # Get the color definitions
 source colordefinitions.sh
+
 # declare current directory
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+_prompt_sudo() {
+    # Prompt for sudo
+    sudo -v
+}
 
 _echo() {
+    # Different echo colored based on the OS installed
     echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] - $1"
 }
 
-
 _check_pyenv_versions() {
+    # Check if the pyenv is installed
     local __result_var=$1
     if [[ $(pyenv versions | grep $2) ]]; then
         local __pyenv_exists=true
@@ -28,8 +33,7 @@ _check_pyenv_versions() {
 main() {
     # prompt for sudo
     _echo "Before I start installing anything, I'm going to need your password for sudo access."
-    sudo -v
-
+    _prompt_sudo
 
     # declare variable for os type
     uname=$(uname)
@@ -46,7 +50,7 @@ main() {
         _echo "Your platform is not supported yet."
     fi
 
-    # now we install .oh-my-zsh
+    # Installing .oh-my-zsh stuff
     _echo "Installing .oh-my-zsh"
     git clone git://github.com/aykhaiweng/oh-my-zsh.git $HOME/.oh-my-zsh
     _echo "Installing zsh-competions"
@@ -54,13 +58,7 @@ main() {
     _echo "Installing zsh-autosuggestions"
     git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
 
-    # VIM STUFF
-    # installing Vundle
-    _echo "Cloning vim-plug..."
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    # PYTHON STUFF
     # updating pip and it's prerequisites
     _echo "Upgrading pip and installing prerequisites."
     sudo pip3 install --upgrade pip
@@ -116,7 +114,11 @@ main() {
     git clone https://github.com/aurelien-rainone/tmux-gitbar.git $HOME/.tmux/tmux-gitbar
 
 
-    # install vim plugins
+    # Installing vim plug
+    _echo "Installing vim-plug..."
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    # Installing vim plugins
     _echo "Installing VIM Plugins..."
     vim -c 'PlugInstall' -c 'qa!'
 

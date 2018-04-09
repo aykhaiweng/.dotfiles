@@ -22,14 +22,14 @@ DIRECTORIES_TO_MAKE = (
 # Tuples of source and targets
 FILES_TO_LINK = (
     # profiles
-    ('profiles/zshrc', '.zshrc'),
-    ('profiles/aliases', '.aliases'),
+    ('config/zshrc', '.zshrc'),
+    ('config/aliases', '.aliases'),
 
     # vim
     ('vim/vimrc', '.vimrc'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
     ('vim/ftplugin/', '.vim/ftplugin'),
-    ('ultisnips/', '.vim/ultisnips'),
+    ('vim/ultisnips/', '.vim/ultisnips'),
     ('vim/colors/aykhaiweng.vim', '.vim/colors/aykhaiweng.vim'),
 
     # tmux

@@ -12,15 +12,6 @@ _echo() {
     echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${ORANGE}LINUX${NOCOLOR}] - $1"
 }
 
-
-_install_neovim() {
-    _echo "Installing neovim3"
-    curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage /tmp/
-    chmod u+x /tmp/nvim.appimage
-    ./tmp/nvim.appimage
-}
-
-
 DBPASSWRD = 'topkek'
 
 
@@ -68,7 +59,7 @@ main() {
     sudo apt-get install cmake zsh tmux xclip -y
 
     # neovim installation
-    _install_neovim
+    source $THIS_DIR/linux/install-neovim.sh
 
     if ! [ $KURA_FTS ] ; then
         _echo "Setting up locales"

@@ -27,7 +27,7 @@ main() {
 	fi
 	# install the brew bundle
 	_echo "Installing Brewfile"
-	brew bundle --file=brew/Brewfile
+	brew bundle --file=$THIS_DIR/brew/Brewfile
 
 	# Applying prefered settings
 	_echo "Applying prefered MacOSX settings"
