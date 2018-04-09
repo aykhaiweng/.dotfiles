@@ -282,10 +282,10 @@ inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Vim-style tab navigation
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
+nnoremap tj  :tabfirst<CR>
+nnoremap tl  :tabnext<CR>
+nnoremap th  :tabprev<CR>
+nnoremap tk  :tablast<CR>
 nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnew<Space>
 nnoremap tm  :tabm<Space>
