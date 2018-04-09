@@ -67,7 +67,15 @@ main() {
     python3 $THIS_DIR/symlink.py
     # run the aliases file to get the pyenv out
     _echo "Running the $HOME/.aliases file that we symlinked earlier"
+
     source $HOME/.aliases
+    if [[ $uname == 'Darwin' ]]; then
+        export PYTHON_CONFIGURE_OPTS="--enable-framework"
+    elif [[ $uname == 'Linux' ]]; then
+        export PYTHON_CONFIGURE_OPTS="--enable-shared"
+    else
+        _echo "Your platform is not supported yet."
+    fi
     # Now that all that is done, install python into pyenv
     # installing pyenv 3.6.4 and 2.7.13
     _echo "Installing python 3.6.4 with pyenv..."
