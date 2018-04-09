@@ -41,11 +41,11 @@ main() {
     if [[ $uname == 'Darwin' ]]; then
         _echo "Setting up for Darwin platform."
         export PYTHON_CONFIGURE_OPTS="--enable-framework"
-        source osx/setup-osx.sh
+        source $THIS_DIR/osx/install.sh
     elif [[ $uname == 'Linux' ]]; then
         _echo "Setting up for Linux platform."
         export PYTHON_CONFIGURE_OPTS="--enable-shared"
-        source linux/setup-linux.sh
+        source $THIS_DIR/linux/install.sh
     else
         _echo "Your platform is not supported yet."
     fi
