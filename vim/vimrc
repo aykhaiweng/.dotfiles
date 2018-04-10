@@ -3,7 +3,7 @@ filetype off                  " required
 
 
 " python hosts
-let g:python3_host_prog=$HOME'/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog='/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
 
 " leader
 let mapleader=","
@@ -58,6 +58,10 @@ let g:ale_sign_warning = '--'
 let g:ale_set_highlights = 1
 let g:ale_lint_delay = 5000
 let g:ale_lint_on_text_changed = 'normal'
+
+" Asynchronous search
+Plug 'wsdjeg/FlyGrep.vim'
+map <Leader>fg :FlyGrep<CR>
 
 " Asynchronous Highlighting
 if has('nvim')
