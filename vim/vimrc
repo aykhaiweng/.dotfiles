@@ -3,7 +3,7 @@ filetype off                  " required
 
 
 " python hosts
-let g:python3_host_prog='/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog='/root/.pyenv/versions/neovim3/bin/python'
 
 " leader
 let mapleader=","
@@ -388,7 +388,7 @@ set splitbelow
 let g:autoclose_on = 0  " do not autoclose brackets
 set exrc  " allow project specific .vimrc
 set secure  " disallow .vimrc not owned by uname
-set clipboard=unnamed
+set clipboard=unnamedplus,autoselect,exclude:cons\\\\|linux
 set tabstop=4       " length of a tab
 set shiftwidth=4    " length of an indent
 set ruler
