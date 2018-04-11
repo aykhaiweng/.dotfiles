@@ -3,7 +3,7 @@ filetype off                  " required
 
 
 " python hosts
-let g:python3_host_prog='/root/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog='/Users/aykhaiweng/.pyenv/versions/neovim3/bin/python'
 
 " leader
 let mapleader=","
