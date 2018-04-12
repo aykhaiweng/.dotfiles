@@ -388,7 +388,19 @@ set splitbelow
 let g:autoclose_on = 0  " do not autoclose brackets
 set exrc  " allow project specific .vimrc
 set secure  " disallow .vimrc not owned by uname
-set clipboard=unnamedplus,autoselect,exclude:cons\\\\|linux
+set clipboard=unnamed,unnamedplus
+let g:clipboard = {
+  \   'name': 'myClipboard',
+  \   'copy': {
+  \      '+': 'tmux load-buffer -',
+  \      '*': 'tmux load-buffer -',
+  \    },
+  \   'paste': {
+  \      '+': 'tmux save-buffer -',
+  \      '*': 'tmux save-buffer -',
+  \   },
+  \   'cache_enabled': 1,
+\ }
 set tabstop=4       " length of a tab
 set shiftwidth=4    " length of an indent
 set ruler
