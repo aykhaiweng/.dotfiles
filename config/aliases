@@ -19,51 +19,34 @@ export DOTFILES_PATH="$HOME/.dotfiles/"
 # add all private keys to agent
 find ~/.ssh/ -type f -exec grep -l "PRIVATE" {} \; | xargs ssh-add &> /dev/null
 
-# Misc
+# ======================================================= #
+# Agnostic Settings                                       #
+# ======================================================= #
+# Aliasing for directory listing
 alias ls='ls -CF'
 alias ll='ls -al'
 alias la='ls -A'
 alias l='ls'
-
-# Personal
-alias personal='cd ~/Git/1.\ Personal'
-alias cashback='cd ~/Git/1.\ Personal/cashback-fork/ && pyenv activate cashback'
-alias e_street='cd ~/Git/1.\ Personal/e_street-fork/ && pyenv activate e_street'
-
-# tigerlab
-alias tigerlab='cd ~/Git/2.\ tigerlab'
-alias insurance='cd ~/Git/2.\ tigerlab/InSurance/ && pyenv activate insurance'
-alias travelinsurance='cd ~/Git/2.\ tigerlab/InsuranceSoftware/travelinsurance/ && pyenv activate travelinsurance'
-
-# Sublime Text 3
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # Checking for rust
 if [ -d "~/.cargo" ]; then
 	source $HOME/.cargo/env
 fi
 
-# Tmux
-alias tmux="tmux"
-
-# Kitty
-export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
-
-# python goodness
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-
-# pyenv
+# pyenv Settings
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# export PYENV_VERSION="3.6.4"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-
-# truecolor
-function truecolortest() {
+# ======================================================= #
+# Agnostic Settings                                       #
+# ======================================================= #
+# True Colour Test
+function __truecolourtest() {
+	# Function to do a True Color Test
 	awk 'BEGIN{
 		s="/\\/\\/\\/\\/\\"; s=s s s s s s s s s s s s s s s s s s s s s s s;
 		for (colnum = 0; colnum<256; colnum++) {
@@ -78,4 +61,32 @@ function truecolortest() {
 		printf "\n";
 	}'
 }
-alias tctest=truecolortest
+# 256 Colour Test
+function __256colourtest() {
+	# Function to do a 256 Color Test
+	for i in {0..255} ; do
+		printf "\x1b[48;5;%sm%3d\e[0m " "$i" "$i"
+		if (( i == 15 )) || (( i > 15 )) && (( (i-15) % 6 == 0 )); then
+			printf "\n";
+		fi
+	done
+}
+
+alias tctest=__truecolourtest
+alias 256ctest=__256colourtest
+
+# ======================================================= #
+# OS Specific                                             #
+# ======================================================= #
+if [[ $uname == 'Darwin' ]]; then
+	# Python Goodness
+	export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
+	# Sublime Text 3
+	alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+	# Kitty Config
+	export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
+elif [[ $uname == 'Linux' ]]; then
+	export PYTHON_CONFIGURE_OPTS="--enable-shared"
+fi
