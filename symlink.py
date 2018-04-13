@@ -27,6 +27,7 @@ FILES_TO_LINK = (
 
     # vim
     ('vim/vimrc', '.vimrc'),
+    ('vim/nvim', '.config/nvim/init.vim'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
     ('vim/ftplugin/', '.vim/ftplugin'),
     ('vim/ultisnips/', '.vim/ultisnips'),
@@ -41,8 +42,6 @@ FILES_TO_LINK = (
 
     # flake8
     ('config/flake8', '.config/flake8'),
-    # nvim
-    ('config/nvim', '.config/nvim/init.vim'),
     # alacritty
     ('config/alacritty_macos.yml', '.config/alacritty/alacritty.yml'),
     # kitty
