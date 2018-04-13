@@ -482,5 +482,6 @@ set rtp+=~/.vim/after
 " MACVIM FIX
 let macvim_skip_colorscheme=1
 
+
 " Local rtp
 source ~/.vimrc-local
