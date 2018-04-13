@@ -259,6 +259,9 @@ nnoremap <C-Down>  <C-W><C-J>
 
 " Repeat last command with spacebar
 " nnoremap <space> @@
+"
+" Folding and shit
+nnoremap <space> za
 
 " location list
 nnoremap <Leader>ll :lopen<CR>
@@ -304,7 +307,7 @@ nnoremap <Leader>bx :bd<CR>
 " F_keys
 nnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> F :set hlsearch! hlsearch?<CR>
-vnoremap <silent> <F5> :%sort!<CR>
+vnoremap <silent> <F5> :%sort<CR>
 nnoremap <silent> <F5> :so $MYVIMRC<CR>:AirlineRefresh<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
@@ -478,3 +481,6 @@ set rtp+=~/.vim/after
 
 " MACVIM FIX
 let macvim_skip_colorscheme=1
+
+" Local rtp
+source ~/.vimrc-local

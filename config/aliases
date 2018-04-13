@@ -7,8 +7,8 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="UTF-8"
 
 # Setup the colors used for the terminal
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+# export CLICOLOR=1
+# export LSCOLORS=GxFxCxDxBxegedabagaced
 export EDITOR=nvim
 
 # default dotfiles folder
@@ -23,10 +23,6 @@ find ~/.ssh/ -type f -exec grep -l "PRIVATE" {} \; | xargs ssh-add &> /dev/null
 # Agnostic Settings                                       #
 # ======================================================= #
 # Aliasing for directory listing
-alias ls='ls -CF'
-alias ll='ls -al'
-alias la='ls -A'
-alias l='ls'
 
 # Checking for rust
 if [ -d "~/.cargo" ]; then
@@ -79,6 +75,9 @@ alias 256ctest=__256colourtest
 # OS Specific                                             #
 # ======================================================= #
 if [[ $uname == 'Darwin' ]]; then
+	# Directory listing
+	export DIRECTORY_COLOR_ARGUMENTS="-CF"
+	
 	# Python Goodness
 	export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
@@ -88,5 +87,16 @@ if [[ $uname == 'Darwin' ]]; then
 	# Kitty Config
 	export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
 elif [[ $uname == 'Linux' ]]; then
+	# Directory listing
+	export DIRECTORY_COLOR_ARGUMENTS="--color=always"
+
+	# Python Goodness
 	export PYTHON_CONFIGURE_OPTS="--enable-shared"
 fi
+
+# ======================================================= #
+# Post Agnostic Settings                                  #
+# ======================================================= #
+# Directory Listing
+alias ls'ls -A $DIRECTORY_COLOR_ARGUMENTS'
+alias ll='ls -Al'
