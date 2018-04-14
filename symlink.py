@@ -1,7 +1,6 @@
 import os
 import datetime
 
-
 HOME_DIR = os.environ.get('HOME')
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BACKUP_DIR = os.path.join(HOME_DIR, 'backup/')
@@ -18,7 +17,6 @@ DIRECTORIES_TO_MAKE = (
     '.vim/colors/',
 )
 
-
 # Tuples of source and targets
 FILES_TO_LINK = (
     # profiles
@@ -31,6 +29,7 @@ FILES_TO_LINK = (
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
     ('vim/ftplugin/', '.vim/ftplugin'),
     ('vim/ultisnips/', '.vim/ultisnips'),
+    ('vim/neosnippets/', '.vim/neosnippets'),
     ('vim/colors/aykhaiweng.vim', '.vim/colors/aykhaiweng.vim'),
 
     # tmux

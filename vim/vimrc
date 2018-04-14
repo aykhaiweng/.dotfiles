@@ -18,38 +18,36 @@ Plug 'ajmwagar/vim-deus'
 set rtp+=~/.vim/bundle/vim-deus/colors
 Plug 'morhetz/gruvbox'
 set rtp+=~/.vim/bundle/gruvbox/colors
-" Plug 'mhartington/oceanic-next'
-" set rtp+=~/.vim/bundle/oceanic-next/colors
-" Plug 'hzchirs/vim-material'
-" set rtp+=~/.vim/bundle/vim-material/colors
-" Plug 'tyrannicaltoucan/vim-quantum'
-" set rtp+=~/.vim/bundle/vim-quantum/colors
-" Plug 'agude/vim-eldar'
-" set rtp+=~/.vim/bundle/vim-eldar/colors
-" Plug 'flazz/vim-colorschemes'
-" set rtp+=~/.vim/bundle/vim-colorschemes/colors
-" Plug 'rakr/vim-one'
-" set rtp+=~/.vim/bundle/vim-one/colors
-" Plug 'Yggdroot/duoduo'
-" set rtp+=~/.vim/bundle/duoduo/colors
 
 
 """ ASYNC STUFF
-" Deoplete
 if has('nvim')
+    " DEOPLETE
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " DENITE
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " DEOPPET VAPOURWARE
+    " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " DEOPLETE JEDI
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    let g:jedi#completions_enabled = 0
+
+    " Asynchronous Highlighting
+    Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
-
-" Async Jedi
-if has('nvim')
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:jedi#completions_enabled = 0
-    endif
 
 " Asynchronous Linting
 Plug 'w0rp/ale'
@@ -63,11 +61,6 @@ let g:ale_lint_on_text_changed = 'normal'
 Plug 'wsdjeg/FlyGrep.vim'
 map <Leader>fg :FlyGrep<CR>
 
-" Asynchronous Highlighting
-if has('nvim')
-    Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
-
 
 """ Editor
 Plug 'thaerkh/vim-workspace'
@@ -77,35 +70,30 @@ let g:workspace_session_disable_on_args=1
 " let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
 " let g:workspace_undodir='~/.vim/workspace-undodir'
 "
-" because who doesn't want to see indents?
-" Plug 'thaerkh/vim-indentguides'
 
 " Plug 'nathanaelkane/vim-indent-guides'
 " Indentation
 Plug 'Yggdroot/indentLine'
 
-" autocompletion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-let g:ycm_autoclose_preview_window_after_completion=1
-map <Leader>yg  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-Plug 'sirver/ultisnips'
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-E>"
-let g:UltiSnipsJumpForwardTrigger="<C-B>"
-let g:UltiSnipsJumpBackwardTrigger="<C-Z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
-map <Leader>use :UltiSnipsEdit<CR>
+" Plug 'sirver/ultisnips'
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<C-E>"
+" let g:UltiSnipsJumpForwardTrigger="<C-B>"
+" let g:UltiSnipsJumpBackwardTrigger="<C-Z>"
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
+" map <Leader>use :UltiSnipsEdit<CR>
 
-" using this instead of the normal flake8 for python ac
-" Plug 'vim-syntastic/syntastic'
-syntax on
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" MORE SHOUGO GOODNESS?
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+xmap <C-e> <Plug>(neosnippet_expand_target)
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -175,16 +163,16 @@ set foldlevel=99
 let g:SimpylFold_docstring_preview=1
 
 " jedi integration for vim
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-let g:jedi#goto_command = "<Leader>jc"
-let g:jedi#goto_assignments_command = "<Leader>ja"
-let g:jedi#goto_definitions_command = "<Leader>jd"
-let g:jedi#documentation_command = "<Leader>jk"
-let g:jedi#usages_command = "<Leader>ju"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<Leader>jr"
-let g:jedi#show_call_signatures = "1"
-let g:jedi#smart_auto_mappings = 0
+" Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" let g:jedi#goto_command = "<Leader>jc"
+" let g:jedi#goto_assignments_command = "<Leader>ja"
+" let g:jedi#goto_definitions_command = "<Leader>jd"
+" let g:jedi#documentation_command = "<Leader>jk"
+" let g:jedi#usages_command = "<Leader>ju"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<Leader>jr"
+" let g:jedi#show_call_signatures = "1"
+" let g:jedi#smart_auto_mappings = 0
 
 " Better python syntax highlighting
 Plug 'vim-python/python-syntax', {'for': 'python'}
@@ -415,6 +403,7 @@ set showmatch        " show matching paranthesis
 set backspace=2      " normal editor backspacing
 set timeoutlen=1000
 set ttimeoutlen=2
+set ttyfast
 set incsearch
 set ignorecase       " ignore the case when searching
 set smartcase        " case ignored if the search is all lower case
