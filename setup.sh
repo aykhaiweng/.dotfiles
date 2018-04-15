@@ -87,24 +87,15 @@ main() {
 
 
     # Setting up python for neovim
-    _check_pyenv_versions neovim3_exists neovim3
-    if [ '$neovim3_exists' = false ] ; then
-        _echo "Setting up virtualenv for neovim3"
-        pyenv virtualenv 3.6.4 neovim3
-        pyenv activate neovim3
-        pip install neovim
-    else
-        _echo "Virtualenv neovim3 already set up!"
-    fi
-    _check_pyenv_versions neovim2_exists neovim2
-    if [ '$neovim2_exists' = false ] ; then
-        _echo "Setting up virtualenv for neovim3"
-        pyenv virtualenv 2.7.13 neovim2
-        pyenv activate neovim2
-        pip install neovim
-    else
-        _echo "Virtualenv neovim2 already set up!"
-    fi
+    _echo "Setting up virtualenv for neovim3"
+    pyenv virtualenv 3.6.4 neovim3
+    pyenv activate neovim3
+    pip install neovim
+    _echo "Setting up virtualenv for neovim3"
+    pyenv virtualenv 2.7.13 neovim2
+    pyenv activate neovim2
+    pip install neovim
+    pyenv deactivate
 
 
     # FZF STUFF
