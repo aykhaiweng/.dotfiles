@@ -190,11 +190,6 @@ Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 """ HTML & CSS
 Plug 'mattn/emmet-vim', {'for': 'html'}
 
-Plug 'Valloric/MatchTagAlways'
-let g:mta_use_matchparen_group = 1
-let g:mta_filetypes = {'html': 1, 'xhtml': 1, 'xml': 1, 'jinja': 1}
-nnoremap <leader>% :MtaJumpToOtherTag<cr>
-
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
 
@@ -380,19 +375,7 @@ let g:autoclose_on = 0  " do not autoclose brackets
 set exrc  " allow project specific .vimrc
 set secure  " disallow .vimrc not owned by uname
 set clipboard=unnamed,unnamedplus
-let g:clipboard = {
-  \   'name': 'myClipboard',
-  \   'copy': {
-  \      '+': 'tmux load-buffer -',
-  \      '*': 'tmux load-buffer -',
-  \    },
-  \   'paste': {
-  \      '+': 'tmux save-buffer -',
-  \      '*': 'tmux save-buffer -',
-  \   },
-  \   'cache_enabled': 1,
-\ }
-set tabstop=4       " length of a tab
+set tabstop=5       " length of a tab
 set shiftwidth=4    " length of an indent
 set ruler
 set autoindent
