@@ -3,7 +3,8 @@ filetype off                  " required
 
 
 " python hosts
-let g:python3_host_prog=$NEOVIM3_ENV
+let g:python3_host_prog=$NEOVIM3
+let g:python2_host_prog=$NEOVIM2
 
 " leader
 let mapleader=","
@@ -358,13 +359,6 @@ augroup CursorLine
     au WinLeave * setlocal nocursorline
 augroup end
 
-" highlights
-" v this is commented out because it is now handled by better-whitespace
-" highlight BadWhitespace ctermbg=red guibg=darkred
-" match BadWhitespace /\s\+$/
-" highlight Comment ctermfg=245
-" highlight NonText ctermfg=238
-" highlight SpecialKey ctermfg=238
 highlight ExtraWhitespace ctermbg=red
 
 " EDITOR -------------------------------------------------------------------- "
@@ -430,12 +424,6 @@ au! BufEnter *
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
 set list
 
-" autocmds
-" call Flake8 everytime the BufWritePost is called
-" au BufReadPost,BufWritePost,InsertLeave *.py call Flake8()
-" call GitGutter everytime the cursor is idling
-" au CursorHold,CursorHoldI * GitGutter
-
 " =========================================================================== "
 
 
@@ -454,6 +442,7 @@ set rtp+=~/.vim/after
 " MACVIM FIX
 let macvim_skip_colorscheme=1
 
-
-" Local rtp
+" Source vimrc-local if it exists
+" if !empty(glob("~/.vimrc-local"))
 source ~/.vimrc-local
+" endif
