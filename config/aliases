@@ -35,8 +35,8 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 # penv Settings for Neovim
-export NEOVIM2='$PYENV_ROOT/versions/neovim2/bin/python'
-export NEOVIM3='$PYENV_ROOT/versions/neovim3/bin/python'
+export NEOVIM2=$PYENV_ROOT"/versions/neovim2/bin/python"
+export NEOVIM3=$PYENV_ROOT"/versions/neovim3/bin/python"
 
 # ======================================================= #
 # Agnostic Settings                                       #

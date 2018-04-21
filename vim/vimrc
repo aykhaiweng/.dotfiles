@@ -26,11 +26,13 @@ if has('nvim')
     " DEOPLETE
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:deoplete#enable_at_startup = 1
+    " let g:deoplete#enable_refresh_always = 1	
     let g:deoplete#enable_smart_case = 1
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
     inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 
     " DENITE
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
