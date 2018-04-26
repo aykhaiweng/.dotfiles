@@ -52,6 +52,26 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+
+" TmuxVimNavigation
+Plug 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-J> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-K> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
+" nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+" Original Navigation Bindings
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-Left>  <C-W><C-H>
+" nnoremap <C-Right> <C-W><C-L>
+" nnoremap <C-Up>    <C-W><C-K>
+" nnoremap <C-Down>  <C-W><C-J>
+
+
 " Asynchronous Linting
 Plug 'w0rp/ale'
 let g:ale_sign_error = '>>'
@@ -234,14 +254,14 @@ vnoremap <S-K> 15k
 vnoremap <S-J> 15j
 
 " key shortcuts for pane switching
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-Left>  <C-W><C-H>
-nnoremap <C-Right> <C-W><C-L>
-nnoremap <C-Up>    <C-W><C-K>
-nnoremap <C-Down>  <C-W><C-J>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-Left>  <C-W><C-H>
+" nnoremap <C-Right> <C-W><C-L>
+" nnoremap <C-Up>    <C-W><C-K>
+" nnoremap <C-Down>  <C-W><C-J>
 
 " Repeat last command with spacebar
 " nnoremap <space> @@
@@ -391,32 +411,33 @@ set undolevels=1000  " more undo levels
 set ttyfast
 set so=3
 
-" Python
-augroup python
-    au!
-    autocmd FileType python
-        \ syntax on
-        \ set tabstop=4
-        \ set softtabstop=4
-        \ set shiftwidth=4
-        \ set expandtab
-        \ set colorcolumn=80
-        \ set syntax=python
-augroup END
+" " Python
+" augroup python
+"     au!
+"     autocmd FileType python
+"         \ syntax on
+"         \ set tabstop=4
+"         \ set softtabstop=4
+"         \ set shiftwidth=4
+"         \ set expandtab
+"         \ set colorcolumn=80
+"         \ set syntax=python
+" augroup END
 
 
-" HTML, JS, CSS
-au! BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=4
-    \ set shiftwidth=4
-    \ set noexpandtab
 
-au! BufNewFile,BufRead Vagrant
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set expandtab
-    \ set syntax=ruby
+" " HTML, JS, CSS
+" au! BufNewFile,BufRead *.js, *.html, *.css
+"     \ set tabstop=4
+"     \ set shiftwidth=4
+"     \ set noexpandtab
+
+" au! BufNewFile,BufRead Vagrant
+"     \ set tabstop=2
+"     \ set softtabstop=2
+"     \ set shiftwidth=2
+"     \ set expandtab
+"     \ set syntax=ruby
 
 " Refresh Airline theme on entering a buffer
 au! BufEnter *
