@@ -26,13 +26,14 @@ if has('nvim')
     " DEOPLETE
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#enable_refresh_always = 1	
+    " let g:deoplete#enable_refresh_always = 1
     let g:deoplete#enable_smart_case = 1
+    " inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
     inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
+    inoremap <expr> <C-Space> deoplete#mappings#manual_complete()
 
     " DENITE
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -42,10 +43,11 @@ if has('nvim')
 
     " DEOPLETE JEDI
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:jedi#completions_enabled = 0
+    let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
 
     " Asynchronous Highlighting
     Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:highlighter#auto_update = 2  " AutoHighlight when file opens
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
@@ -74,11 +76,15 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 
 " Asynchronous Linting
 Plug 'w0rp/ale'
-let g:ale_sign_error = '>>'
+let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '--'
 let g:ale_set_highlights = 1
 let g:ale_lint_delay = 5000
 let g:ale_lint_on_text_changed = 'normal'
+let g:ale_set_loclist = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Asynchronous search
 Plug 'wsdjeg/FlyGrep.vim'

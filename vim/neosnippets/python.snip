@@ -1,11 +1,31 @@
 snippet     tb
-abbr        # titleblock...
+abbr        # Title Block...
+alias       title titleblock
 options     head
-    ############################################################
-    # ${1:title}
-    ############################################################
+     ############################################################
+     # ${1:title}
+     ############################################################
+
 
 snippet     pa
 abbr        print("${1:attribute_name}{attribute}".format(${1:attribute_name}))
 options     head
-    print("${1:attribute_name}={attribute}".format(attribute_name=${1}))
+     print("${1:ATTRIBUTENAME}={attribute}".format(attribute_name=$1))
+
+
+snippet     authorme
+abbr        Khai, 26.04.2018...
+options     head
+     Khai, `strftime("%d.%m.%Y")`
+
+
+snippet     class
+alias       classd
+abbr        class NewClass(...)
+options     head
+     class ${1:CLASSNAME}(${2:object}):
+          """
+          DOCUMENTATION REQUIRED
+
+          Khai, `strftime("%d.%m.%Y")`
+          """
