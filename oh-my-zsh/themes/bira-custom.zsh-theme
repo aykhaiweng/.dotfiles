@@ -5,9 +5,9 @@ NEWLINE=$'\n'
 
 # The user icon
 if [[ $UID -eq 0 ]]; then
-	local user_symbol='λ'
+	local user_symbol='%{$fg[white]%}λ'
 else
-	local user_symbol='λ'
+	local user_symbol='%{$fg[magenta]%}λ'
 fi
 
 # Local DIR
@@ -37,7 +37,7 @@ precmd() {
 	
 	eval "$PROMPT_COMMAND"
 	# PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
-	PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
+	PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir}${NEWLINE}%B${user_symbol}%b "
 	# Make it look like a prompt out of Quake
 	# PROMPT="$(retval=$?;tput cup "$(( LINES ))";exit $retval)"$PROMPT
 }

@@ -6,3 +6,4 @@
 .undodir
 Session.vim
 workspace.vim
+tmp/

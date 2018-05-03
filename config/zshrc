@@ -25,3 +25,6 @@ export KEYTIMEOUT=1
 
 # added by travis gem
 [ -f /Users/aykhaiweng/.travis/travis.sh ] && source /Users/aykhaiweng/.travis/travis.sh
+
+# fix for Ctrl E not working
+bindkey -e
