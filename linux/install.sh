@@ -50,7 +50,7 @@ main() {
     sudo apt-get install nginx gunicorn memcached -y
     sudo apt-get install libpq-dev postgresql postgresql-contrib gettext -y
     sudo apt-get install nodejs-legacy npm libjpeg8-dev -y
-	sudo apt-get install sqlite3 libsqlite3-dev
+    sudo apt-get install sqlite3 libsqlite3-dev
     # sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules -y
     sudo apt-get install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
     # sudo apt-get install letsencrypt -y

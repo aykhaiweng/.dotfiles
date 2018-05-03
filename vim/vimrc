@@ -105,18 +105,7 @@ let g:workspace_session_disable_on_args=1
 Plug 'Yggdroot/indentLine'
 
 
-" Plug 'sirver/ultisnips'
-" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<C-E>"
-" let g:UltiSnipsJumpForwardTrigger="<C-B>"
-" let g:UltiSnipsJumpBackwardTrigger="<C-Z>"
-" " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
-" map <Leader>use :UltiSnipsEdit<CR>
-
 " MORE SHOUGO GOODNESS?
-Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 let g:neosnippet#snippets_directory='~/.vim/neosnippets/'

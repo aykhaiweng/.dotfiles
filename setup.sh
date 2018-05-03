@@ -107,10 +107,8 @@ main() {
     # TMUX STUFF
     _echo "Downloading tpm for Tmux!"
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-    _echo "Downloading tmux-git"
-    git clone https://github.com/drmad/tmux-git.git $HOME/.tmux/tmux-git
     _echo "Downloading tmux-gitbar"
-    git clone https://github.com/aurelien-rainone/tmux-gitbar.git $HOME/.tmux/tmux-gitbar
+    source $THIS_DIR/extras/install-tmux-gitbar.sh
 
 
     # Installing vim plug
@@ -125,10 +123,10 @@ main() {
     # SSH STUFF
     # create an id_rsa file if it doesn't already exist
     if [ ! -f $HOME/.ssh/id_rsa ]; then
-        ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
-        _echo "A ssh-key with the default name ($HOME/.ssh/id_rsa) has been created for you!"
+        ssh-keygen -f $HOME/.ssh/id_ed25519 -t ed25519 -N ''
+        _echo "A ssh-key with the default name ($HOME/.ssh/id_ed25519) has been created for you!"
         _echo "Here is the key:"
-        echo "$(cat $HOME/.ssh/id_rsa.pub)"
+        echo "$(cat $HOME/.ssh/id_ed25519.pub)"
     fi
 
 
