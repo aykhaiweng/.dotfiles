@@ -5,25 +5,25 @@ NEWLINE=$'\n'
 
 # The user icon
 if [[ $UID -eq 0 ]]; then
-    local user_symbol='%{$fg[white]%}λ'
+    local user_symbol='%B%{$fg[white]%}λ%b'
 else
-    local user_symbol='%{$fg[magenta]%}λ'
+    local user_symbol='%B%{$fg[magenta]%}λ%b'
 fi
 
 if [[ -n "$SSH_CLIENT" ]]; then
-    local ssh_host='%{$fg[yellow]%}$HOST '
+    local ssh_host='%B%{$fg[yellow]%}$HOST%b:%{$reset_color%}'
 else
     local ssh_host=''
 fi
 
 # Local DIR
-local current_dir='%{$terminfo[bold]$fg[cyan]%}%~%{$reset_color%}'
+local current_dir='%B%{$fg[white]%}%~%b%{$reset_color%}'
 
 # Git Branch
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
 # ZSH Git Prompt
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[cyan]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
 # Return Code
