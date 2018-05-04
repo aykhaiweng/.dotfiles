@@ -354,7 +354,7 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " statusline
 set laststatus=2
@@ -454,5 +454,5 @@ let macvim_skip_colorscheme=1
 
 " Source vimrc-local if it exists
 " if !empty(glob("~/.vimrc-local"))
-source ~/.vimrc-local
+silent! source ~/.vimrc-local
 " endif
