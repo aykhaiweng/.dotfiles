@@ -104,8 +104,8 @@ let g:workspace_session_disable_on_args=1
 Plug 'Yggdroot/indentLine'
 
 Plug 'majutsushi/tagbar'
-nnoremap = :TagbarToggle<CR>
-inoremap = :TagbarToggle<CR>
+nnoremap <Leader>= :TagbarToggle<CR>
+inoremap <Leader>= :TagbarToggle<CR>
 
 
 " MORE SHOUGO GOODNESS?
@@ -133,7 +133,7 @@ Plug 'tpope/vim-commentary'
 
 
 """ Explorers
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=1

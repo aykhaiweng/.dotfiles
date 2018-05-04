@@ -5,9 +5,15 @@ NEWLINE=$'\n'
 
 # The user icon
 if [[ $UID -eq 0 ]]; then
-	local user_symbol='%{$fg[white]%}λ'
+    local user_symbol='%{$fg[white]%}λ'
 else
-	local user_symbol='%{$fg[magenta]%}λ'
+    local user_symbol='%{$fg[magenta]%}λ'
+fi
+
+if [[ -n "$SSH_CLIENT" ]]; then
+    local ssh_host='%{$fg[yellow]%}$HOST '
+else
+    local ssh_host=''
 fi
 
 # Local DIR
@@ -25,19 +31,17 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 RPS1="%B${return_code}%b"
 
 precmd() {
-	if [[ -n $PYENV_SHELL ]]; then
-		local version
-		version=${(@)$(pyenv version)[1]}
-		if [[ $version = system ]]; then
-			local pyenv_version=""
-		else
-			local pyenv_version="(pyenv $version) "
-		fi
-	fi
-	
-	eval "$PROMPT_COMMAND"
-	# PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
-	PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir}${NEWLINE}%B${user_symbol}%b "
-	# Make it look like a prompt out of Quake
-	# PROMPT="$(retval=$?;tput cup "$(( LINES ))";exit $retval)"$PROMPT
+    if [[ -n $PYENV_SHELL ]]; then
+        local version
+        version=${(@)$(pyenv version)[1]}
+        if [[ $version = system ]]; then
+            local pyenv_version=""
+        else
+            local pyenv_version="(pyenv $version) "
+        fi
+    fi
+
+    eval "$PROMPT_COMMAND"
+    # PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
+    PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${ssh_host}${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%b "
 }
