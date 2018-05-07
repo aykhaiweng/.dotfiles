@@ -91,7 +91,7 @@ main() {
     pyenv virtualenv 3.6.4 neovim3
     pyenv activate neovim3
     pip install neovim
-    _echo "Setting up virtualenv for neovim3"
+    _echo "Setting up virtualenv for neovim2"
     pyenv virtualenv 2.7.13 neovim2
     pyenv activate neovim2
     pip install neovim
