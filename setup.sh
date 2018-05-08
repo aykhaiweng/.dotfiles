@@ -82,19 +82,25 @@ main() {
     yes '' | pyenv install 3.6.4
     _echo "Installing python 2.7.13 with  pyenv..."
     yes '' | pyenv install 2.7.13
+    _echo "Installing pypy3.5 5.10.1 with pyenv..."
+    yes '' | pyenv install pypy3.5-5.10.1
     _echo "Setting python 3.6.4 as the global default"
     pyenv global 3.6.4
 
 
     # Setting up python for neovim
     _echo "Setting up virtualenv for neovim3"
+    pyenv virtualenv pypy3.5-5.10.1 neovim3_pypy
+    pyenv activate neovim3_pypy
+    pip install neovim psutil
+    _echo "Setting up virtualenv for neovim3"
     pyenv virtualenv 3.6.4 neovim3
     pyenv activate neovim3
-    pip install neovim
+    pip install neovim psutil
     _echo "Setting up virtualenv for neovim2"
     pyenv virtualenv 2.7.13 neovim2
     pyenv activate neovim2
-    pip install neovim
+    pip install neovim psutil
     pyenv deactivate
 
 

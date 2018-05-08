@@ -15,10 +15,7 @@ call plug#begin('~/.vim/plugged')
 
 
 set rtp+=~/.vim/my-colors
-Plug 'ajmwagar/vim-deus'
-set rtp+=~/.vim/bundle/vim-deus/colors
-Plug 'morhetz/gruvbox'
-set rtp+=~/.vim/bundle/gruvbox/colors
+Plug 'rafi/awesome-vim-colorschemes'
 
 
 """ ASYNC STUFF
@@ -112,9 +109,9 @@ inoremap <Leader>= :TagbarToggle<CR>
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
-imap <C-e> <Plug>(neosnippet_expand_or_jump)
-smap <C-e> <Plug>(neosnippet_expand_or_jump)
-xmap <C-e> <Plug>(neosnippet_expand_target)
+imap <C-Space> <Plug>(neosnippet_expand_or_jump)
+smap <C-Space> <Plug>(neosnippet_expand_or_jump)
+xmap <C-Space> <Plug>(neosnippet_expand_target)
 
 
 " because I miss sublime text
@@ -175,7 +172,10 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep= ''
+let g:airline_left_sep = ''
 
 """ Python
 " folding for python
@@ -347,7 +347,7 @@ syntax enable
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" Airline
+" Gruvbox
 let g:airline_theme='gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italicize_comments=1
@@ -355,6 +355,9 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 silent! colorscheme gruvbox
+" materialbox
+" let g:airline_theme='apprentice'
+" silent! colorscheme apprentice
 
 " statusline
 set laststatus=2
@@ -379,6 +382,7 @@ let g:autoclose_on = 0  " do not autoclose brackets
 set exrc  " allow project specific .vimrc
 set secure  " disallow .vimrc not owned by uname
 set clipboard=unnamed,unnamedplus
+set regexpengine=1
 set tabstop=5       " length of a tab
 set shiftwidth=4    " length of an indent
 set ruler
