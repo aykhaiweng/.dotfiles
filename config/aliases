@@ -37,6 +37,7 @@ eval "$(pyenv virtualenv-init -)"
 # penv Settings for Neovim
 export NEOVIM2=$PYENV_ROOT"/versions/neovim2/bin/python"
 export NEOVIM3=$PYENV_ROOT"/versions/neovim3/bin/python"
+export NEOVIM3_PYPY=$PYENV_ROOT"/versions/neovim3_pypy/bin/python"
 
 # ======================================================= #
 # Agnostic Settings                                       #
