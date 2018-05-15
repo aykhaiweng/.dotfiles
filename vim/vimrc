@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
 
 set rtp+=~/.vim/my-colors
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'ayu-theme/ayu-vim'
 
 
 """ ASYNC STUFF
@@ -23,7 +24,7 @@ if has('nvim')
     " DEOPLETE
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#enable_refresh_always = 1
     let g:deoplete#enable_smart_case = 1
     let g:deoplete#ignore_sources = {'_': ['tag']}
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -31,13 +32,13 @@ if has('nvim')
     inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
     inoremap <silent><expr> <C-Space>
-	   \ pumvisible() ? "\<C-n>" :
-	   \ <SID>check_back_space() ? "\<TAB>" :
-	   \ deoplete#mappings#manual_complete()
-	   function! s:check_back_space() abort "{{{
-	   let col = col('.') - 1
-	   return !col || getline('.')[col - 1]  =~ '\s'
-	   endfunction"}}}
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ deoplete#mappings#manual_complete()
+        function! s:check_back_space() abort "{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+        endfunction"}}}
 
     " DENITE
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -114,6 +115,10 @@ let g:workspace_session_disable_on_args=1
 " Plug 'nathanaelkane/vim-indent-guides'
 " Indentation
 Plug 'Yggdroot/indentLine'
+" let g:indentLine_char = ''
+" let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+" let g:indentLine_setColors = 0
 
 Plug 'majutsushi/tagbar'
 nnoremap <Leader>= :TagbarToggle<CR>
@@ -361,6 +366,7 @@ syntax enable
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"
 " Gruvbox
 let g:airline_theme='gruvbox'
 let g:gruvbox_contrast_dark='hard'
@@ -369,9 +375,18 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 silent! colorscheme gruvbox
-" materialbox
-" let g:airline_theme='apprentice'
-" silent! colorscheme apprentice
+"
+" Ayu Theme
+" let ayucolor="light"  " for light version of theme
+" let g:airline_theme='ayu'
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
+"
+" Firewatch
+" let g:two_firewatch_italics=1
+" silent! colorscheme two-firewatch
+" let g:airline_theme='twofirewatch' " if you have Airline installed and want the associated theme
 
 " statusline
 set laststatus=2
