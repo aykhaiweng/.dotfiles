@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
+#!bin/bash
 
 # Taken from https://github.com/samoshkin/tmux-config/
 
+echo "TEST" | sudo tee /var/log/syslog
 set -eu
 
 is_app_installed() {
@@ -13,13 +14,14 @@ buf=$(cat "$@")
 
 copy_backend_remote_tunnel_port=$(tmux show-option -gvq "@copy_backend_remote_tunnel_port")
 copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
-printf $copy_backend_remote_tunnel_port
 
 # Resolve copy backend: pbcopy (OSX), reattach-to-user-namespace (OSX), xclip/xsel (Linux), or network service
 # get data either form stdin or from file
 buf=$(cat "$@")
 copy_backend=""
-if is_app_installed pbcopy; then
+if [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
+  copy_backend="nc localhost 19988"
+elif is_app_installed pbcopy; then
   copy_backend="pbcopy"
 elif is_app_installed reattach-to-user-namespace; then
   copy_backend="reattach-to-user-namespace pbcopy"
@@ -27,9 +29,10 @@ elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
   copy_backend="xsel -i --clipboard"
 elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
   copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
-elif [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
-  copy_backend="nc localhost 19988"
 fi
+
+echo "Setting copybackend to $copy_backend" | tee ~/log/tmp.log
+
 # if copy backend is resolved, copy and exit
 if [ -n "$copy_backend" ]; then
   printf "$buf" | eval "$copy_backend"
