@@ -3,7 +3,7 @@ filetype off                  " required
 
 
 " python hosts
-let g:python2_host_prog=$NEOVIM2
+let g:python_host_prog=$NEOVIM2
 let g:python3_host_prog=$NEOVIM3
 
 " leader
@@ -370,6 +370,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " Gruvbox
 let g:airline_theme='gruvbox'
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
