@@ -1,9 +1,6 @@
 # ======================================================= #
 # Agnostic Settings                                       #
 # ======================================================= #
-# NVIM instead of VIM
-alias vim='nvim'
-
 # encoding
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="UTF-8"
