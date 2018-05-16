@@ -13,8 +13,11 @@ buf=$(cat "$@")
 
 copy_backend_remote_tunnel_port=$(tmux show-option -gvq "@copy_backend_remote_tunnel_port")
 copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
+printf $copy_backend_remote_tunnel_port
 
-# Resolve copy backend: pbcopy (OSX), reattach-to-user-namespace (OSX), xclip/xsel (Linux)
+# Resolve copy backend: pbcopy (OSX), reattach-to-user-namespace (OSX), xclip/xsel (Linux), or network service
+# get data either form stdin or from file
+buf=$(cat "$@")
 copy_backend=""
 if is_app_installed pbcopy; then
   copy_backend="pbcopy"
@@ -24,15 +27,12 @@ elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
   copy_backend="xsel -i --clipboard"
 elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
   copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
-elif [ -n "${copy_backend_remote_tunnel_port-}" ] \
-    && (netstat -f inet -nl 2>/dev/null || netstat -4 -nl 2>/dev/null) \
-      | grep -q "[.:]$copy_backend_remote_tunnel_port"; then
-  copy_backend="nc localhost $copy_backend_remote_tunnel_port"
+elif [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
+  copy_backend="nc localhost 19988"
 fi
-
 # if copy backend is resolved, copy and exit
 if [ -n "$copy_backend" ]; then
-  printf "%s" "$buf" | eval "$copy_backend"
+  printf "$buf" | eval "$copy_backend"
   exit;
 fi
 
