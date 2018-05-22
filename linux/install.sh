@@ -49,7 +49,8 @@ main() {
     sudo apt-get install git python3-pip python-dev python-setuptools python-docutils -y
     sudo apt-get install nginx gunicorn memcached -y
     sudo apt-get install libpq-dev postgresql postgresql-contrib gettext -y
-    sudo apt-get install nodejs-legacy npm libjpeg8-dev -y
+    sudo apt-get install nodejs npm -y
+    sudo apt-get install libjpeg8-dev -y
     sudo apt-get install sqlite3 libsqlite3-dev -y
     sudo apt-get install autotools-dev autoconf -y
     # sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules -y

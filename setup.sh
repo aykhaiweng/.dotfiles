@@ -68,6 +68,12 @@ main() {
     # run the aliases file to get the pyenv out
     _echo "Running the $HOME/.aliases file that we symlinked earlier"
 
+
+	# npm
+	npm install -g typescript
+	npm install -g xbuild
+
+
     source $HOME/.aliases
     if [[ $uname == 'Darwin' ]]; then
         export PYTHON_CONFIGURE_OPTS="--enable-framework"
