@@ -375,7 +375,7 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
-silent! colorscheme gruvbox
+silent! colorscheme aykhaiweng
 "
 " Ayu Theme
 " let ayucolor="light"  " for light version of theme

@@ -30,7 +30,7 @@ FILES_TO_LINK = (
     ('vim/ftplugin/', '.vim/ftplugin'),
     ('vim/ultisnips/', '.vim/ultisnips'),
     ('vim/neosnippets/', '.vim/neosnippets'),
-    ('vim/colors/', '.vim/my-colors'),
+    ('vim/colors/aykhaiweng.vim', '.vim/colors/aykhaiweng.vim'),
 
     # tmux
     ('tmux/tmux.conf', '.tmux.conf'),
