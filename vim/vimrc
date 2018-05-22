@@ -22,36 +22,36 @@ Plug 'ayu-theme/ayu-vim'
 """ ASYNC STUFF
 if has('nvim')
     " DEOPLETE
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#ignore_sources = {'_': ['tag']}
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
-    inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <silent><expr> <C-Space>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ deoplete#mappings#manual_complete()
-        function! s:check_back_space() abort "{{{
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-        endfunction"}}}
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " let g:deoplete#enable_at_startup = 1
+    " let g:deoplete#enable_refresh_always = 1
+    " let g:deoplete#enable_smart_case = 1
+    " let g:deoplete#ignore_sources = {'_': ['tag']}
+    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+    " inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+    " inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " inoremap <silent><expr> <C-Space>
+    "     \ pumvisible() ? "\<C-n>" :
+    "     \ <SID>check_back_space() ? "\<TAB>" :
+    "     \ deoplete#mappings#manual_complete()
+    "     function! s:check_back_space() abort "{{{
+    "     let col = col('.') - 1
+    "     return !col || getline('.')[col - 1]  =~ '\s'
+    "     endfunction"}}}
 
     " DENITE
-    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " DEOPPET VAPOURWARE
     " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " DEOPLETE JEDI
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
+    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    " let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
 
     " ECHO DOC
-    Plug 'Shougo/echodoc.vim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'Shougo/echodoc.vim', { 'do': ':UpdateRemotePlugins' }
 
     " Asynchronous Highlighting
     " Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -60,11 +60,15 @@ if has('nvim')
     " Another type of Asynchronous Highlighting
     Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:neotags_enabled = 1
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+" else
+    " Plug 'Shougo/deoplete.nvim'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+
+" YCM
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 
 
 " TmuxVimNavigation
@@ -432,33 +436,6 @@ set undolevels=1000  " more undo levels
 set ttyfast
 set so=3
 
-" " Python
-" augroup python
-"     au!
-"     autocmd FileType python
-"         \ syntax on
-"         \ set tabstop=4
-"         \ set softtabstop=4
-"         \ set shiftwidth=4
-"         \ set expandtab
-"         \ set colorcolumn=80
-"         \ set syntax=python
-" augroup END
-
-
-
-" " HTML, JS, CSS
-" au! BufNewFile,BufRead *.js, *.html, *.css
-"     \ set tabstop=4
-"     \ set shiftwidth=4
-"     \ set noexpandtab
-
-" au! BufNewFile,BufRead Vagrant
-"     \ set tabstop=2
-"     \ set softtabstop=2
-"     \ set shiftwidth=2
-"     \ set expandtab
-"     \ set syntax=ruby
 
 " Refresh Airline theme on entering a buffer
 au! BufEnter *
