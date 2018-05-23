@@ -19,65 +19,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ayu-theme/ayu-vim'
 
 
-""" ASYNC STUFF
-if has('nvim')
-    " DEOPLETE
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " DENITE
-    " Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " DEOPPET VAPOURWARE
-    " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " DEOPLETE JEDI
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
-
-    " ECHO DOC
-    Plug 'Shougo/echodoc.vim', { 'do': ':UpdateRemotePlugins' }
-
-    " Asynchronous Highlighting
-    " Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:highlighter#auto_update = 2  " AutoHighlight when file opens
-
-    " Snippets
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
-    let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
-    imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-e>     <Plug>(neosnippet_expand_target)
-
-    " Another type of Asynchronous Highlighting
-    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:neotags_enabled=1
-    " let g:neotags_verbose=1
-    let g:neotags_silent_timeout=1
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-" DEOPLETE OPTIONS
-let g:deoplete#enable_at_startup = 1
-" let g:deoplete#enable_refresh_always = 1
-let g:deoplete#enable_smart_case = 1
-" let g:deoplete#ignore_sources = {'_': ['tag']}
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <C-Space>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
-    function! s:check_back_space() abort "{{{
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction "}}}
-
-
 " TmuxVimNavigation
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
@@ -95,7 +36,6 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 " nnoremap <C-Right> <C-W><C-L>
 " nnoremap <C-Up>    <C-W><C-K>
 " nnoremap <C-Down>  <C-W><C-J>
-
 
 " Asynchronous Linting
 Plug 'w0rp/ale'
@@ -151,8 +91,8 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeWinSize=60
+let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeWinSize=40
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 " autocmd BufEnter *
@@ -237,6 +177,68 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 " Css Color
 Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
+
+
+""" ASYNC STUFF
+if has('nvim')
+    Plug 'neovim/python-client'
+
+    " DEOPLETE
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " DENITE
+    " Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " DEOPPET VAPOURWARE
+    " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " DEOPLETE JEDI
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
+
+    " ECHO DOC
+    Plug 'Shougo/echodoc.vim', { 'do': ':UpdateRemotePlugins' }
+
+    " Snippets
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+    imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-e>     <Plug>(neosnippet_expand_target)
+
+    " Another type of Asynchronous Highlighting
+    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:neotags_enabled=1
+    " let g:neotags_verbose=1
+    let g:neotags_silent_timeout=1
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" DEOPLETE OPTIONS
+let g:deoplete#enable_at_startup=1
+" let g:deoplete#enable_refresh_always=1
+let g:deoplete#enable_smart_case=1
+let g:deoplete#ignore_sources = {'_': ['tag']}
+" let g:deoplete#auto_refresh_delay=1000
+" let g:deoplete#auto_complete_delay=1000
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><C-Space> deoplete#refresh()
+" inoremap <silent><expr> <C-Space>
+"     \ pumvisible() ? "\<C-n>" :
+"     \ <SID>check_back_space() ? "\<TAB>" :
+"     \ deoplete#mappings#manual_complete()
+"     function! s:check_back_space() abort "{{{
+"         let col = col('.') - 1
+"         return !col || getline('.')[col - 1]  =~ '\s'
+"     endfunction "}}}
+
 
 " All of your Plugs must be added before the following line
 " Initialize plugin system
