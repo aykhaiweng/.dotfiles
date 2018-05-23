@@ -19,10 +19,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ayu-theme/ayu-vim'
 
 
-""" AUTOCOMPLETION
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-
-
 """ ASYNC STUFF
 if has('nvim')
     " DEOPLETE
@@ -44,40 +40,42 @@ if has('nvim')
     " Asynchronous Highlighting
     " Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
     " let g:highlighter#auto_update = 2  " AutoHighlight when file opens
-	
-	" Snippets
-	Plug 'Shougo/neosnippet'
-	Plug 'Shougo/neosnippet-snippets'
-	let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
-	imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-	smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-	xmap <C-e>     <Plug>(neosnippet_expand_target)
+
+    " Snippets
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+    imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-e>     <Plug>(neosnippet_expand_target)
 
     " Another type of Asynchronous Highlighting
     Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:neotags_enabled = 1
-" else
+    let g:neotags_enabled=1
+    " let g:neotags_verbose=1
+    let g:neotags_silent_timeout=1
+else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " DEOPLETE OPTIONS
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_refresh_always = 1
+" let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#ignore_sources = {'_': ['tag']}
+" let g:deoplete#ignore_sources = {'_': ['tag']}
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <C-Space>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ deoplete#mappings#manual_complete()
-	function! s:check_back_space() abort "{{{
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-	endfunction"}}}
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+    function! s:check_back_space() abort "{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction "}}}
 
 
 " TmuxVimNavigation
@@ -123,7 +121,6 @@ let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
 " let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
 " let g:workspace_undodir='~/.vim/workspace-undodir'
-"
 
 " Plug 'nathanaelkane/vim-indent-guides'
 " Indentation
@@ -137,7 +134,6 @@ Plug 'majutsushi/tagbar'
 nnoremap <Leader>= :TagbarToggle<CR>
 vnoremap <Leader>= :TagbarToggle<CR>
 
-
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=1
@@ -150,6 +146,8 @@ Plug 'tpope/vim-commentary'
 
 
 """ Explorers
+" Plug 'tpope/vim-vinegar'
+
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
@@ -198,6 +196,7 @@ let g:airline_right_sep = ''
 let g:airline_left_alt_sep= ''
 let g:airline_left_sep = ''
 
+
 """ Python
 " folding for python
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
@@ -205,15 +204,23 @@ set foldmethod=syntax
 set foldlevel=99
 let g:SimpylFold_docstring_preview=1
 
-
 " Better python syntax highlighting
-" Plug 'vim-python/python-syntax', {'for': 'python'}
-" let g:python_highlight_all=1
-" let g:python_self_cls_highlight=1
-" let g:syntastic_python_checkers=['flake8']
+Plug 'vim-python/python-syntax', {'for': 'python'}
+let g:python_highlight_all=1
+let g:python_self_cls_highlight=1
+let g:syntastic_python_checkers=['flake8']
 
 " penv wrapper for vim
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+let g:jedi#goto_command = "<Leader>jc"
+let g:jedi#goto_assignments_command = "<Leader>ja"
+let g:jedi#goto_definitions_command = "<Leader>jd"
+let g:jedi#documentation_command = "<Leader>jk"
+let g:jedi#usages_command = "<Leader>ju"
+" let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<Leader>jr"
+let g:jedi#show_call_signatures = "1"
+let g:jedi#smart_auto_mappings = 0
 
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
@@ -225,7 +232,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
 let g:webdevicons_conceal_nerdtree_brackets=1
-let g:WebDevIconsNerdTreeAfterGlyphPadding='  '
+let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 " Css Color
@@ -448,6 +455,19 @@ au! BufEnter *
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
 set list
 
+" netrw
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 25
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+" noremap <Leader>0 :Vexplore<CR>
+" noremap <Leader>- :Vexplore<CR>
+" let g:netrw_list_hide = &wildignore
 " =========================================================================== "
 
 
