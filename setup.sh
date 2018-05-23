@@ -69,9 +69,11 @@ main() {
     _echo "Running the $HOME/.aliases file that we symlinked earlier"
 
 
-	# npm
-	npm install -g typescript
-	npm install -g xbuild
+    # npm
+    sudo npm install -g graceful-fs
+    sudo npm install -g typescript
+    sudo npm install -g xbuild
+    sudo npm install -g neovim
 
 
     source $HOME/.aliases
