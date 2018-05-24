@@ -70,10 +70,10 @@ main() {
 
 
     # npm
-    sudo npm install -g graceful-fs
     sudo npm install -g typescript
     sudo npm install -g xbuild
     sudo npm install -g neovim
+    sudo npm install -g graceful-fs
 
 
     source $HOME/.aliases
