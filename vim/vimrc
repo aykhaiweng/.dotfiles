@@ -20,7 +20,7 @@ Plug 'ayu-theme/ayu-vim'
 
 
 " YCM
-Plug 'Valloric/YouCompleteMe' { 'do': './install.py --js-completer' } 
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' } 
 
 " SirVer
 Plug 'sirver/ultisnips'
