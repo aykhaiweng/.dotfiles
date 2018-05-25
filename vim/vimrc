@@ -21,6 +21,7 @@ Plug 'ayu-theme/ayu-vim'
 
 " YCM
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' } 
+let g:ycm_python_binary_path = 'python'
 
 " SirVer
 Plug 'sirver/ultisnips'
@@ -105,7 +106,7 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize=30
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 " autocmd BufEnter *
@@ -153,8 +154,6 @@ let g:airline_left_sep = ''
 """ Python
 " folding for python
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-set foldmethod=syntax
-set foldlevel=99
 let g:SimpylFold_docstring_preview=1
 
 " Better python syntax highlighting
