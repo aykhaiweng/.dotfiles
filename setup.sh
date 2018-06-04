@@ -69,9 +69,11 @@ main() {
     _echo "Running the $HOME/.aliases file that we symlinked earlier"
 
 
-	# npm
-	npm install -g typescript
-	npm install -g xbuild
+    # npm
+    sudo npm install -g typescript
+    sudo npm install -g xbuild
+    sudo npm install -g neovim
+    sudo npm install -g graceful-fs
 
 
     source $HOME/.aliases
@@ -102,11 +104,11 @@ main() {
     _echo "Setting up virtualenv for neovim3"
     pyenv virtualenv 3.6.4 neovim3
     pyenv activate neovim3
-    pip install neovim psutil
+    pip install neovim psutil jedi -U
     _echo "Setting up virtualenv for neovim2"
     pyenv virtualenv 2.7.13 neovim2
     pyenv activate neovim2
-    pip install neovim psutil
+    pip install neovim psutil jedi -U
     pyenv deactivate
 
 

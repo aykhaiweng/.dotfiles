@@ -19,56 +19,34 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ayu-theme/ayu-vim'
 
 
-""" ASYNC STUFF
-if has('nvim')
-    " DEOPLETE
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#enable_refresh_always = 1
-    " let g:deoplete#enable_smart_case = 1
-    " let g:deoplete#ignore_sources = {'_': ['tag']}
-    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
-    " inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-    " inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    " inoremap <silent><expr> <C-Space>
-    "     \ pumvisible() ? "\<C-n>" :
-    "     \ <SID>check_back_space() ? "\<TAB>" :
-    "     \ deoplete#mappings#manual_complete()
-    "     function! s:check_back_space() abort "{{{
-    "     let col = col('.') - 1
-    "     return !col || getline('.')[col - 1]  =~ '\s'
-    "     endfunction"}}}
-
-    " DENITE
-    " Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " DEOPPET VAPOURWARE
-    " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " DEOPLETE JEDI
-    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    " let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
-
-    " ECHO DOC
-    " Plug 'Shougo/echodoc.vim', { 'do': ':UpdateRemotePlugins' }
-
-    " Asynchronous Highlighting
-    " Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:highlighter#auto_update = 2  " AutoHighlight when file opens
-
-    " Another type of Asynchronous Highlighting
-    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:neotags_enabled = 1
-" else
-    " Plug 'Shougo/deoplete.nvim'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-
 " YCM
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' } 
+let g:ycm_python_binary_path = 'python'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1,
+      \ '__flygrep__' : 1,
+      \}
+
+" SirVer
+Plug 'sirver/ultisnips'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-E>"
+let g:UltiSnipsJumpForwardTrigger="<C-B>"
+let g:UltiSnipsJumpBackwardTrigger="<C-Z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
+map <Leader>use :UltiSnipsEdit<CR>
 
 
 " TmuxVimNavigation
@@ -89,11 +67,10 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 " nnoremap <C-Up>    <C-W><C-K>
 " nnoremap <C-Down>  <C-W><C-J>
 
-
 " Asynchronous Linting
 Plug 'w0rp/ale'
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '--'
+let g:ale_sign_warning = '!'
 let g:ale_set_highlights = 1
 let g:ale_lint_delay = 5000
 let g:ale_lint_on_text_changed = 'normal'
@@ -114,7 +91,6 @@ let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
 " let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
 " let g:workspace_undodir='~/.vim/workspace-undodir'
-"
 
 " Plug 'nathanaelkane/vim-indent-guides'
 " Indentation
@@ -126,24 +102,11 @@ let g:indentLine_showFirstIndentLevel = 1
 
 Plug 'majutsushi/tagbar'
 nnoremap <Leader>= :TagbarToggle<CR>
-inoremap <Leader>= :TagbarToggle<CR>
-
-
-" MORE SHOUGO GOODNESS?
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
-imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-e>     <Plug>(neosnippet_expand_target)
+vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=1
-" let g:multi_cursor_next_key='<C-d>'
-" let g:multi_cursor_prev_key='<C-p>'
-" let g:multi_cursor_skip_key='<C-x>'
-" let g:multi_cursor_quit_key='<Esc>'
 
 " for noobs like me who have no idea how to use motions
 Plug 'easymotion/vim-easymotion'
@@ -156,7 +119,8 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeWinSize=30
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 " autocmd BufEnter *
@@ -200,22 +164,17 @@ let g:airline_right_sep = ''
 let g:airline_left_alt_sep= ''
 let g:airline_left_sep = ''
 
+
 """ Python
 " folding for python
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-set foldmethod=syntax
-set foldlevel=99
 let g:SimpylFold_docstring_preview=1
-
 
 " Better python syntax highlighting
 Plug 'vim-python/python-syntax', {'for': 'python'}
 let g:python_highlight_all=1
 let g:python_self_cls_highlight=1
-let g:syntastic_python_checkers = ['flake8']
-
-" penv wrapper for vim
-Plug 'lambdalisue/vim-pyenv', {'for': 'python'}
+let g:syntastic_python_checkers=['flake8']
 
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
@@ -226,9 +185,75 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
+let g:webdevicons_conceal_nerdtree_brackets=1
+let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 " Css Color
 Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
+
+
+" """ ASYNC STUFF
+if has('nvim')
+"     Plug 'neovim/python-client'
+
+"     " DEOPLETE
+"     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+"     " DENITE
+"     " Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+"     " DEOPPET VAPOURWARE
+"     " Plug 'Shougo/deoppet.nvim', { 'do': ':UpdateRemotePlugins' }
+
+"     " DEOPLETE JEDI
+"     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+"     let g:jedi#completions_enabled = 0  " Disable autocompletions from JEDI
+
+"     " ECHO DOC
+"     Plug 'Shougo/echodoc.vim', { 'do': ':UpdateRemotePlugins' }
+
+"     " Snippets
+"     Plug 'Shougo/neosnippet'
+"     Plug 'Shougo/neosnippet-snippets'
+"     let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+"     imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+"     smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+"     xmap <C-e>     <Plug>(neosnippet_expand_target)
+
+"     " Another type of Asynchronous Highlighting
+    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:neotags_enabled=1
+    " let g:neotags_verbose=1
+    let g:neotags_silent_timeout=1
+	let g:neotags_ignore=['fzf', '__flygrep__']
+" else
+"     Plug 'Shougo/deoplete.nvim'
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" DEOPLETE OPTIONS
+" let g:deoplete#enable_at_startup=1
+" " let g:deoplete#enable_refresh_always=1
+" let g:deoplete#enable_smart_case=1
+" let g:deoplete#ignore_sources = {'_': ['tag']}
+" " let g:deoplete#auto_refresh_delay=1000
+" " let g:deoplete#auto_complete_delay=1000
+" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+" inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" " inoremap <expr><C-Space> deoplete#refresh()
+" inoremap <expr><C-Space>
+"     \ pumvisible() ? "\<C-n>" :
+"     \ <SID>check_back_space() ? "\<TAB>" :
+"     \ deoplete#mappings#manual_complete()
+"     function! s:check_back_space() abort "{{{
+"         let col = col('.') - 1
+"         return !col || getline('.')[col - 1]  =~ '\s'
+"     endfunction "}}}
+
 
 " All of your Plugs must be added before the following line
 " Initialize plugin system
@@ -366,7 +391,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 set t_Co=256
-syntax enable
+syntax on
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -380,7 +405,11 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 silent! colorscheme aykhaiweng
-"
+
+" deus theme
+" let g:airline_theme='deus'
+" silent! colorscheme deus
+
 " Ayu Theme
 " let ayucolor="light"  " for light version of theme
 " let g:airline_theme='ayu'
@@ -412,12 +441,12 @@ highlight ExtraWhitespace ctermbg=red
 " definitions
 set splitright
 set splitbelow
-let g:autoclose_on = 0  " do not autoclose brackets
-set exrc  " allow project specific .vimrc
-set secure  " disallow .vimrc not owned by uname
+let g:autoclose_on=0  " do not autoclose brackets
+set exrc            " allow project specific .vimrc
+set secure          " disallow .vimrc not owned by uname
 set clipboard=unnamed,unnamedplus
 set regexpengine=1
-set tabstop=5       " length of a tab
+set tabstop=4       " length of a tab
 set shiftwidth=4    " length of an indent
 set ruler
 set autoindent
@@ -433,8 +462,10 @@ set ignorecase       " ignore the case when searching
 set smartcase        " case ignored if the search is all lower case
 set lazyredraw
 set undolevels=1000  " more undo levels
-set ttyfast
-set so=3
+" set ttyfast
+set scrolloff=3
+set shortmess=a      " Decrease the message size
+set cmdheight=1      " Change height of the cmd prompt
 
 
 " Refresh Airline theme on entering a buffer
@@ -445,6 +476,19 @@ au! BufEnter *
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
 set list
 
+" netrw
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 25
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+" noremap <Leader>0 :Vexplore<CR>
+" noremap <Leader>- :Vexplore<CR>
+" let g:netrw_list_hide = &wildignore
 " =========================================================================== "
 
 

@@ -3,6 +3,7 @@
 *.swo
 **.swo
 *.sublime*
+*.log
 .undodir
 Session.vim
 workspace.vim
