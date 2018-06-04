@@ -22,6 +22,20 @@ Plug 'ayu-theme/ayu-vim'
 " YCM
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' } 
 let g:ycm_python_binary_path = 'python'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1,
+      \ '__flygrep__' : 1,
+      \}
 
 " SirVer
 Plug 'sirver/ultisnips'
@@ -56,7 +70,7 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 " Asynchronous Linting
 Plug 'w0rp/ale'
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '--'
+let g:ale_sign_warning = '!'
 let g:ale_set_highlights = 1
 let g:ale_lint_delay = 5000
 let g:ale_lint_on_text_changed = 'normal'
@@ -212,6 +226,7 @@ if has('nvim')
     let g:neotags_enabled=1
     " let g:neotags_verbose=1
     let g:neotags_silent_timeout=1
+	let g:neotags_ignore=['fzf', '__flygrep__']
 " else
 "     Plug 'Shougo/deoplete.nvim'
 "     Plug 'roxma/nvim-yarp'
