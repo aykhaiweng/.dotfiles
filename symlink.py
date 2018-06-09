@@ -1,6 +1,7 @@
 import os
 import datetime
 
+
 HOME_DIR = os.environ.get('HOME')
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BACKUP_DIR = os.path.join(HOME_DIR, 'backup/')

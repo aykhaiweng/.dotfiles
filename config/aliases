@@ -66,10 +66,12 @@ function __256colourtest() {
         fi
     done
 }
-
 alias tctest=__truecolourtest
 alias 256ctest=__256colourtest
 
+# Use the SilverSurfer
+export FZF_DEFAULT_COMMAND="ag -g ''"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # ======================================================= #
 # OS Specific                                             #
 # ======================================================= #

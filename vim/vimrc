@@ -19,36 +19,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ayu-theme/ayu-vim'
 
 
-" YCM
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' } 
-let g:ycm_python_binary_path = 'python'
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdown' : 1,
-      \ 'unite' : 1,
-      \ 'text' : 1,
-      \ 'vimwiki' : 1,
-      \ 'pandoc' : 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1,
-      \ '__flygrep__' : 1,
-      \}
-
-" SirVer
-Plug 'sirver/ultisnips'
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-E>"
-let g:UltiSnipsJumpForwardTrigger="<C-B>"
-let g:UltiSnipsJumpBackwardTrigger="<C-Z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
-map <Leader>use :UltiSnipsEdit<CR>
-
-
 " TmuxVimNavigation
 Plug 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_no_mappings = 1
@@ -162,6 +132,10 @@ let g:syntastic_python_checkers=['flake8']
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
+" JEDI
+" Plug 'davidhalter/jedi-vim'
+" let g:jedi#completions_enabled = 0
+
 
 """ HTML & CSS
 Plug 'mattn/emmet-vim', {'for': 'html'}
@@ -176,18 +150,61 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
 
 
-" """ ASYNC STUFF
+""" NVIM STUFF
 if has('nvim')
+    " Deoplete Completions
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " Neosnippets
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+    imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-e>     <Plug>(neosnippet_expand_target)
+
+    " CTags
     Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:neotags_enabled=1
     let g:neotags_silent_timeout=1
     let g:neotags_ignore=['fzf', '__flygrep__']
     let g:neotags_find_tool='ag -g ""'
+
+    " Deoplete JEDI
+    Plug 'zchee/deoplete-jedi'
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 " =========================================================================== "
 
+" DEOPLETE ------------------------------------------------------------------ "
+call deoplete#custom#option({
+    \ 'auto_complete_delay': 200,
+    \ 'smart_case': v:true,
+    \ 'refresh_always': v:false,
+    \ 'auto_refresh_delay': 50,
+    \ })
+let g:deoplete#sources#jedi#enable_cache = 1
+" if !exists('g:deoplete#omni#input_patterns')
+"     let g:deoplete#omni#input_patterns={}
+" endif
+call deoplete#custom#source('_',
+    \'disabled_syntaxes', ['Comment', 'String']
+    \)
+" let g:deoplete#sources = {}
+" let g:deoplete#sources.python = ['deoplete-jedi']
+" let g:deoplete#sources.vim = ['vim']
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" =========================================================================== "
 
 " CONTROLS ------------------------------------------------------------------ "
 " mouse
