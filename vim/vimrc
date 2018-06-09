@@ -89,6 +89,7 @@ Plug 'thaerkh/vim-workspace'
 nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
+let g:workspace_autosave_ignore = ['gitcommit', '__flygrep__', 'nerdtree', 'tagbar']
 " let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
 " let g:workspace_undodir='~/.vim/workspace-undodir'
 
@@ -224,7 +225,6 @@ if has('nvim')
 "     " Another type of Asynchronous Highlighting
     Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:neotags_enabled=1
-    " let g:neotags_verbose=1
     let g:neotags_silent_timeout=1
 	let g:neotags_ignore=['fzf', '__flygrep__']
 " else
