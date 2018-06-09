@@ -58,6 +58,9 @@ main() {
     # sudo apt-get install letsencrypt -y
     # sudo apt-get install mysql-server libmysqlclient-dev -yq
 
+	# The Silver Searcher
+	sudo apt-get install silversearcher-ag
+
     # terminal essentials
     sudo apt-get install cmake zsh tmux xclip -y
 
