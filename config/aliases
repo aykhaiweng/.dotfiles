@@ -87,6 +87,9 @@ if [[ $uname == 'Darwin' ]]; then
 
     # Kitty Config
     export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
+
+	# local pb copy
+	launchctl start local.pbcopy
 elif [[ $uname == 'Linux' ]]; then
     # Directory listing
     export DIRECTORY_COLOR_ARGUMENTS="--color=always"
