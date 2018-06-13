@@ -134,6 +134,15 @@ main() {
     vim -c 'PlugInstall' -c 'qa!'
 
 
+    # Installing KR
+    curl https://krypt.co/kr | sh
+
+
+    # Install Rmate
+    curl -o /usr/local/bin/rmate https://raw.githubusercontent.com/aurora/rmate/master/rmate
+    sudo chmod +x /usr/local/bin/rmate
+
+
     # SSH STUFF
     # create an id_rsa file if it doesn't already exist
     if [ ! -f $HOME/.ssh/id_rsa ]; then
