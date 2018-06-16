@@ -46,9 +46,11 @@ Plug 'thaerkh/vim-workspace'
 nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
-let g:workspace_autosave_ignore = ['gitcommit', '__flygrep__', 'nerdtree', 'tagbar']
-" let g:workspace_persist_undo_history=1        " enabled = 1 (default), disabled = 0
-" let g:workspace_undodir='~/.vim/workspace-undodir'
+let g:workspace_autosave_ignore = [
+            \'gitcommit',
+            \'__flygrep__',
+            \'nerdtree', 
+            \'tagbar']
 
 " Indentation
 Plug 'Yggdroot/indentLine'
@@ -82,7 +84,8 @@ nnoremap <Leader>fm :Marks<CR>
 
 Plug 'wsdjeg/FlyGrep.vim'
 let g:FlyGrep_input_delay='1000'
-let g:Flygrep_search_tools='ag -g ""'
+
+let g:Flygrep_search_tools='ag --ignore "*.pyc" -a --hidden ""'
 map <Leader>fg :FlyGrep<CR>
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -420,20 +423,6 @@ au! BufEnter *
 " show whitespaces
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
 set list
-
-" netrw
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4
-" let g:netrw_altv = 1
-" let g:netrw_winsize = 25
-" augroup ProjectDrawer
-"   autocmd!
-"   autocmd VimEnter * :Vexplore
-" augroup END
-" noremap <Leader>0 :Vexplore<CR>
-" noremap <Leader>- :Vexplore<CR>
-" let g:netrw_list_hide = &wildignore
 " =========================================================================== "
 
 
