@@ -49,6 +49,7 @@ main() {
     sudo apt-get install git python3-pip python-dev python-setuptools python-docutils -y
     sudo apt-get install nginx gunicorn memcached -y
     sudo apt-get install libpq-dev postgresql postgresql-contrib gettext -y
+    sudo apt-get install binutils gdal-bin -y
     sudo apt-get install nodejs npm -y
     sudo apt-get install libjpeg8-dev -y
     sudo apt-get install sqlite3 libsqlite3-dev -y
@@ -58,8 +59,8 @@ main() {
     # sudo apt-get install letsencrypt -y
     # sudo apt-get install mysql-server libmysqlclient-dev -yq
 
-	# The Silver Searcher
-	sudo apt-get install silversearcher-ag
+    # The Silver Searcher
+    sudo apt-get install silversearcher-ag
 
     # terminal essentials
     sudo apt-get install cmake zsh tmux xclip -y
