@@ -88,8 +88,9 @@ if [[ $uname == 'Darwin' ]]; then
     # Kitty Config
     export KITTY_CONFIG_DIRECTORY="$HOME/config/kitty/"
 
-	# local pb copy
-	launchctl start local.pbcopy
+    # local pb copy
+    launchctl load ~/.dotfiles/osx/remote-ssh/local.pbcopy.plist
+    launchctl start local.pbcopy
 elif [[ $uname == 'Linux' ]]; then
     # Directory listing
     export DIRECTORY_COLOR_ARGUMENTS="--color=always"
