@@ -82,14 +82,14 @@ nnoremap <Leader>fzf :FZF<CR>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fm :Marks<CR>
 
-" Plug 'wsdjeg/FlyGrep.vim'
-" let g:FlyGrep_input_delay='1000'
+Plug 'wsdjeg/FlyGrep.vim'
+let g:FlyGrep_input_delay='1000'
 
-" let g:Flygrep_search_tools='ag --ignore "*.pyc" -a --hidden ""'
-" map <Leader>fg :FlyGrep<CR>
+let g:Flygrep_search_tools='ag --ignore "*.pyc" -a --hidden ""'
+map <Leader>fg :FlyGrep<CR>
 
 
-Plug 'epmatsw/ag.vim'
+" Plug 'epmatsw/ag.vim'
 
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
