@@ -124,14 +124,14 @@ main() {
     _echo "Downloading tmux-gitbar"
     source $THIS_DIR/extras/install-tmux-gitbar.sh
 
-
     # Installing vim plug
     _echo "Installing vim-plug..."
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     # Installing vim plugins
     _echo "Installing VIM Plugins..."
-    vim -c 'PlugInstall' -c 'qa!'
+	nvim +PlugInstall +qa!
+    vim +PlugInstall +qa!
 
 
     # Installing KR
