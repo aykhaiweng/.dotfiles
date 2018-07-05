@@ -130,7 +130,7 @@ main() {
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     # Installing vim plugins
     _echo "Installing VIM Plugins..."
-	nvim +PlugInstall +qa!
+    nvim +PlugInstall +qa!
     vim +PlugInstall +qa!
 
 
