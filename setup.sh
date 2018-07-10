@@ -84,29 +84,34 @@ main() {
     else
         _echo "Your platform is not supported yet."
     fi
+
+	PYTHON2_VER = 2.7.15
+	PYTHON36_VER = 3.6.5
+	PYTHON37_VER = 3.7.0
+
     # Now that all that is done, install python into pyenv
     # installing pyenv 3.6.4 and 2.7.13
-    _echo "Installing python 3.6.4 with pyenv..."
-    yes '' | pyenv install 3.6.4
-    _echo "Installing python 2.7.13 with  pyenv..."
-    yes '' | pyenv install 2.7.13
-    _echo "Installing pypy3.5 5.10.1 with pyenv..."
-    yes '' | pyenv install pypy3.5-5.10.1
-    _echo "Setting python 3.6.4 as the global default"
-    pyenv global 3.6.4
+    _echo "Installing $PYTHON36_VER with  pyenv..."
+    yes '' | pyenv install $PYTHON2_VER
+    _echo "Installing $PYTHON37_VER with pyenv..."
+    yes '' | pyenv install $PYTHON36_VER
+    _echo "Installing $PYTHON37_VER with pyenv..."
+    yes '' | pyenv install $PYTHON37_VER
+	_echo "Setting python 3.6.4 as the global default"
+    pyenv global 3.6.5
 
 
     # Setting up python for neovim
     _echo "Setting up virtualenv for neovim3"
-    pyenv virtualenv pypy3.5-5.10.1 neovim3_pypy
+    pyenv virtualenv $PYTHON37_VER neovim37
     pyenv activate neovim3_pypy
     pip install neovim psutil
     _echo "Setting up virtualenv for neovim3"
-    pyenv virtualenv 3.6.4 neovim3
+    pyenv virtualenv $PYTHON36_VER neovim3
     pyenv activate neovim3
     pip install neovim psutil jedi -U
     _echo "Setting up virtualenv for neovim2"
-    pyenv virtualenv 2.7.13 neovim2
+    pyenv virtualenv $PYTHON2_VER neovim2
     pyenv activate neovim2
     pip install neovim psutil jedi -U
     pyenv deactivate
