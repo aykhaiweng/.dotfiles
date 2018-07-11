@@ -8,7 +8,7 @@ export LC_CTYPE="UTF-8"
 # Setup the colors used for the terminal
 # export CLICOLOR=1
 # export LSCOLORS=GxFxCxDxBxegedabagaced
-export EDITOR=vim
+export EDITOR=nvim
 
 # default dotfiles folder
 export DOTFILES_PATH="$HOME/.dotfiles/"
