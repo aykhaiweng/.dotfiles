@@ -28,3 +28,6 @@ export KEYTIMEOUT=1
 
 # fix for Ctrl E not working
 bindkey -e
+
+# Added by Krypton
+export GPG_TTY=$(tty)
