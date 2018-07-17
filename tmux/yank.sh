@@ -21,12 +21,12 @@ copy_use_osc52_fallback=$(tmux show-option -gvq "@copy_use_osc52_fallback")
 # Resolve copy backend: pbcopy (OSX), reattach-to-user-namespace (OSX), xclip/xsel (Linux), or network service
 # get data either form stdin or from file
 copy_backend=""
-if [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
-  echo "nc localhost 19988"
-  copy_backend="nc -q0 localhost 19988"
-elif is_app_installed pbcopy; then
+if is_app_installed pbcopy; then
   echo "pbcopy"
   copy_backend="pbcopy"
+# elif [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
+#   echo "nc localhost 19988"
+#   copy_backend="nc -q0 localhost 19988"
 elif is_app_installed reattach-to-user-namespace; then
   echo "reattach-to-user-namespace pbcopy"
   copy_backend="reattach-to-user-namespace pbcopy"

@@ -84,10 +84,8 @@ nnoremap <Leader>fm :Marks<CR>
 
 Plug 'wsdjeg/FlyGrep.vim'
 let g:FlyGrep_input_delay='1000'
+let g:FlyGrep_search_tools=['ag']
 map <Leader>fg :FlyGrep<CR>
-
-
-" Plug 'epmatsw/ag.vim'
 
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -172,7 +170,7 @@ if has('nvim')
     Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:neotags_enabled=1
     let g:neotags_silent_timeout=1
-    let g:neotags_ignore=['fzf', '__flygrep__']
+    let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
     let g:neotags_find_tool='ag -g ""'
 
     " Deoplete JEDI
