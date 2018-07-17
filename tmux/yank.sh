@@ -24,9 +24,9 @@ copy_backend=""
 if is_app_installed pbcopy; then
   echo "pbcopy"
   copy_backend="pbcopy"
-# elif [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
-#   echo "nc localhost 19988"
-#   copy_backend="nc -q0 localhost 19988"
+elif [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -eq 1 ]; then
+  echo "nc localhost 19988"
+  copy_backend="nc -q0 localhost 19988"
 elif is_app_installed reattach-to-user-namespace; then
   echo "reattach-to-user-namespace pbcopy"
   copy_backend="reattach-to-user-namespace pbcopy"
