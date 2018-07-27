@@ -91,7 +91,7 @@ map <Leader>fg :FlyGrep<CR>
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeWinSize=30
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
