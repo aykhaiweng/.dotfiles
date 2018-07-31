@@ -42,23 +42,23 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 
 """ Editor
-Plug 'thaerkh/vim-workspace'
-nnoremap <leader>s :ToggleWorkspace<CR>
-let g:workspace_session_name='workspace.vim'
-let g:workspace_session_disable_on_args=1
-let g:workspace_autosave_ignore = [
-            \'gitcommit',
-            \'__flygrep__',
-            \'nerdtree', 
-            \'tagbar']
+" Plug 'thaerkh/vim-workspace'
+" nnoremap <leader>s :ToggleWorkspace<CR>
+" let g:workspace_session_name='workspace.vim'
+" let g:workspace_session_disable_on_args=1
+" let g:workspace_autosave_ignore = [
+"             \'gitcommit',
+"             \'__flygrep__',
+"             \'nerdtree', 
+"             \'tagbar']
 
 " Indentation
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 
-Plug 'majutsushi/tagbar'
-nnoremap <Leader>= :TagbarToggle<CR>
-vnoremap <Leader>= :TagbarToggle<CR>
+" Plug 'majutsushi/tagbar'
+" nnoremap <Leader>= :TagbarToggle<CR>
+" vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -86,7 +86,6 @@ Plug 'wsdjeg/FlyGrep.vim'
 let g:FlyGrep_input_delay='1000'
 let g:FlyGrep_search_tools=['ag']
 map <Leader>fg :FlyGrep<CR>
-
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
@@ -167,11 +166,11 @@ if has('nvim')
     xmap <C-e>     <Plug>(neosnippet_expand_target)
 
     " CTags
-    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:neotags_enabled=1
-    let g:neotags_silent_timeout=1
-    let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
-    let g:neotags_find_tool='ag -g ""'
+    " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    " let g:neotags_enabled=1
+    " let g:neotags_silent_timeout=1
+    " let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
+    " let g:neotags_find_tool='ag -g ""'
 
     " Deoplete JEDI
     Plug 'zchee/deoplete-jedi'
@@ -189,7 +188,7 @@ call plug#end()
 call deoplete#custom#option({
     \ 'auto_complete_delay': 200,
     \ 'smart_case': v:true,
-    \ 'refresh_always': v:false,
+    \ 'refresh_always': v:true,
     \ 'auto_refresh_delay': 50,
     \ })
 let g:deoplete#sources#jedi#enable_cache = 1
@@ -354,34 +353,18 @@ let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 silent! colorscheme aykhaiweng
 
-" deus theme
-" let g:airline_theme='deus'
-" silent! colorscheme deus
-
-" Ayu Theme
-" let ayucolor="light"  " for light version of theme
-" let g:airline_theme='ayu'
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
-"
-" Firewatch
-" let g:two_firewatch_italics=1
-" silent! colorscheme two-firewatch
-" let g:airline_theme='twofirewatch' " if you have Airline installed and want the associated theme
-
 " statusline
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
 " current line highlights
-" highlight CursorLine cterm=None ctermbg=234 guibg=#000000
+highlight CursorLine cterm=None ctermbg=234 guibg=#000000
 " highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
-" augroup CursorLine
-"     au!
-"     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"     au WinLeave * setlocal nocursorline
-" augroup end
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup end
 
 highlight ExtraWhitespace ctermbg=red
 
@@ -389,13 +372,13 @@ highlight ExtraWhitespace ctermbg=red
 " definitions
 set splitright
 set splitbelow
-let g:autoclose_on=0  " do not autoclose brackets
-set exrc            " allow project specific .vimrc
-set secure          " disallow .vimrc not owned by uname
+let g:autoclose_on=1 " do not autoclose brackets
+set exrc             " allow project specific .vimrc
+set secure           " disallow .vimrc not owned by uname
 set clipboard=unnamed,unnamedplus
-set regexpengine=1
-set tabstop=4       " length of a tab
-set shiftwidth=4    " length of an indent
+set regexpengine=2
+set tabstop=4        " length of a tab
+set shiftwidth=4     " length of an indent
 set ruler
 set autoindent
 set encoding=utf-8
@@ -408,12 +391,13 @@ set ttimeoutlen=2
 set incsearch
 set ignorecase       " ignore the case when searching
 set smartcase        " case ignored if the search is all lower case
-set lazyredraw
+" set lazyredraw
 set undolevels=1000  " more undo levels
 " set ttyfast
 set scrolloff=3
 set shortmess=a      " Decrease the message size
 set cmdheight=1      " Change height of the cmd prompt
+set redrawtime=1000  " Fixes syntax highlighting on large files
 
 
 " Refresh Airline theme on entering a buffer
