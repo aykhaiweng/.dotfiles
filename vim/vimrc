@@ -135,8 +135,12 @@ let g:syntastic_python_checkers=['flake8']
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 " JEDI
-" Plug 'davidhalter/jedi-vim'
-" let g:jedi#completions_enabled = 0
+Plug 'davidhalter/jedi-vim'
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<leader>jc"
+let g:jedi#goto_assignments_command = "<leader>ja"
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#documentation_command = "<leader>jl"
 
 
 """ HTML & CSS
@@ -166,11 +170,11 @@ if has('nvim')
     xmap <C-e>     <Plug>(neosnippet_expand_target)
 
     " CTags
-    " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:neotags_enabled=1
-    " let g:neotags_silent_timeout=1
-    " let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
-    " let g:neotags_find_tool='ag -g ""'
+    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:neotags_enabled=1
+    let g:neotags_silent_timeout=1
+    let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
+    let g:neotags_find_tool='ag -g ""'
 
     " Deoplete JEDI
     Plug 'zchee/deoplete-jedi'
