@@ -37,6 +37,9 @@ tabspaces: 8
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
+# FuraCode Nerd Font Mono
+# mplus Nerd Font
+
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
@@ -47,7 +50,7 @@ font:
 
   # The bold font face
   bold:
-    family: FuraCode Nerd Front Mono
+    family: FuraCode Nerd Font Mono
     # Style can be specified to pick a specific face.
     style: Bold
 
