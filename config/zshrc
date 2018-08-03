@@ -31,3 +31,6 @@ bindkey -e
 
 # Added by Krypton
 export GPG_TTY=$(tty)
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
