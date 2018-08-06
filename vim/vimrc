@@ -49,7 +49,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " let g:workspace_autosave_ignore = [
 "             \'gitcommit',
 "             \'__flygrep__',
-"             \'nerdtree', 
+"             \'nerdtree',
 "             \'tagbar']
 
 " Indentation
@@ -216,7 +216,6 @@ inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " mouse
 set mouse=a
 
-
 " Funny way to setup the leader key so it echos something when it is pressed
 noremap <Leader> :echo '-- LEADER --'<CR><Leader>
 
@@ -261,10 +260,10 @@ nnoremap <Leader>ll :lopen<CR>
 nnoremap <Leader>lx :lclose<CR>
 
 " copy and pasting like a boss for MAC
-nnoremap <C-c> :.w !pbcopy<CR><CR>
-vnoremap <C-c> :w !pbcopy<CR><CR>
-nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+" nnoremap <C-c> :.w !pbcopy<CR><CR>
+" vnoremap <C-c> :w !pbcopy<CR><CR>
+" nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+" inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
 " indent control
 nnoremap <Tab> >>_
@@ -298,8 +297,8 @@ nnoremap <Leader>bh :bprev<CR>
 nnoremap <Leader>bx :bd<CR>
 
 " F_keys
-nnoremap <silent> F :set hlsearch! hlsearch?<CR>
-vnoremap <silent> F :set hlsearch! hlsearch?<CR>
+nnoremap <silent> <F1> :set hlsearch! hlsearch?<CR>
+" vnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> <F5> :%sort<CR>
 nnoremap <silent> <F5> :so $MYVIMRC<CR>:AirlineRefresh<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
@@ -362,15 +361,15 @@ set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
 " current line highlights
-highlight CursorLine cterm=None ctermbg=234 guibg=#000000
+" highlight CursorLine cterm=None ctermbg=234 guibg=#000000
 " highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
-augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup end
+" augroup CursorLine
+"     au!
+"     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"     au WinLeave * setlocal nocursorline
+" augroup end
 
-highlight ExtraWhitespace ctermbg=red
+" highlight ExtraWhitespace ctermbg=red
 
 " EDITOR -------------------------------------------------------------------- "
 " definitions
