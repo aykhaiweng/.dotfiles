@@ -1,5 +1,5 @@
 syntax on
-set colorcolumn=80
+set colorcolumn=
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4

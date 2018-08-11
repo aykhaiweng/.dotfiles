@@ -52,13 +52,21 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "             \'nerdtree',
 "             \'tagbar']
 
+" Neosnippets
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-e>     <Plug>(neosnippet_expand_target)
+
 " Indentation
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 
-Plug 'majutsushi/tagbar'
-nnoremap <Leader>= :TagbarToggle<CR>
-vnoremap <Leader>= :TagbarToggle<CR>
+" Plug 'majutsushi/tagbar'
+" nnoremap <Leader>= :TagbarToggle<CR>
+" vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -88,7 +96,7 @@ let g:FlyGrep_search_tools=['ag']
 map <Leader>fg :FlyGrep<CR>
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeWinSize=30
@@ -109,15 +117,42 @@ Plug 'tpope/vim-fugitive'
 
 """ status
 " because airline is just way more light weight than powerline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline_right_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_left_alt_sep= ''
+" let g:airline_left_sep = ''
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+  \   'colorscheme': 'gruvbox',
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+  \   'component': {
+  \     'lineinfo': ' %3l:%-2v',
+  \   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
+let g:lightline.separator = {
+  \   'left': '', 'right': ''
+  \ }
+let g:lightline.subseparator = {
+  \   'left': '', 'right': '' 
+  \ }
+let g:lightline.tabline = {
+  \   'left': [ ['tabs'] ],
+  \   'right': [ ['close'] ]
+  \ }
+set showtabline=2  " Show tabline
+set guioptions-=e  " Don't use GUI tabline
 
 
 """ Python
@@ -126,10 +161,9 @@ Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 let g:SimpylFold_docstring_preview=1
 
 " Better python syntax highlighting
-Plug 'vim-python/python-syntax', {'for': 'python'}
-let g:python_highlight_all=1
-let g:python_self_cls_highlight=1
-let g:syntastic_python_checkers=['flake8']
+" Plug 'vim-python/python-syntax', {'for': 'python'}
+" let g:python_highlight_all=1
+" let g:python_self_cls_highlight=1
 
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
@@ -155,26 +189,17 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 " Css Color
 Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
 
-
 """ NVIM STUFF
 if has('nvim')
     " Deoplete Completions
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-    " Neosnippets
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
-    let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
-    imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-e>     <Plug>(neosnippet_expand_target)
-
     " CTags
-    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:neotags_enabled=1
-    let g:neotags_silent_timeout=1
-    let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
-    let g:neotags_find_tool='ag -g ""'
+    " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    " let g:neotags_enabled=1
+    " let g:neotags_silent_timeout=1
+    " let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
+    " let g:neotags_find_tool='ag -g ""'
 
     " Deoplete JEDI
     Plug 'zchee/deoplete-jedi'
@@ -182,6 +207,7 @@ else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'craigemery/vim-autotag'
 endif
 let g:deoplete#enable_at_startup = 1
 
@@ -200,7 +226,7 @@ let g:deoplete#sources#jedi#enable_cache = 1
 "     let g:deoplete#omni#input_patterns={}
 " endif
 call deoplete#custom#source('_',
-    \'disabled_syntaxes', ['Comment', 'String']
+    \'disabled_syntaxes', []
     \)
 " let g:deoplete#sources = {}
 " let g:deoplete#sources.python = ['deoplete-jedi']
@@ -286,7 +312,7 @@ nnoremap tl  :tabnext<CR>
 nnoremap th  :tabprev<CR>
 nnoremap tk  :tablast<CR>
 nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnew<Space>
+nnoremap tn  :tabnew<CR>
 nnoremap tm  :tabm<Space>
 nnoremap tx  :tabclose<CR>
 
@@ -300,7 +326,7 @@ nnoremap <Leader>bx :bd<CR>
 nnoremap <silent> <F1> :set hlsearch! hlsearch?<CR>
 " vnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> <F5> :%sort<CR>
-nnoremap <silent> <F5> :so $MYVIMRC<CR>:AirlineRefresh<CR>
+nnoremap <silent> <F5> :so $MYVIMRC<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
 function! GetBufferList()
@@ -404,8 +430,8 @@ set redrawtime=1000  " Fixes syntax highlighting on large files
 
 
 " Refresh Airline theme on entering a buffer
-au! BufEnter *
-    \ :AirlineRefresh
+" au! BufEnter *
+"     \ :AirlineRefresh
 
 " show whitespaces
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
