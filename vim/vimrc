@@ -128,6 +128,7 @@ Plug 'tpope/vim-fugitive'
 " let g:airline_left_alt_sep= ''
 " let g:airline_left_sep = ''
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 let g:lightline = {
   \   'colorscheme': 'gruvbox',
   \   'active': {
@@ -136,7 +137,7 @@ let g:lightline = {
   \     ]
   \   },
   \   'component': {
-  \     'lineinfo': ' %3l:%-2v',
+  \     'lineinfo': '%3l:%-2v',
   \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
@@ -149,8 +150,26 @@ let g:lightline.subseparator = {
   \   'left': '', 'right': '' 
   \ }
 let g:lightline.tabline = {
-  \   'left': [ ['tabs'] ],
-  \   'right': [ ['close'] ]
+  \   'left': [['tabs']],
+  \   'right': [['buffers']]
+  \ }
+let g:lightline.active = { 
+  \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+  \             [ 'lineinfo' ],
+  \             [ 'fileformat', 'fileencoding', 'filetype' ]]
+  \ } 
+" ale
+let g:lightline.component_expand = {
+  \  'linter_checking': 'lightline#ale#checking',
+  \  'linter_warnings': 'lightline#ale#warnings',
+  \  'linter_errors': 'lightline#ale#errors',
+  \  'linter_ok': 'lightline#ale#ok',
+  \ }
+let g:lightline.component_type = {
+  \  'linter_checking': 'left',
+  \  'linter_warnings': 'warning',
+  \  'linter_errors': 'error',
+  \  'linter_ok': 'left',
   \ }
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
@@ -162,20 +181,20 @@ Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 let g:SimpylFold_docstring_preview=1
 
 " Better python syntax highlighting
-" Plug 'vim-python/python-syntax', {'for': 'python'}
-" let g:python_highlight_all=1
-" let g:python_self_cls_highlight=1
+Plug 'vim-python/python-syntax', {'for': 'python'}
+let g:python_highlight_all=1
+let g:python_self_cls_highlight=1
 
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 " JEDI
-Plug 'davidhalter/jedi-vim'
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = "<leader>jc"
-let g:jedi#goto_assignments_command = "<leader>ja"
-let g:jedi#goto_definitions_command = "<leader>jd"
-let g:jedi#documentation_command = "<leader>jl"
+" Plug 'davidhalter/jedi-vim'
+" let g:jedi#completions_enabled = 0
+" let g:jedi#goto_command = "<leader>jc"
+" let g:jedi#goto_assignments_command = "<leader>ja"
+" let g:jedi#goto_definitions_command = "<leader>jd"
+" let g:jedi#documentation_command = "<leader>jl"
 
 
 """ HTML & CSS
@@ -421,10 +440,8 @@ set ttimeoutlen=2
 set incsearch
 set ignorecase       " ignore the case when searching
 set smartcase        " case ignored if the search is all lower case
-" set lazyredraw
 set undolevels=1000  " more undo levels
-" set ttyfast
-set scrolloff=3
+set scrolloff=5
 set shortmess=a      " Decrease the message size
 set cmdheight=1      " Change height of the cmd prompt
 set redrawtime=1000  " Fixes syntax highlighting on large files
