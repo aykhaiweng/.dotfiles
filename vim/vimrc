@@ -130,7 +130,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 let g:lightline = {
-\   'colorscheme': 'gruvbox',
 \   'separator': {'left': '', 'right': ''},
 \   'subseparator': {'left': '', 'right': ''},
 \   'tabline': {
@@ -183,15 +182,19 @@ set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 
 
+""" Syntax Highlighting
+Plug 'sheerun/vim-polyglot'
+
+
 """ Python
 " folding for python
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 let g:SimpylFold_docstring_preview=1
 
 " Better python syntax highlighting
-Plug 'vim-python/python-syntax', {'for': 'python'}
-let g:python_highlight_all=1
-let g:python_self_cls_highlight=1
+" Plug 'vim-python/python-syntax', {'for': 'python'}
+" let g:python_highlight_all=1
+" let g:python_self_cls_highlight=1
 
 " python indentation for vim
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
@@ -228,6 +231,7 @@ if has('nvim')
     let g:neotags_silent_timeout=1
     let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
     let g:neotags_find_tool="$FZF_DEFAULT_COMMAND"
+    let g:neotags#python#order = 'mfc'
 
     " Deoplete JEDI
     Plug 'zchee/deoplete-jedi'
@@ -250,9 +254,9 @@ call deoplete#custom#option({
     \ 'auto_refresh_delay': 50,
     \ })
 let g:deoplete#sources#jedi#enable_cache = 1
-" if !exists('g:deoplete#omni#input_patterns')
-"     let g:deoplete#omni#input_patterns={}
-" endif
+if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns={}
+endif
 call deoplete#custom#source('_',
     \'disabled_syntaxes', []
     \)
@@ -394,14 +398,14 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 if (has("termguicolors"))
     set termguicolors
 endif
-set t_Co=256
+" set t_Co=256
 syntax on
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "
 " Gruvbox
-let g:airline_theme='gruvbox'
+let lightline.colorscheme='gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 let g:gruvbox_italicize_comments=1
@@ -409,6 +413,10 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 silent! colorscheme aykhaiweng
+
+" OneDark
+let lightline.colorscheme='one'
+silent! colorscheme one
 
 " statusline
 set laststatus=2
