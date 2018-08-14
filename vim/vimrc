@@ -130,41 +130,49 @@ Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 let g:lightline = {
-  \   'colorscheme': 'gruvbox',
-  \   'active': {
-  \     'left':[ [ 'mode', 'paste' ],
-  \              [ 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-  \   'component': {
-  \     'lineinfo': '%3l:%-2v',
-  \   },
-  \   'component_function': {
-  \     'gitbranch': 'fugitive#head',
-  \   }
-  \ }
-let g:lightline.separator = {
-  \   'left': '', 'right': ''
-  \ }
-let g:lightline.subseparator = {
-  \   'left': '', 'right': '' 
-  \ }
-let g:lightline.tabline = {
-  \   'left': [['tabs']],
-  \   'right': [['buffers']]
-  \ }
-let g:lightline.active = { 
-  \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-  \             [ 'lineinfo' ],
-  \             [ 'fileformat', 'fileencoding', 'filetype' ]]
-  \ } 
-" ale
-let g:lightline.component_expand = {
-  \  'linter_checking': 'lightline#ale#checking',
-  \  'linter_warnings': 'lightline#ale#warnings',
-  \  'linter_errors': 'lightline#ale#errors',
-  \  'linter_ok': 'lightline#ale#ok',
-  \ }
+\   'colorscheme': 'gruvbox',
+\   'separator': {'left': '', 'right': ''},
+\   'subseparator': {'left': '', 'right': ''},
+\   'tabline': {
+\       'left': [['tabs']],
+\       'right': [['buffers']]
+\   },
+\   'active': {
+\       'left': [
+\           [ 'mode', 'paste' ],
+\           [ 'readonly', 'filename', 'modified' ]
+\       ],
+\       'right': [
+\           [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+\           [ 'lineinfo' ],
+\           [ 'fileformat', 'fileencoding', 'filetype' ]
+\       ]
+\   },
+\   'inactive': {
+\       'left': [
+\           [ 'filename', 'modified' ]
+\       ],
+\       'right': [['']]
+\   },
+\   'component': {
+\       'lineinfo': '%3l:%-2v'
+\   },
+\   'component_function': {
+\       'linter_checking': 'lightline#ale#checking',
+\       'linter_warnings': 'lightline#ale#warnings',
+\       'linter_errors': 'lightline#ale#errors',
+\       'linter_ok': 'lightline#ale#ok',
+\       'gitbranch': 'fugitive#head',
+\       'filename': 'LightlineFilename',
+\   }
+\}
+
+function! LightlineFilename()
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let modified = &modified ? ' +' : ''
+    return filename . modified
+endfunction
+
 let g:lightline.component_type = {
   \  'linter_checking': 'left',
   \  'linter_warnings': 'warning',
@@ -189,12 +197,12 @@ let g:python_self_cls_highlight=1
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 " JEDI
-" Plug 'davidhalter/jedi-vim'
-" let g:jedi#completions_enabled = 0
-" let g:jedi#goto_command = "<leader>jc"
-" let g:jedi#goto_assignments_command = "<leader>ja"
-" let g:jedi#goto_definitions_command = "<leader>jd"
-" let g:jedi#documentation_command = "<leader>jl"
+Plug 'davidhalter/jedi-vim'
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<leader>jc"
+let g:jedi#goto_assignments_command = "<leader>ja"
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#documentation_command = "<leader>jl"
 
 
 """ HTML & CSS
@@ -204,7 +212,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'ryanoasis/vim-devicons'
 let g:webdevicons_conceal_nerdtree_brackets=1
 let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
-let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
+" let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 " Css Color
 Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
@@ -215,11 +223,11 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " CTags
-    " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:neotags_enabled=1
-    " let g:neotags_silent_timeout=1
-    " let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
-    " let g:neotags_find_tool='ag -g ""'
+    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:neotags_enabled=1
+    let g:neotags_silent_timeout=1
+    let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
+    let g:neotags_find_tool="$FZF_DEFAULT_COMMAND"
 
     " Deoplete JEDI
     Plug 'zchee/deoplete-jedi'
@@ -445,6 +453,7 @@ set scrolloff=5
 set shortmess=a      " Decrease the message size
 set cmdheight=1      " Change height of the cmd prompt
 set redrawtime=1000  " Fixes syntax highlighting on large files
+set noshowmode       " No showmode
 
 
 " Refresh Airline theme on entering a buffer
