@@ -415,8 +415,8 @@ let g:gruvbox_improved_warnings=1
 silent! colorscheme aykhaiweng
 
 " OneDark
-let lightline.colorscheme='one'
-silent! colorscheme one
+" let lightline.colorscheme='one'
+" silent! colorscheme one
 
 " statusline
 set laststatus=2
