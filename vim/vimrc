@@ -396,10 +396,12 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 
 " LOOK & FEEL --------------------------------------------------------------- "
 " ColorScheme
-if (has("termguicolors"))
-    set termguicolors
-endif
-set t_Co=256
+" if (has("termguicolors"))
+"     set termguicolors
+" endif
+
+set termguicolors
+" set t_Co=256
 syntax on
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
