@@ -3,8 +3,8 @@ filetype off                  " required
 
 
 " python hosts
-let g:python_host_prog=$NEOVIM2
-let g:python3_host_prog=$NEOVIM3
+let g:python_host_prog=$HOME."/.pyenv/versions/neovim2/bin/python2"
+let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python3"
 
 " leader
 let mapleader=","
@@ -15,8 +15,9 @@ call plug#begin('~/.vim/plugged')
 
 
 set rtp+=~/.vim/my-colors
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 
 
 " TmuxVimNavigation
@@ -226,12 +227,12 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " CTags
-    Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:neotags_enabled=1
-    let g:neotags_silent_timeout=1
-    let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
-    let g:neotags_find_tool="$FZF_DEFAULT_COMMAND"
-    let g:neotags#python#order = 'mfc'
+    " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
+    " let g:neotags_enabled=1
+    " let g:neotags_silent_timeout=1
+    " let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
+    " let g:neotags_find_tool="$FZF_DEFAULT_COMMAND"
+    " let g:neotags#python#order = 'mfc'
 
     " Deoplete JEDI
     Plug 'zchee/deoplete-jedi'
@@ -398,7 +399,7 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 if (has("termguicolors"))
     set termguicolors
 endif
-" set t_Co=256
+set t_Co=256
 syntax on
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -411,12 +412,8 @@ let g:gruvbox_contrast_light='hard'
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
-let g:gruvbox_improved_warnings=1
-silent! colorscheme aykhaiweng
-
-" OneDark
-" let lightline.colorscheme='one'
-" silent! colorscheme one
+let g:gruvbox_improved_warnings=0
+silent! colorscheme gruvbox
 
 " statusline
 set laststatus=2
