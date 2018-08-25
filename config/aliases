@@ -92,13 +92,17 @@ if [[ $uname == 'Darwin' ]]; then
     launchctl load ~/.dotfiles/osx/remote-ssh/local.pbcopy.plist
     launchctl start local.pbcopy
 
-	alias ctags="`brew --prefix`/bin/ctags"
+    alias ctags="`brew --prefix`/bin/ctags"
 elif [[ $uname == 'Linux' ]]; then
     # Directory listing
     export DIRECTORY_COLOR_ARGUMENTS="--color=always"
 
     # Python Goodness
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
+
+    # I don't know what monster keeps chucking me into the vim folder when I type the name
+    # But I want this shit to STOP.
+    alias vim=/usr/bin/vim
 fi
 
 # ======================================================= #

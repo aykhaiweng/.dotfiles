@@ -44,15 +44,15 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 
 """ Editor
-" Plug 'thaerkh/vim-workspace'
-" nnoremap <leader>s :ToggleWorkspace<CR>
-" let g:workspace_session_name='workspace.vim'
-" let g:workspace_session_disable_on_args=1
-" let g:workspace_autosave_ignore = [
-"             \'gitcommit',
-"             \'__flygrep__',
-"             \'nerdtree',
-"             \'tagbar']
+Plug 'thaerkh/vim-workspace'
+nnoremap <leader>s :ToggleWorkspace<CR>
+let g:workspace_session_name='workspace.vim'
+let g:workspace_session_disable_on_args=1
+let g:workspace_autosave_ignore = [
+            \'gitcommit',
+            \'__flygrep__',
+            \'nerdtree',
+            \'tagbar']
 
 " Neosnippets
 Plug 'Shougo/neosnippet'
@@ -66,9 +66,9 @@ xmap <C-e>     <Plug>(neosnippet_expand_target)
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 
-" Plug 'majutsushi/tagbar'
-" nnoremap <Leader>= :TagbarToggle<CR>
-" vnoremap <Leader>= :TagbarToggle<CR>
+Plug 'majutsushi/tagbar'
+nnoremap <Leader>= :TagbarToggle<CR>
+vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -79,6 +79,9 @@ Plug 'easymotion/vim-easymotion'
 
 " comment out blocks
 Plug 'tpope/vim-commentary'
+
+" YCM
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 
 """ Explorers
@@ -118,16 +121,6 @@ Plug 'tpope/vim-fugitive'
 
 
 """ status
-" because airline is just way more light weight than powerline
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline_right_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_left_alt_sep= ''
-" let g:airline_left_sep = ''
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 let g:lightline = {
@@ -140,7 +133,7 @@ let g:lightline = {
 \   'active': {
 \       'left': [
 \           [ 'mode', 'paste' ],
-\           [ 'readonly', 'filename', 'modified' ]
+\           [ 'readonly', 'filename' ]
 \       ],
 \       'right': [
 \           [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
@@ -167,8 +160,15 @@ let g:lightline = {
 \   }
 \}
 
+command! LightlineReload call LightlineReload()
+function! LightlineReload()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+
 function! LightlineFilename()
-    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '-'
     let modified = &modified ? ' +' : ''
     return filename . modified
 endfunction
@@ -181,6 +181,9 @@ let g:lightline.component_type = {
   \ }
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
+
+" Bufferline
+" Plug 'bling/vim-bufferline'
 
 
 """ Syntax Highlighting
@@ -198,11 +201,13 @@ let g:SimpylFold_docstring_preview=1
 " let g:python_self_cls_highlight=1
 
 " python indentation for vim
-Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
+" Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 " JEDI
 Plug 'davidhalter/jedi-vim'
 let g:jedi#completions_enabled = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 2
 let g:jedi#goto_command = "<leader>jc"
 let g:jedi#goto_assignments_command = "<leader>ja"
 let g:jedi#goto_definitions_command = "<leader>jd"
@@ -216,59 +221,11 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'ryanoasis/vim-devicons'
 let g:webdevicons_conceal_nerdtree_brackets=1
 let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
-" let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 
 " Css Color
-Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
-
-""" NVIM STUFF
-if has('nvim')
-    " Deoplete Completions
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " CTags
-    " Plug 'c0r73x/neotags.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:neotags_enabled=1
-    " let g:neotags_silent_timeout=1
-    " let g:neotags_ignore=['fzf', '__flygrep__', 'SpaceVimFlyGrep']
-    " let g:neotags_find_tool="$FZF_DEFAULT_COMMAND"
-    " let g:neotags#python#order = 'mfc'
-
-    " Deoplete JEDI
-    Plug 'zchee/deoplete-jedi'
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'craigemery/vim-autotag'
-endif
-let g:deoplete#enable_at_startup = 1
+" Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
 
 call plug#end()
-" =========================================================================== "
-
-" DEOPLETE ------------------------------------------------------------------ "
-call deoplete#custom#option({
-    \ 'auto_complete_delay': 200,
-    \ 'smart_case': v:true,
-    \ 'refresh_always': v:true,
-    \ 'auto_refresh_delay': 50,
-    \ })
-let g:deoplete#sources#jedi#enable_cache = 1
-if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns={}
-endif
-call deoplete#custom#source('_',
-    \'disabled_syntaxes', []
-    \)
-" let g:deoplete#sources = {}
-" let g:deoplete#sources.python = ['deoplete-jedi']
-" let g:deoplete#sources.vim = ['vim']
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " =========================================================================== "
 
 " CONTROLS ------------------------------------------------------------------ "
@@ -308,21 +265,12 @@ vnoremap <S-J> 15j
 " nnoremap <C-Up>    <C-W><C-K>
 " nnoremap <C-Down>  <C-W><C-J>
 
-" Repeat last command with spacebar
-" nnoremap <space> @@
-"
 " Folding and shit
 nnoremap <space> za
 
 " location list
 nnoremap <Leader>ll :lopen<CR>
 nnoremap <Leader>lx :lclose<CR>
-
-" copy and pasting like a boss for MAC
-" nnoremap <C-c> :.w !pbcopy<CR><CR>
-" vnoremap <C-c> :w !pbcopy<CR><CR>
-" nnoremap <C-v> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-" inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
 " indent control
 nnoremap <Tab> >>_
@@ -359,7 +307,7 @@ nnoremap <Leader>bx :bd<CR>
 nnoremap <silent> <F1> :set hlsearch! hlsearch?<CR>
 " vnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> <F5> :%sort<CR>
-nnoremap <silent> <F5> :so $MYVIMRC<CR>
+nnoremap <silent> <F5> :so $MYVIMRC<CR>:LightlineReload<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
 function! GetBufferList()
@@ -389,6 +337,8 @@ function! ToggleList(bufname, pfx)
     endif
 endfunction
 
+au BufNewFile, BufRead *.html set filetype=html
+
 nmap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " =========================================================================== "
@@ -401,7 +351,7 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " endif
 
 set termguicolors
-" set t_Co=256
+set t_Co=256
 syntax on
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -456,16 +406,17 @@ set incsearch
 set ignorecase       " ignore the case when searching
 set smartcase        " case ignored if the search is all lower case
 set undolevels=1000  " more undo levels
-set scrolloff=5
+set scrolloff=7
 set shortmess=a      " Decrease the message size
 set cmdheight=1      " Change height of the cmd prompt
 set redrawtime=1000  " Fixes syntax highlighting on large files
 set noshowmode       " No showmode
+set lazyredraw
 
 
 " Refresh Airline theme on entering a buffer
-" au! BufEnter *
-"     \ :AirlineRefresh
+au! BufEnter *
+    \ :LightlineReload
 
 " show whitespaces
 set listchars=tab:--,trail:·,nbsp:~,extends:>,precedes:<,eol:¬
