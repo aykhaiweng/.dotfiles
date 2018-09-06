@@ -30,12 +30,12 @@ elif [ "$(ss -n -4 state listening "( sport = 19988 )" | tail -n +2 | wc -l)" -e
 elif is_app_installed reattach-to-user-namespace; then
   echo "reattach-to-user-namespace pbcopy"
   copy_backend="reattach-to-user-namespace pbcopy"
-elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
-  echo "xsel -i --clipboard"
-  copy_backend="xsel -i --clipboard"
 elif [ -n "${DISPLAY-}" ] && is_app_installed xclip; then
   echo "xclip -i -f -selection primary | xclip -i -selection clipboard"
   copy_backend="xclip -i -f -selection primary | xclip -i -selection clipboard"
+elif [ -n "${DISPLAY-}" ] && is_app_installed xsel; then
+  echo "xsel -i --clipboard"
+  copy_backend="xsel -i --clipboard"
 fi
 
 echo "Setting copybackend to $copy_backend" | tee ~/log/tmp.log
