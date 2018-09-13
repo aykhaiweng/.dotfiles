@@ -84,6 +84,7 @@ Plug 'tpope/vim-commentary'
 """ AUTOCOMPLETE
 " YCM
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" DEOPLETE
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
