@@ -66,9 +66,9 @@ xmap <C-e>     <Plug>(neosnippet_expand_target)
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 
-Plug 'majutsushi/tagbar'
-nnoremap <Leader>= :TagbarToggle<CR>
-vnoremap <Leader>= :TagbarToggle<CR>
+" Plug 'majutsushi/tagbar'
+" nnoremap <Leader>= :TagbarToggle<CR>
+" vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -80,8 +80,19 @@ Plug 'easymotion/vim-easymotion'
 " comment out blocks
 Plug 'tpope/vim-commentary'
 
+
+""" AUTOCOMPLETE
 " YCM
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+Plug 'zchee/deoplete-jedi'
 
 
 """ Explorers
@@ -192,8 +203,8 @@ Plug 'sheerun/vim-polyglot'
 
 """ Python
 " folding for python
-Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-let g:SimpylFold_docstring_preview=1
+" Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+" let g:SimpylFold_docstring_preview=1
 
 " Better python syntax highlighting
 " Plug 'vim-python/python-syntax', {'for': 'python'}
@@ -226,6 +237,30 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 " Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
 
 call plug#end()
+" =========================================================================== "
+
+" DEOPLETE ------------------------------------------------------------------ "
+call deoplete#custom#option({
+    \ 'auto_complete_delay': 200,
+    \ 'smart_case': v:true,
+    \ 'refresh_always': v:true,
+    \ 'auto_refresh_delay': 50,
+    \ })
+let g:deoplete#sources#jedi#enable_cache = 1
+" if !exists('g:deoplete#omni#input_patterns')
+"     let g:deoplete#omni#input_patterns={}
+" endif
+call deoplete#custom#source('_',
+    \'disabled_syntaxes', ['Comment', 'String']
+    \)
+" let g:deoplete#sources = {}
+" let g:deoplete#sources.python = ['deoplete-jedi']
+" let g:deoplete#sources.vim = ['vim']
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " =========================================================================== "
 
 " CONTROLS ------------------------------------------------------------------ "
