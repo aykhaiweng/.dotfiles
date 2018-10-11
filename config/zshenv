@@ -1,6 +1,5 @@
 #!/bin/bash
 
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-  echo "Activating fallback for $VIRTUAL_ENV"
   source "${VIRTUAL_ENV}/bin/activate"
 fi
