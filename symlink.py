@@ -21,6 +21,7 @@ DIRECTORIES_TO_MAKE = (
 FILES_TO_LINK = (
     # profiles
     ('config/zshrc', '.zshrc'),
+    ('config/zshenv', '.zshenv'),
     ('config/aliases', '.aliases'),
 
     # vim

@@ -49,10 +49,11 @@ nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
 let g:workspace_autosave_ignore = [
-            \'gitcommit',
-            \'__flygrep__',
-            \'nerdtree',
-            \'tagbar']
+	\'gitcommit',
+	\'__flygrep__',
+	\'nerdtree',
+	\'tagbar',
+	\]
 
 " Neosnippets
 Plug 'Shougo/neosnippet'
@@ -66,9 +67,9 @@ xmap <C-e>     <Plug>(neosnippet_expand_target)
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 
-" Plug 'majutsushi/tagbar'
-" nnoremap <Leader>= :TagbarToggle<CR>
-" vnoremap <Leader>= :TagbarToggle<CR>
+Plug 'majutsushi/tagbar'
+nnoremap <Leader>= :TagbarToggle<CR>
+vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -207,13 +208,8 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 " let g:SimpylFold_docstring_preview=1
 
-" Better python syntax highlighting
-" Plug 'vim-python/python-syntax', {'for': 'python'}
-" let g:python_highlight_all=1
-" let g:python_self_cls_highlight=1
-
 " python indentation for vim
-" Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
+Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 " JEDI
 Plug 'davidhalter/jedi-vim'
@@ -247,12 +243,12 @@ call deoplete#custom#option({
     \ 'refresh_always': v:true,
     \ 'auto_refresh_delay': 50,
     \ })
-let g:deoplete#sources#jedi#enable_cache = 1
+let g:deoplete#sources#jedi#enable_cache = 0
 " if !exists('g:deoplete#omni#input_patterns')
 "     let g:deoplete#omni#input_patterns={}
 " endif
 call deoplete#custom#source('_',
-    \'disabled_syntaxes', ['Comment', 'String']
+    \'disabled_syntaxes', ['Comment']
     \)
 " let g:deoplete#sources = {}
 " let g:deoplete#sources.python = ['deoplete-jedi']

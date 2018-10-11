@@ -69,6 +69,17 @@ function __256colourtest() {
 alias tctest=__truecolourtest
 alias 256ctest=__256colourtest
 
+function __pushnfsip() {
+	ip=$(echo $SSH_CLIENT | awk '{print $1}')
+	echo "Pushing "$ip" into /etc/exports"
+	replace=$(echo "/home/aykhaiweng		"$ip"(rw,sync,no_root_squash,insecure,no_subtree_check)" > /etc/exports)
+	restart=$(systemctl restart nfs-kernel-server)
+	sudo bash -c "$replace"
+	sudo bash -c "$restart"
+}
+
+alias pushnfsip=__pushnfsip
+
 # Use the SilverSurfer
 export FZF_DEFAULT_COMMAND="ag --ignore '*.pyc' --ignore '*/*.pyc' --ignore-dir '*pycache*' --ignore-dir '.tox' --hidden --skip-vcs-ignores -g ''"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
