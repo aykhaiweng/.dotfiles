@@ -28,7 +28,7 @@ FILES_TO_LINK = (
     ('vim/vimrc', '.vimrc'),
     ('vim/nvim', '.config/nvim/init.vim'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
-    ('vim/ftplugin/', '.vim/ftplugin'),
+    ('vim/ftplugin/', '.vim/after/ftplugin'),
     ('vim/ultisnips/', '.vim/ultisnips'),
     ('vim/neosnippets/', '.vim/neosnippets'),
     ('vim/colors/aykhaiweng.vim', '.vim/colors/aykhaiweng.vim'),
