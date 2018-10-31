@@ -107,6 +107,7 @@ let g:fzf_action = {
 nnoremap <Leader>fzf :FZF<CR>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fm :Marks<CR>
+nnoremap <C-S-F> :FZF<CR>
 
 Plug 'wsdjeg/FlyGrep.vim'
 let g:FlyGrep_input_delay='1000'
@@ -243,7 +244,7 @@ call deoplete#custom#option({
     \ 'refresh_always': v:true,
     \ 'auto_refresh_delay': 50,
     \ })
-let g:deoplete#sources#jedi#enable_cache = 0
+let g:deoplete#sources#jedi#enable_cache = 1
 " if !exists('g:deoplete#omni#input_patterns')
 "     let g:deoplete#omni#input_patterns={}
 " endif

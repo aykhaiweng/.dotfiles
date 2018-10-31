@@ -21,13 +21,13 @@ DIRECTORIES_TO_MAKE = (
 FILES_TO_LINK = (
     # profiles
     ('config/zshrc', '.zshrc'),
-    ('config/zshenv', '.zshenv'),
     ('config/aliases', '.aliases'),
 
     # vim
     ('vim/vimrc', '.vimrc'),
     ('vim/nvim', '.config/nvim/init.vim'),
     ('vim/after/highlights.vim', '.vim/after/plugins/highlights.vim'),
+    ('vim/ftplugin/', '.vim/ftplugin'),
     ('vim/ftplugin/', '.vim/after/ftplugin'),
     ('vim/ultisnips/', '.vim/ultisnips'),
     ('vim/neosnippets/', '.vim/neosnippets'),

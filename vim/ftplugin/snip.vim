@@ -1,6 +1,7 @@
 syntax on
-set tabstop=4
-set shiftwidth=4
-set softtabstop=0
-set expandtab
+
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=0
+setlocal expandtab
 

@@ -3,9 +3,9 @@ let b:ale_linters = ['flake8', 'pylint']
 " " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 1
 
-set colorcolumn=80
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldlevel=99
+setlocal colorcolumn=80
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldlevel=99
