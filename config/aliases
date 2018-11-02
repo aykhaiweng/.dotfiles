@@ -122,3 +122,19 @@ fi
 # Directory Listing
 alias ls'ls -A $DIRECTORY_COLOR_ARGUMENTS'
 alias ll='ls -Al'
+
+
+# ======================================================= #
+# PostgreSQL helper functions                             #
+# ======================================================= #
+# Directory Listing
+function restore_db() {
+    db_name=$1
+    db_psql_file=$2
+    current_user=$USER
+    echo "Recreating $db_name..."
+    dropdb $db_name
+    createdb $db_name
+    echo "Restoring $db_name with $current_user and $db_psql_file..."
+    psql -U $current_user $db_name < $db_psql_file
+}
