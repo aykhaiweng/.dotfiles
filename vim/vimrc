@@ -71,6 +71,7 @@ Plug 'majutsushi/tagbar'
 nnoremap <Leader>= :TagbarToggle<CR>
 vnoremap <Leader>= :TagbarToggle<CR>
 
+
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=1
@@ -148,7 +149,7 @@ let g:lightline = {
 \       'left': [
 \           [ 'mode', 'paste' ],
 \           [ 'readonly', 'filepath' ],
-\           [ 'modified' ]
+\           [ 'modified' ],
 \       ],
 \       'right': [
 \           [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
