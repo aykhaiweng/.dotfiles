@@ -45,6 +45,9 @@ main() {
 
     sudo apt update
     sudo apt install build-essential curl file git -y
+    sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev -y
+    sudo apt install libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev -y
+    sudo apt install xz-utils tk-dev libffi-dev liblzma-dev python-openssl -y
     sudo apt install vim nvim systemd -y
     sudo apt install git python3-pip python-dev python-setuptools python-docutils -y
     sudo apt install nginx gunicorn memcached -y
