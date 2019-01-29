@@ -214,30 +214,6 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 call plug#end()
 " =========================================================================== "
 
-" DEOPLETE ------------------------------------------------------------------ "
-call deoplete#custom#option({
-    \ 'auto_complete_delay': 100,
-    \ 'smart_case': v:true,
-    \ 'refresh_always': v:true,
-    \ 'auto_refresh_delay': 200,
-    \ })
-let g:deoplete#sources#jedi#enable_cache = 1
-" if !exists('g:deoplete#omni#input_patterns')
-"     let g:deoplete#omni#input_patterns={}
-" endif
-call deoplete#custom#source('_',
-    \'disabled_syntaxes', ['Comment']
-    \)
-" let g:deoplete#sources = {}
-" let g:deoplete#sources.python = ['deoplete-jedi']
-" let g:deoplete#sources.vim = ['vim']
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" =========================================================================== "
-
 " CONTROLS ------------------------------------------------------------------ "
 " mouse
 set mouse=a
