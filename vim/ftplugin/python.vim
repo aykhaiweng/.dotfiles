@@ -10,3 +10,4 @@ setlocal shiftwidth=4
 setlocal expandtab
 setlocal foldlevel=99
 setlocal foldmethod=indent
+setlocal completeopt=menuone,longest,preview

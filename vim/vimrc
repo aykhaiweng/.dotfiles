@@ -55,14 +55,6 @@ let g:workspace_autosave_ignore = [
 	\'tagbar',
 	\]
 
-" Neosnippets
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
-imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-e>     <Plug>(neosnippet_expand_target)
-
 " Indentation
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
@@ -70,7 +62,6 @@ let g:indentLine_showFirstIndentLevel = 1
 Plug 'majutsushi/tagbar'
 nnoremap <Leader>= :TagbarToggle<CR>
 vnoremap <Leader>= :TagbarToggle<CR>
-
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -82,20 +73,13 @@ Plug 'easymotion/vim-easymotion'
 " comment out blocks
 Plug 'tpope/vim-commentary'
 
+" surround
+Plug 'tpope/vim-surround'
+
 
 """ AUTOCOMPLETE
 " YCM
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-" DEOPLETE
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-Plug 'zchee/deoplete-jedi'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 
 """ Explorers
@@ -105,21 +89,16 @@ let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
-nnoremap <Leader>fzf :FZF<CR>
-nnoremap <Leader>fb :Buffers<CR>
-nnoremap <Leader>fm :Marks<CR>
-nnoremap <C-S-F> :FZF<CR>
-
-Plug 'wsdjeg/FlyGrep.vim'
-let g:FlyGrep_input_delay='1000'
-let g:FlyGrep_search_tools=['ag']
-map <Leader>fg :FlyGrep<CR>
+" nnoremap <Leader>fzf :FZF<CR>
+" nnoremap <Leader>fb :Buffers<CR>
+" nnoremap <Leader>fm :Marks<CR>
+" nnoremap <C-S-F> :FZF<CR>
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeWinSize=30
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeWinSize=40
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 
@@ -127,9 +106,6 @@ noremap <Leader>- :NERDTreeFind<CR>
 """ git
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_terminal_reports_focus=0
-
-" git integration for vim
-Plug 'tpope/vim-git'
 
 " git wrapper for vim
 Plug 'tpope/vim-fugitive'
@@ -197,9 +173,6 @@ let g:lightline.component_type = {
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 
-" Bufferline
-" Plug 'bling/vim-bufferline'
-
 
 """ Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
@@ -214,10 +187,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 
 " JEDI
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi', {'for': 'python'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 2
+let g:jedi#show_call_signatures = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_select_first = 0
 let g:jedi#goto_command = "<leader>jc"
 let g:jedi#goto_assignments_command = "<leader>ja"
 let g:jedi#goto_definitions_command = "<leader>jd"
@@ -225,7 +201,7 @@ let g:jedi#documentation_command = "<leader>jl"
 
 
 """ HTML & CSS
-Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
 
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
@@ -240,10 +216,10 @@ call plug#end()
 
 " DEOPLETE ------------------------------------------------------------------ "
 call deoplete#custom#option({
-    \ 'auto_complete_delay': 200,
+    \ 'auto_complete_delay': 100,
     \ 'smart_case': v:true,
     \ 'refresh_always': v:true,
-    \ 'auto_refresh_delay': 50,
+    \ 'auto_refresh_delay': 200,
     \ })
 let g:deoplete#sources#jedi#enable_cache = 1
 " if !exists('g:deoplete#omni#input_patterns')
@@ -279,15 +255,15 @@ nnoremap <Down>  j
 nnoremap <Left>  h
 nnoremap <Right> l
 " Hotkeys for $ and 0
-nnoremap <S-L> $
-nnoremap <S-H> 0
-vnoremap <S-L> $
-vnoremap <S-H> 0
+" nnoremap <S-L> $
+" nnoremap <S-H> 0
+" vnoremap <S-L> $
+" vnoremap <S-H> 0
 " Page up and down
-nnoremap <S-K> 15k
-nnoremap <S-J> 15j
-vnoremap <S-K> 15k
-vnoremap <S-J> 15j
+" nnoremap <S-K> 15k
+" nnoremap <S-J> 15j
+" vnoremap <S-K> 15k
+" vnoremap <S-J> 15j
 
 " key shortcuts for pane switching
 " nnoremap <C-J> <C-W><C-J>
@@ -307,19 +283,19 @@ nnoremap <Leader>ll :lopen<CR>
 nnoremap <Leader>lx :lclose<CR>
 
 " indent control
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
+" nnoremap <Tab> >>_
+" nnoremap <S-Tab> <<_
 " inoremap <S-Tab> <C-D>
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+" vnoremap <Tab> >gv
+" vnoremap <S-Tab> <gv
 
 " Tab navigation like Firefox.
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
+" nnoremap <C-S-tab> :tabprevious<CR>
+" nnoremap <C-tab>   :tabnext<CR>
+" nnoremap <C-t>     :tabnew<CR>
+" inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+" inoremap <C-tab>   <Esc>:tabnext<CR>i
+" inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Vim-style tab navigation
 nnoremap tj  :tabfirst<CR>
