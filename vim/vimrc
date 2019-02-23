@@ -35,9 +35,10 @@ Plug 'w0rp/ale'
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'
 let g:ale_set_highlights = 1
-let g:ale_lint_delay = 5000
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_set_loclist = 1
+let g:ale_lint_delay = 1000
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -49,19 +50,14 @@ nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
 let g:workspace_autosave_ignore = [
-    \'gitcommit',
-    \'__flygrep__',
-    \'nerdtree',
-    \'tagbar',
-    \]
+    \ 'gitcommit',
+    \ '__flygrep__',
+    \ 'nerdtree',
+    \ 'tagbar' ]
 
 " Indentation
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
-
-Plug 'majutsushi/tagbar'
-nnoremap <Leader>= :TagbarToggle<CR>
-vnoremap <Leader>= :TagbarToggle<CR>
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -70,30 +66,29 @@ let g:multi_cursor_use_default_mapping=1
 " for noobs like me who have no idea how to use motions
 Plug 'easymotion/vim-easymotion'
 
-" comment out blocks
-Plug 'tpope/vim-commentary'
-
 " surround
 Plug 'tpope/vim-surround'
 
+" Neosnippets
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+let g:neosnippet#snippets_directory='~/.vim/neosnippets/'
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+xmap <C-e> <Plug>(neosnippet_expand_target)
+
 
 """ AUTOCOMPLETE
-" YCM
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-let g:ycm_filetype_blacklist = {
-    \ 'tagbar': 1,
-    \ 'qf': 1,
-    \ 'notes': 1,
-    \ 'markdown': 1,
-    \ 'unite': 1,
-    \ 'text': 1,
-    \ 'vimwiki': 1,
-    \ 'pandoc': 1,
-    \ 'infolog': 1,
-    \ 'mail': 1,
-    \ 'gitcommit': 1 }
-let g:ycm_filetype_specific_completion_to_disable = {
-    \ 'gitcommit': 1 }
+" Deoplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-jedi'
+let g:deoplete#enable_at_startup = 1
 
 
 """ Explorers
@@ -103,26 +98,8 @@ let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
-" let g:fzf_colors = {
-"   \ 'fg':      ['fg', 'Normal'],
-"   \ 'bg':      ['bg', 'Normal'],
-"   \ 'hl':      ['fg', 'Comment'],
-"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"   \ 'hl+':     ['fg', 'Statement'],
-"   \ 'info':    ['fg', 'PreProc'],
-"   \ 'border':  ['fg', 'Ignore'],
-"   \ 'prompt':  ['fg', 'Conditional'],
-"   \ 'pointer': ['fg', 'Exception'],
-"   \ 'marker':  ['fg', 'Keyword'],
-"   \ 'spinner': ['fg', 'Label'],
-"   \ 'header':  ['fg', 'Comment'] }
-" nnoremap <Leader>fzf :FZF<CR>
-" nnoremap <Leader>fb :Buffers<CR>
-" nnoremap <Leader>fm :Marks<CR>
-" nnoremap <C-S-F> :FZF<CR>
 nnoremap <C-P> :FZF<CR>
-nnoremap <C-F> :Ag<CR>
+nnoremap <C-S-F> :Ag<CR>
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
@@ -222,7 +199,7 @@ Plug 'davidhalter/jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 0
+let g:jedi#show_call_signatures = 1
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#goto_command = "<leader>jc"
@@ -243,6 +220,26 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 " Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
 
 call plug#end()
+" =========================================================================== "
+
+" DEOPLETE ------------------------------------------------------------------ "
+call deoplete#custom#option({
+    \ 'auto_complete_delay': 100,
+    \ 'smart_case': v:true,
+    \ 'auto_refresh_delay': 200,
+    \ })
+" 'refresh_always': v:true,
+let g:deoplete#sources#jedi#enable_cache = 1
+call deoplete#custom#source('_',
+    \'disabled_syntaxes', ['Comment']
+    \)
+" let g:deoplete#sources = {}
+" let g:deoplete#sources.python = ['deoplete-jedi']
+" let g:deoplete#sources.vim = ['vim']
+" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
+" inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " =========================================================================== "
 
 " CONTROLS ------------------------------------------------------------------ "
