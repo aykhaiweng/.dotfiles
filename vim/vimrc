@@ -107,10 +107,14 @@ let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycac
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeWinSize=30
+let g:NERDTreeHighlightCursorLine=1
+let g:NERDTreeNodeDelimiter="\u00a0  "
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 noremap <C-B> :NERDTreeToggle<CR>
-noremap <C-S-B> :NERDTreeToggle<CR>
+noremap <C-S-B> :NERDTreeFind<CR>
 
 
 """ git
@@ -319,8 +323,6 @@ function! ToggleList(bufname, pfx)
     endif
 endfunction
 
-au BufNewFile, BufRead *.html set filetype=html
-
 nmap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " =========================================================================== "
@@ -346,7 +348,7 @@ let g:gruvbox_contrast_light='hard'
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
-let g:gruvbox_improved_warnings=0
+let g:gruvbox_improved_warnings=1
 silent! colorscheme gruvbox
 
 " statusline
@@ -368,13 +370,13 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 " definitions
 set splitright
 set splitbelow
-let g:autoclose_on=1 " do not autoclose brackets
 set exrc             " allow project specific .vimrc
 set secure           " disallow .vimrc not owned by uname
 set clipboard=unnamed,unnamedplus
 set regexpengine=2
 set tabstop=4        " length of a tab
 set shiftwidth=4     " length of an indent
+set softtabstop=4     " length of an indent
 set ruler
 set autoindent
 set encoding=utf-8
@@ -391,10 +393,11 @@ set undolevels=1000  " more undo levels
 set scrolloff=7
 set shortmess=a      " Decrease the message size
 set cmdheight=1      " Change height of the cmd prompt
-set redrawtime=1000  " Fixes syntax highlighting on large files
+set redrawtime=20000 " Fixes syntax highlighting on large files
 set noshowmode       " No showmode
-set lazyredraw
+" set lazyredraw
 
+let g:autoclose_on=1 " do not autoclose brackets
 
 " Refresh Airline theme on entering a buffer
 au! BufEnter *
