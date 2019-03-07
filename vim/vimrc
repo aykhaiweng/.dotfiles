@@ -37,6 +37,7 @@ let g:ale_sign_warning = '!'
 let g:ale_set_highlights = 1
 let g:ale_lint_delay = 1000
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_echo_msg_error_str = 'E'
@@ -99,16 +100,17 @@ let g:fzf_action = {
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
 nnoremap <C-P> :FZF<CR>
-nnoremap <C-S-F> :Ag<CR>
+nnoremap <C-F> :Ag<CR>
 
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeWinSize=40
+let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeWinSize=30
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 noremap <C-B> :NERDTreeToggle<CR>
+noremap <C-S-B> :NERDTreeToggle<CR>
 
 
 """ git
@@ -131,14 +133,15 @@ let g:lightline = {
 \   },
 \   'active': {
 \       'left': [
-\           [ 'mode', 'paste' ],
+\           [ 'mode', 'paste', ],
+\           [ 'gitbranch' ],
 \           [ 'readonly', 'filepath' ],
 \           [ 'modified' ],
 \       ],
 \       'right': [
 \           [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-\           [ 'lineinfo' ],
-\           [ 'fileformat', 'fileencoding', 'filetype' ]
+\           [ 'percent', 'lineinfo' ],
+\           [ 'fileformat', ]
 \       ]
 \   },
 \   'inactive': {
@@ -212,9 +215,9 @@ let g:jedi#documentation_command = "<leader>jl"
 Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
 
 " devicons fun fun fun
-Plug 'ryanoasis/vim-devicons'
-let g:webdevicons_conceal_nerdtree_brackets=1
-let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+" Plug 'ryanoasis/vim-devicons'
+" let g:webdevicons_conceal_nerdtree_brackets=1
+" let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 
 " Css Color
 " Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
