@@ -45,6 +45,7 @@ main() {
     sudo apt upgrade -y
     sudo apt install build-essential curl file -y
     sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev -y
+    sudo apt install ca-certificates software-properties-common -y
     sudo apt install libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev -y
     sudo apt install xz-utils tk-dev libffi-dev liblzma-dev python-openssl -y
     sudo apt install systemd -y
@@ -72,6 +73,13 @@ main() {
             sudo adduser $USER libvirt-qemu
         fi
     fi
+
+    # Install Docker
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    sudo apt update
+    apt-cache policy docker-ce
+    sudo apt install docker-ce -y
 
     # Install Vagrant
     sudo apt install vagrant -y
