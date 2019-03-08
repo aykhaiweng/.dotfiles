@@ -58,11 +58,26 @@ main() {
     sudo apt install autotools-dev autoconf -y
     sudo apt install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
 
-    # Installing KVM
-    sudo apt install qemu-kvm libvirt-bin virt-top libguestfs-tools virtinst bridge-utils -y
+    # Install KVM
+    sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager -y
     sudo modprobe vhost_net 
     sudo lsmod | grep vhost 
-    echo "vhost_net" | sudo tee -a /etc/modules
+    if ! [ $KURA_FTS ] ; then
+        echo "vhost_net" | sudo tee -a /etc/modules
+        echo "iface eth0 inet manual" | sudo tee -a /etc/network/interfaces
+        echo "iface br0 inet dhcp" | sudo tee -a /etc/network/interfaces
+        echo "    bridge_ports eth0" | sudo tee -a /etc/network/interfaces
+        if [ $USER != "root" ] ; then
+            sudo adduser $USER libvirt
+            sudo adduser $USER libvirt-qemu
+        fi
+    fi
+
+    # Install Vagrant
+    sudo apt install vagrant -y
+
+    # Install Ansible
+    sudo apt install ansible -y
 
     # Letsencrypt
     sudo apt install letsencrypt -y
@@ -75,7 +90,7 @@ main() {
     sudo apt install mosh -y
 
     # neovim installation
-    sudo apt install neovim
+    sudo apt install neovim -y
 
     if ! [ $KURA_FTS ] ; then
         _echo "Setting up locales"
