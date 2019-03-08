@@ -40,7 +40,9 @@ main() {
     echo "@================================================="
     echo
 
-    sudo apt update
+    sudo apt update -y
+    sudo apt install apt-transport-https -y
+    sudo apt upgrade -y
     sudo apt install build-essential curl file -y
     sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev -y
     sudo apt install libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev -y
@@ -55,6 +57,11 @@ main() {
     sudo apt install sqlite3 libsqlite3-dev -y
     sudo apt install autotools-dev autoconf -y
     sudo apt install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
+
+    # Installing KVM
+    sudo apt install qemu-kvm libvirt-bin virt-top libguestfs-tools virtinst bridge-utils -y
+
+    # Letsencrypt
     sudo apt install letsencrypt -y
 
     # The Silver Searcher
