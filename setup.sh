@@ -42,7 +42,7 @@ main() {
         _echo "Setting up for Darwin platform."
         export PYTHON_CONFIGURE_OPTS="--enable-framework"
         source $THIS_DIR/osx/install.sh
-    elif [[ $uname == 'Linux' ]]; then
+    elif [[ $uname == 'Linux' ]] || [[ $uname == '' ]]; then
         _echo "Setting up for Linux platform."
         export PYTHON_CONFIGURE_OPTS="--enable-shared"
         source $THIS_DIR/linux/install.sh
