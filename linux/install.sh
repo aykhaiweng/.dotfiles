@@ -60,6 +60,9 @@ main() {
 
     # Installing KVM
     sudo apt install qemu-kvm libvirt-bin virt-top libguestfs-tools virtinst bridge-utils -y
+    sudo modprobe vhost_net 
+    sudo lsmod | grep vhost 
+    echo "vhost_net" | sudo tee -a /etc/modules
 
     # Letsencrypt
     sudo apt install letsencrypt -y
