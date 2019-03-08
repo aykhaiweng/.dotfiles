@@ -133,9 +133,9 @@ main() {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     # Installing vim plugins
-    # _echo "Installing VIM Plugins..."
-    # nvim +PlugInstall +qa!
-    # vim +PlugInstall +qa!
+    _echo "Installing VIM Plugins..."
+    nvim +PlugInstall +qa!
+    vim +PlugInstall +qa!
 
 
     # Installing KR
