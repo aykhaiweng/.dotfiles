@@ -169,9 +169,9 @@ let g:lightline = {
 
 command! LightlineReload call LightlineReload()
 function! LightlineReload()
-  call lightline#init()
-  call lightline#colorscheme()
-  call lightline#update()
+  silent! call lightline#init()
+  silent! call lightline#colorscheme()
+  silent! call lightline#update()
 endfunction
 
 function! LightlineFilepath()
@@ -230,14 +230,14 @@ call plug#end()
 " =========================================================================== "
 
 " DEOPLETE ------------------------------------------------------------------ "
-call deoplete#custom#option({
+silent! call deoplete#custom#option({
     \ 'auto_complete_delay': 100,
     \ 'smart_case': v:true,
     \ 'auto_refresh_delay': 200,
     \ })
 " 'refresh_always': v:true,
 let g:deoplete#sources#jedi#enable_cache = 1
-call deoplete#custom#source('_',
+silent! call deoplete#custom#source('_',
     \'disabled_syntaxes', ['Comment']
     \)
 " let g:deoplete#sources = {}
