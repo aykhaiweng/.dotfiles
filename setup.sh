@@ -67,14 +67,13 @@ main() {
     python3 $THIS_DIR/symlink.py
     # run the aliases file to get the pyenv out
     _echo "Running the $HOME/.aliases file that we symlinked earlier"
-
+    source ~/.aliases
 
     # npm
     sudo npm install -g typescript
     sudo npm install -g xbuild
     sudo npm install -g neovim
     sudo npm install -g graceful-fs
-
 
     source $HOME/.aliases
     if [[ $uname == 'Darwin' ]]; then
@@ -85,9 +84,9 @@ main() {
         _echo "Your platform is not supported yet."
     fi
 
-	PYTHON2_VER=2.7.15
-	PYTHON36_VER=3.6.5
-	PYTHON37_VER=3.7.0
+    PYTHON2_VER=2.7.15
+    PYTHON36_VER=3.6.5
+    PYTHON37_VER=3.7.0
 
     # Now that all that is done, install python into pyenv
     # installing pyenv 3.6.4 and 2.7.13
@@ -97,7 +96,7 @@ main() {
     yes '' | pyenv install $PYTHON36_VER
     _echo "Installing $PYTHON37_VER with pyenv..."
     yes '' | pyenv install $PYTHON37_VER
-	_echo "Setting python 3.6.4 as the global default"
+    _echo "Setting python 3.6.4 as the global default"
     pyenv global 3.6.5
 
 
@@ -134,9 +133,9 @@ main() {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     # Installing vim plugins
-    _echo "Installing VIM Plugins..."
-    nvim +PlugInstall +qa!
-    vim +PlugInstall +qa!
+    # _echo "Installing VIM Plugins..."
+    # nvim +PlugInstall +qa!
+    # vim +PlugInstall +qa!
 
 
     # Installing KR

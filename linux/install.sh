@@ -40,15 +40,12 @@ main() {
     echo "@================================================="
     echo
 
-    # debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
-    # debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DBPASSWD"
-
     sudo apt update
-    sudo apt install build-essential curl file git -y
+    sudo apt install build-essential curl file -y
     sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev -y
     sudo apt install libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev -y
     sudo apt install xz-utils tk-dev libffi-dev liblzma-dev python-openssl -y
-    sudo apt install vim nvim systemd -y
+    sudo apt install systemd -y
     sudo apt install git python3-pip python-dev python-setuptools python-docutils -y
     sudo apt install nginx gunicorn memcached -y
     sudo apt install libpq-dev postgresql postgresql-contrib gettext -y
@@ -57,20 +54,18 @@ main() {
     sudo apt install libjpeg8-dev -y
     sudo apt install sqlite3 libsqlite3-dev -y
     sudo apt install autotools-dev autoconf -y
-    # sudo apt install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules -y
     sudo apt install libffi-dev libssl-dev libxml2-dev libxslt1-dev -y
-    # sudo apt install letsencrypt -y
-    # sudo apt install mysql-server libmysqlclient-dev -yq
+    sudo apt install letsencrypt -y
 
     # The Silver Searcher
-    sudo apt install silversearcher-ag
+    sudo apt install silversearcher-ag -y
 
     # terminal essentials
     sudo apt install cmake zsh tmux xclip -y
     sudo apt install mosh -y
 
     # neovim installation
-    source $THIS_DIR/linux/install-neovim.sh
+    sudo apt install neovim
 
     if ! [ $KURA_FTS ] ; then
         _echo "Setting up locales"
