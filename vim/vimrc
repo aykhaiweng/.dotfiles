@@ -108,7 +108,6 @@ let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeWinSize=30
 let g:NERDTreeHighlightCursorLine=1
-let g:NERDTreeNodeDelimiter="\u00a0  "
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 noremap <Leader>0 :NERDTreeToggle<CR>
