@@ -84,9 +84,10 @@ main() {
         _echo "Your platform is not supported yet."
     fi
 
-    PYTHON2_VER=2.7.15
-    PYTHON36_VER=3.6.5
-    PYTHON37_VER=3.7.0
+    PYTHON2_VER="2.7.15"
+    PYTHON36_VER="3.6.5"
+    PYTHON37_VER="3.7.0"
+    PYPY36_VER="3.6-7.0.0"
 
     # Now that all that is done, install python into pyenv
     # installing pyenv 3.6.4 and 2.7.13
@@ -96,8 +97,10 @@ main() {
     yes '' | pyenv install $PYTHON36_VER
     _echo "Installing $PYTHON37_VER with pyenv..."
     yes '' | pyenv install $PYTHON37_VER
-    _echo "Setting python 3.6.4 as the global default"
-    pyenv global 3.6.5
+    _echo "Installing $PYPY36_VER with pyenv..."
+    yes '' | pyenv install $PYPY36_VER
+    _echo "Setting python $PYTHON36_VER $PYTHON37_VER $PYPY36_VER as the global default"
+    pyenv global $PYTHON36_VER $PYTHON37_VER $PYPY36_VER
 
 
     # Setting up python for neovim

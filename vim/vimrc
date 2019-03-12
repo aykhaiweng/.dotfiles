@@ -119,6 +119,7 @@ noremap <C-S-B> :NERDTreeFind<CR>
 """ git
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_terminal_reports_focus=0
+let g:gitgutter_max_signs=1000
 
 " git wrapper for vim
 Plug 'tpope/vim-fugitive'
@@ -225,6 +226,9 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
 " Css Color
 " Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
 
+""" Docker
+Plug 'ekalinin/Dockerfile.vim'
+
 call plug#end()
 " =========================================================================== "
 
@@ -239,6 +243,7 @@ let g:deoplete#sources#jedi#enable_cache = 1
 silent! call deoplete#custom#source('_',
     \'disabled_syntaxes', ['Comment']
     \)
+inoremap <expr> <C-Space>  deoplete#mappings#manual_complete()
 " let g:deoplete#sources = {}
 " let g:deoplete#sources.python = ['deoplete-jedi']
 " let g:deoplete#sources.vim = ['vim']
@@ -289,8 +294,8 @@ nnoremap <Leader>bh :bprev<CR>
 nnoremap <Leader>bx :bd<CR>
 
 " F_keys
-nnoremap <silent> F :set hlsearch! hlsearch?<CR>
-vnoremap <silent> F :set hlsearch! hlsearch?<CR>
+" nnoremap <silent> F :set hlsearch! hlsearch?<CR>
+" vnoremap <silent> F :set hlsearch! hlsearch?<CR>
 vnoremap <silent> <F5> :%sort<CR>
 nnoremap <silent> <F5> :so $MYVIMRC<CR>:LightlineReload<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
