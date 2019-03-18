@@ -113,7 +113,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 noremap <C-B> :NERDTreeToggle<CR>
-noremap <C-S-B> :NERDTreeFind<CR>
+" noremap <C-S-B> :NERDTreeFind<CR>
 
 
 """ git
