@@ -62,7 +62,7 @@ let g:indentLine_showFirstIndentLevel = 1
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=1
+let g:multi_cursor_use_default_mapping=2
 
 " for noobs like me who have no idea how to use motions
 Plug 'easymotion/vim-easymotion'
@@ -241,10 +241,9 @@ silent! call deoplete#custom#option({
 " 'refresh_always': v:true,
 let g:deoplete#sources#jedi#enable_cache = 1
 silent! call deoplete#custom#source('_',
-    \'disabled_syntaxes', ['Comment']
-    \)
+    \ 'disabled_syntaxes', ['Comment']
+    \ )
 inoremap <expr> <C-Space>  deoplete#mappings#manual_complete()
-" let g:deoplete#sources = {}
 " let g:deoplete#sources.python = ['deoplete-jedi']
 " let g:deoplete#sources.vim = ['vim']
 " inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -256,9 +255,6 @@ inoremap <expr> <C-Space>  deoplete#mappings#manual_complete()
 " CONTROLS ------------------------------------------------------------------ "
 " mouse
 set mouse=a
-
-" Funny way to setup the leader key so it echos something when it is pressed
-noremap <Leader> :echo '-- LEADER --'<CR><Leader>
 
 " explicitly binding keys
 vnoremap <Up>    k
@@ -338,9 +334,9 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 "     set termguicolors
 " endif
 
+syntax on
 set termguicolors
 set t_Co=256
-syntax on
 set background=dark
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -359,16 +355,6 @@ silent! colorscheme gruvbox
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 
-" current line highlights
-" highlight CursorLine cterm=None ctermbg=234 guibg=#000000
-" highlight CursorColumn cterm=None ctermbg=235 guibg=#000000
-" augroup CursorLine
-"     au!
-"     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"     au WinLeave * setlocal nocursorline
-" augroup end
-
-" highlight ExtraWhitespace ctermbg=red
 
 " EDITOR -------------------------------------------------------------------- "
 " definitions
