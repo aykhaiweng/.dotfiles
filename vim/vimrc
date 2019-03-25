@@ -226,14 +226,6 @@ let g:jedi#documentation_command = "<leader>jl"
 """ HTML & CSS
 Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
 
-" devicons fun fun fun
-" Plug 'ryanoasis/vim-devicons'
-" let g:webdevicons_conceal_nerdtree_brackets=1
-" let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
-
-" Css Color
-" Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
-
 """ Docker
 Plug 'ekalinin/Dockerfile.vim'
 
