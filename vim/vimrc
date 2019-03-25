@@ -93,6 +93,7 @@ let g:deoplete#enable_at_startup = 1
 
 
 """ Explorers
+" fzfinder
 Plug 'junegunn/fzf.vim' ", { 'on': ['FZF', 'Buffers', 'Marks'] }
 set rtp+=~/.fzf
 let g:fzf_action = {
@@ -102,6 +103,7 @@ let g:fzf_action = {
 nnoremap <C-P> :FZF<CR>
 nnoremap <C-F> :Ag<CR>
 
+" nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
@@ -114,6 +116,10 @@ noremap <Leader>0 :NERDTreeToggle<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 noremap <C-B> :NERDTreeToggle<CR>
 " noremap <C-S-B> :NERDTreeFind<CR>
+
+" tagbar
+Plug 'majutsushi/tagbar'
+nmap <Leader>= :TagbarToggle<CR>
 
 
 """ git
@@ -141,6 +147,7 @@ let g:lightline = {
 \           [ 'gitbranch' ],
 \           [ 'readonly', 'filepath' ],
 \           [ 'modified' ],
+\           [ 'tagbar' ],
 \       ],
 \       'right': [
 \           [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
@@ -155,7 +162,8 @@ let g:lightline = {
 \       'right': [['']]
 \   },
 \   'component': {
-\       'lineinfo': '%3l:%-2v'
+\       'lineinfo': '%3l:%-2v',
+\       'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}',
 \   },
 \   'component_function': {
 \       'linter_checking': 'lightline#ale#checking',
