@@ -23,3 +23,6 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Disable the delay when you hide the Dock
 defaults write com.apple.Dock autohide-delay -float 0
+
+# Show hidden files
+defaults write com.apple.finder AppleShowAllFiles YES
