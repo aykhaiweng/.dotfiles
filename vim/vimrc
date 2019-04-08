@@ -3,8 +3,8 @@ filetype off                  " required
 
 
 " python hosts
-let g:python_host_prog=$HOME."/.pyenv/versions/neovim2/bin/python2"
 let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python3"
+let g:python_host_prog=$HOME."/.pyenv/versions/neovim2/bin/python2"
 
 " leader
 let mapleader=","
@@ -62,7 +62,7 @@ let g:indentLine_showFirstIndentLevel = 1
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=2
+let g:multi_cursor_use_default_mapping=1
 
 " for noobs like me who have no idea how to use motions
 Plug 'easymotion/vim-easymotion'
@@ -226,6 +226,14 @@ let g:jedi#documentation_command = "<leader>jl"
 """ HTML & CSS
 Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
 
+" devicons fun fun fun
+" Plug 'ryanoasis/vim-devicons'
+" let g:webdevicons_conceal_nerdtree_brackets=1
+" let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+
+" Css Color
+" Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
+
 """ Docker
 Plug 'ekalinin/Dockerfile.vim'
 
@@ -241,37 +249,13 @@ silent! call deoplete#custom#option({
 " 'refresh_always': v:true,
 let g:deoplete#sources#jedi#enable_cache = 1
 silent! call deoplete#custom#source('_',
-    \ 'disabled_syntaxes', ['Comment']
-    \ )
+    \'disabled_syntaxes', ['Comment']
+    \)
 inoremap <expr> <C-Space>  deoplete#mappings#manual_complete()
-" let g:deoplete#sources.python = ['deoplete-jedi']
-" let g:deoplete#sources.vim = ['vim']
-" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-D>"
-" inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" =========================================================================== "
 
-" CONTROLS ------------------------------------------------------------------ "
-" mouse
-set mouse=a
-
-" explicitly binding keys
-vnoremap <Up>    k
-vnoremap <Down>  j
-vnoremap <Left>  h
-vnoremap <Right> l
-nnoremap <Up>    k
-nnoremap <Down>  j
-nnoremap <Left>  h
-nnoremap <Right> l
 
 " Folding and shit
 nnoremap <space> za
-
-" location list
-nnoremap <Leader>ll :lopen<CR>
-nnoremap <Leader>lx :lclose<CR>
 
 " Vim-style tab navigation
 nnoremap tj  :tabfirst<CR>
@@ -283,16 +267,10 @@ nnoremap tn  :tabnew<CR>
 nnoremap tm  :tabm<Space>
 nnoremap tx  :tabclose<CR>
 
-" vim style buffer navigation
-" ^ This line is reliant on fzf
-nnoremap <Leader>bl :bnext<CR>
-nnoremap <Leader>bh :bprev<CR>
-nnoremap <Leader>bx :bd<CR>
-
 " F_keys
 " nnoremap <silent> F :set hlsearch! hlsearch?<CR>
 " vnoremap <silent> F :set hlsearch! hlsearch?<CR>
-vnoremap <silent> <F5> :%sort<CR>
+vnoremap <silent> <F5> :sort i<CR>
 nnoremap <silent> <F5> :so $MYVIMRC<CR>:LightlineReload<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
@@ -323,8 +301,9 @@ function! ToggleList(bufname, pfx)
     endif
 endfunction
 
-nmap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
-nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
+nnoremap <Leader>lx :lclose<CR>
+nnoremap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " =========================================================================== "
 
 
@@ -333,6 +312,17 @@ nmap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " if (has("termguicolors"))
 "     set termguicolors
 " endif
+"
+" current line highlights
+highlight CursorLine cterm=NONE ctermbg=black guibg=#000000
+highlight CursorColumn cterm=NONE ctermbg=black guibg=#000000
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup end
+
+highlight ExtraWhitespace ctermbg=red
 
 syntax on
 set termguicolors
@@ -386,7 +376,6 @@ set cmdheight=1      " Change height of the cmd prompt
 set redrawtime=20000 " Fixes syntax highlighting on large files
 set noshowmode       " No showmode
 set cursorline       " Show the cursorline 
-" set lazyredraw
 
 let g:autoclose_on=1 " do not autoclose brackets
 
