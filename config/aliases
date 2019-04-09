@@ -127,8 +127,10 @@ alias ll='ls -Al'
 # ======================================================= #
 # PostgreSQL helper functions                             #
 # ======================================================= #
-# Directory Listing
+# Restoring a DB for PostgreSQL
 function restore_db() {
+    # Shortcut for restoring DB for PSQL because I can't be bothered
+    # to memorize the command
     db_name=$1
     db_psql_file=$2
     current_user=$USER
@@ -136,5 +138,12 @@ function restore_db() {
     dropdb $db_name
     createdb $db_name
     echo "Restoring $db_name with $current_user and $db_psql_file..."
-    psql -U $current_user $db_name < $db_psql_file
+    psql -U $current_user ${@:3:99} $db_name < $db_psql_file
+}
+
+function rsyncfolder() {
+    # Performs rsync of the cwd to a remote server/another folder
+    PWD=$(pwd)
+	TARGET=$1
+	rsync $PWD $TARGET ${@:2:99}
 }
