@@ -120,6 +120,17 @@ main() {
     # neovim installation
     sudo apt install neovim -y
 
+    # installing syncthing
+    # Add the release PGP keys:
+    curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+
+    # Add the "stable" channel to your APT sources:
+    echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+
+    # Update and install syncthing:
+    sudo apt-get update -y
+    sudo apt-get install syncthing -y
+
     if ! [ $KURA_FTS ] ; then
         _echo "Setting up locales"
         sudo locale-gen en_US.UTF-8
