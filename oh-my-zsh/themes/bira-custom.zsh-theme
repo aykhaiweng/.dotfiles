@@ -5,7 +5,7 @@ NEWLINE=$'\n'
 
 # The user icon
 if [[ $UID -eq 0 ]]; then
-    local user_symbol='%B%{$fg[white]%}λ%b'
+    local user_symbol='%B%{$fg[blue]%}λ%b'
 else
     local user_symbol='%B%{$fg[magenta]%}λ%b'
 fi
