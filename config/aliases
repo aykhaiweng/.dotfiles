@@ -83,6 +83,8 @@ alias pushnfsip=__pushnfsip
 # Use the SilverSurfer
 export FZF_DEFAULT_COMMAND="ag --ignore '*.pyc' --ignore '*/*.pyc' --ignore-dir '*pycache*' --ignore-dir '.tox' --hidden --skip-vcs-ignores -g ''"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export DIRECTORY_COLOR_ARGUMENTS=""
+
 # ======================================================= #
 # OS Specific                                             #
 # ======================================================= #
@@ -144,6 +146,6 @@ function restore_db() {
 function rsyncfolder() {
     # Performs rsync of the cwd to a remote server/another folder
     PWD=$(pwd)
-	TARGET=$1
-	rsync $PWD $TARGET ${@:2:99}
+    TARGET=$1
+    rsync $PWD $TARGET ${@:2:99}
 }

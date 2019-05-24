@@ -130,7 +130,7 @@ font:
     style: Italic
 
   # Point size
-  size: 13.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -214,9 +214,9 @@ colors:
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  # cursor:
+  cursor:
   #   text: '0x000000'
-  #   cursor: '0xffffff'
+     cursor: '0xffffff'
 
   # Selection colors
   #
