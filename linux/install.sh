@@ -60,6 +60,7 @@ main() {
         make build-essential libssl-dev zlib1g-dev libbz2-dev \
         ca-certificates software-properties-common \
         libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+        byacc \
         xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
         libpq-dev postgresql postgresql-contrib gettext \
         libjpeg8-dev \
