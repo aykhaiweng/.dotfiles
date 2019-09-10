@@ -1,10 +1,8 @@
 brew "cmake"
-brew "flake8", link: false
 brew "git"
 brew "kubernetes-cli"
 brew "jpeg"
 brew "mosh"
-brew "mysql", restart_service: true
 brew "neovim"
 brew "node"
 brew "postgresql", restart_service: true
