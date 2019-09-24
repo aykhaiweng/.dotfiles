@@ -45,7 +45,7 @@ main() {
     echo "|    3. python-dev           10. git             |"
     echo "|    4. libpq-dev            11. memcached       |"
     echo "|    5. postgresql           12. system-services |"
-    echo "|    6. mysql                13. nodejs-legacy   |"
+    echo "|    6. NO MORE MYSQL        13. nodejs-legacy   |"
     echo "|    7. libjpeg8-dev         14. npm             |"
     echo "|                                                |"
     echo "|                    And loads of other goodies! |"

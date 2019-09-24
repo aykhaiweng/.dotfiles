@@ -26,3 +26,6 @@ defaults write com.apple.Dock autohide-delay -float 0
 
 # Show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
+
+# Remove that annoying .DS_Store file
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
