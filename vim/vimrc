@@ -313,16 +313,6 @@ nnoremap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 "     set termguicolors
 " endif
 "
-" current line highlights
-highlight CursorLine cterm=NONE ctermbg=black guibg=#000000
-highlight CursorColumn cterm=NONE ctermbg=black guibg=#000000
-augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup end
-
-highlight ExtraWhitespace ctermbg=red
 
 syntax on
 set termguicolors
@@ -340,6 +330,17 @@ let g:gruvbox_italicize_strings=1
 let g:gruvbox_improved_strings=0
 let g:gruvbox_improved_warnings=1
 silent! colorscheme gruvbox
+
+" current line highlights
+highlight CursorLine cterm=NONE ctermbg=black guibg=#000000
+highlight CursorColumn cterm=NONE ctermbg=black guibg=#000000
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup end
+" highlight NonText cterm=None ctermfg=red
+" highlight SpecialKey cterm=None ctermfg=red
 
 " statusline
 set laststatus=2
