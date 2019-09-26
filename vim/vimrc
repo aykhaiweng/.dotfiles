@@ -112,7 +112,7 @@ let g:NERDTreeWinSize=30
 let g:NERDTreeHighlightCursorLine=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-noremap <Leader>0 :NERDTreeToggle<CR>
+noremap <Leader>0 :NERDTreeFocus<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 noremap <C-B> :NERDTreeToggle<CR>
 " noremap <C-S-B> :NERDTreeFind<CR>

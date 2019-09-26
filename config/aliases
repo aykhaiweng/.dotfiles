@@ -154,6 +154,7 @@ function rsyncfolder() {
 # ======================================================= #
 # Docker Shortcuts                                        #
 # ======================================================= #
+# Function to stop all Docker Containers
 function docker_stop_all() {
     docker stop $(docker ps -aq)
 }
