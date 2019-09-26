@@ -70,12 +70,12 @@ alias tctest=__truecolourtest
 alias 256ctest=__256colourtest
 
 function __pushnfsip() {
-	ip=$(echo $SSH_CLIENT | awk '{print $1}')
-	echo "Pushing "$ip" into /etc/exports"
-	replace=$(echo "/home/aykhaiweng		"$ip"(rw,sync,no_root_squash,insecure,no_subtree_check)" > /etc/exports)
-	restart=$(systemctl restart nfs-kernel-server)
-	sudo bash -c "$replace"
-	sudo bash -c "$restart"
+    ip=$(echo $SSH_CLIENT | awk '{print $1}')
+    echo "Pushing "$ip" into /etc/exports"
+    replace=$(echo "/home/aykhaiweng        "$ip"(rw,sync,no_root_squash,insecure,no_subtree_check)" > /etc/exports)
+    restart=$(systemctl restart nfs-kernel-server)
+    sudo bash -c "$replace"
+    sudo bash -c "$restart"
 }
 
 alias pushnfsip=__pushnfsip
@@ -149,3 +149,13 @@ function rsyncfolder() {
     TARGET=$1
     rsync $PWD $TARGET ${@:2:99}
 }
+
+
+# ======================================================= #
+# Docker Shortcuts                                        #
+# ======================================================= #
+function docker_stop_all() {
+    docker stop $(docker ps -aq)
+}
+
+alias dockerstopall=docker_stop_all
