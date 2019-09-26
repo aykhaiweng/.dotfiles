@@ -106,7 +106,7 @@ if [[ $uname == 'Darwin' ]]; then
     launchctl start local.pbcopy
 
     alias ctags="`brew --prefix`/bin/ctags"
-elif [[ $uname == 'Linux' ]] || [[ $uname == "" ]]; then
+else
     # Directory listing
     export DIRECTORY_COLOR_ARGUMENTS="--color=always"
 
