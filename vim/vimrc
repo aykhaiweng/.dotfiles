@@ -47,7 +47,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 """ Editor
 Plug 'thaerkh/vim-workspace'
-nnoremap <leader>s :ToggleWorkspace<CR>
+nnoremap <Leader>ws :ToggleWorkspace<CR>
 let g:workspace_session_name='workspace.vim'
 let g:workspace_session_disable_on_args=1
 let g:workspace_autosave_ignore = [
@@ -104,7 +104,7 @@ nnoremap <C-P> :FZF<CR>
 nnoremap <C-F> :Ag<CR>
 
 " nerdtree
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
@@ -112,6 +112,8 @@ let g:NERDTreeWinSize=30
 let g:NERDTreeHighlightCursorLine=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
 noremap <Leader>0 :NERDTreeFocus<CR>
 noremap <Leader>- :NERDTreeFind<CR>
 noremap <C-B> :NERDTreeToggle<CR>
@@ -227,9 +229,9 @@ let g:jedi#documentation_command = "<leader>jl"
 Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
 
 " devicons fun fun fun
-" Plug 'ryanoasis/vim-devicons'
-" let g:webdevicons_conceal_nerdtree_brackets=1
-" let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+Plug 'ryanoasis/vim-devicons'
+let g:webdevicons_conceal_nerdtree_brackets=1
+let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 
 " Css Color
 " Plug 'ap/vim-css-color', {'for': ['html', 'js', 'css'] }
