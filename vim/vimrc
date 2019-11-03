@@ -57,8 +57,8 @@ let g:workspace_autosave_ignore = [
     \ 'tagbar' ]
 
 " Indentation
-" Plug 'Yggdroot/indentLine'
-" let g:indentLine_showFirstIndentLevel = 1
+Plug 'Yggdroot/indentLine'
+let g:indentLine_showFirstIndentLevel = 1
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -200,7 +200,7 @@ set guioptions-=e  " Don't use GUI tabline
 
 
 """ Syntax Highlighting
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 
 """ Python
@@ -226,7 +226,7 @@ let g:jedi#documentation_command = "<leader>jl"
 
 
 """ HTML & CSS
-" Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css', 'vue']}
 
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
