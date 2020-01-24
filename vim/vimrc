@@ -21,13 +21,13 @@ Plug 'morhetz/gruvbox'
 
 
 " TmuxVimNavigation
-Plug 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_no_mappings = 1
-let g:tmux_navigator_disable_when_zoomed = 1
-nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-J> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-K> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
+" Plug 'christoomey/vim-tmux-navigator'
+" let g:tmux_navigator_no_mappings = 1
+" let g:tmux_navigator_disable_when_zoomed = 1
+" nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-J> :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-K> :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 
 
 " Asynchronous Linting
@@ -57,8 +57,8 @@ let g:workspace_autosave_ignore = [
     \ 'tagbar' ]
 
 " Indentation
-" Plug 'Yggdroot/indentLine'
-" let g:indentLine_showFirstIndentLevel = 1
+Plug 'Yggdroot/indentLine'
+let g:indentLine_showFirstIndentLevel = 1
 
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
@@ -200,7 +200,7 @@ set guioptions-=e  " Don't use GUI tabline
 
 
 """ Syntax Highlighting
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 
 """ Python
@@ -226,7 +226,7 @@ let g:jedi#documentation_command = "<leader>jl"
 
 
 """ HTML & CSS
-Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css', 'vue']}
 
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
