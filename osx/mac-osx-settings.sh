@@ -29,3 +29,6 @@ defaults write com.apple.finder AppleShowAllFiles YES
 
 # Remove that annoying .DS_Store file
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+# Remove mouse scaling
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
