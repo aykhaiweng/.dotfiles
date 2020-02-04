@@ -1,0 +1,34 @@
+{
+  "excludes": [
+    ".git",
+    "_build",
+    "blib",
+    "Build",
+    "volumes/public/",
+    "volumes/database/",
+    "volumes/redis/",
+    "volumes/certbot/",
+    "volumes/ouch_core/",
+    "__pycache__/",
+    "*.pyc",
+    "*.sublime*",
+    "*.vim"
+  ],
+  "options": [
+  ],
+  "remotes": {
+    ".": [
+      {
+        "enabled": true,
+        "excludes": [],
+        "options": [],
+        "remote_host": "34.87.84.87",
+        "remote_path": "/home/aykhaiweng/rsync/.dotfiles",
+        "remote_port": null,
+        "remote_post_command": "",
+        "remote_pre_command": "",
+        "remote_user": "aykhaiweng"
+      }
+    ]
+  }
+}
