@@ -15,8 +15,6 @@ call plug#begin('~/.vim/plugged')
 
 
 set rtp+=~/.vim/my-colors
-Plug 'ayu-theme/ayu-vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 
 
@@ -200,7 +198,7 @@ set guioptions-=e  " Don't use GUI tabline
 
 
 """ Syntax Highlighting
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 
 """ Python

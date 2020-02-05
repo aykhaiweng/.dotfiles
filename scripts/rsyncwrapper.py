@@ -161,7 +161,7 @@ def execute_command_list(command_list):
     Execute command list
     """
     stdout = subprocess.run(command_list)
-    if stdout:
+    if stdout.returncode != 0:
         print(stdout)
 
 

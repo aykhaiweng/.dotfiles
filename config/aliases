@@ -143,12 +143,9 @@ function restore_db() {
     psql -U $current_user ${@:3:99} $db_name < $db_psql_file
 }
 
-function rsyncfolder() {
-    # Performs rsync of the cwd to a remote server/another folder
-    PWD=$(pwd)
-    TARGET=$1
-    rsync $PWD $TARGET ${@:2:99}
-}
+
+alias rsyncwrapper="~/.dotfiles/scripts/rsyncwrapper.py"
+alias fswatch-rsyncwrapper="~/.dotfiles/scripts/fswatch-rsync"
 
 
 # ======================================================= #
