@@ -14,13 +14,13 @@ rsync -v -zar -e ssh -q -T -o ConnectTimeout=10
 
 RSYNC_BIN = "rsync"
 RSYNC_ARGS = [
-    '-v',
+    '-v',       # Increase verbosity
     '-zar',
-    '-e',
-    'ssh',
-    '-q',
-    '-T',
-    # '-o', 'ConnectTimeout=10'
+    '-e ssh',   # Specifying remote shell to use: SSH
+    '-q',       # Surpress non-error messages
+    '-p',       # Shows progress during transfer
+    # '-T',     # Create TEMP dir
+    '-o',       # Maintain ownership
 ]
 DEFAULT_JSON_CONFIG_NAME = "rsync.json"
 SCRIPT_HELP_TEXT = "Wrapper script to make rsync more extendable"
@@ -176,7 +176,7 @@ def main(*args, **kwargs):
     parsed_arguments = parse_json_config(config_file_path)
 
     command_lists = build_command_lists_for_rsync(
-        kwargs['bin'], parsed_arguments, direction='up', extras=kwargs['extra']
+        kwargs['bin'], parsed_arguments, direction=kwargs.get('direction', 'up'), extras=kwargs['extra']
     )
 
     for c in command_lists:
@@ -190,6 +190,13 @@ if __name__ == '__main__':
         type=str,
         help='Config file for wrapper',
         default=DEFAULT_JSON_CONFIG_NAME,
+    )
+    ap.add_argument(
+        '--direction',
+        '-d',
+        type=str,
+        help='Direction of the Transfer',
+        default='up',
     )
     ap.add_argument(
         '--user',
