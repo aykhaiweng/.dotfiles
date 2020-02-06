@@ -44,7 +44,7 @@ echo      ""
 
 # Watch for changes and sync (exclude hidden files)
 echo    "Watching for changes. Quit anytime with Ctrl-C."
-${FSWATCH_PATH} -0 -r . --exclude="/\.[^/]*$" --exclude="4913" --exclude=".git" --exclude=".undodir" --exclude="vim.workspace" \
+${FSWATCH_PATH} -0 -r . --exclude="/\.[^/]*$" --exclude="4913" --exclude=".git" --exclude=".undodir" --exclude="*.vim" --exclude="workspace.vim" --exclude="volumes/database" \
 | while read -d "" event
 do
     echo -en "${green}" `date` "${nocolor}\"$event\" changed. Synchronizing... "

@@ -198,7 +198,7 @@ set guioptions-=e  " Don't use GUI tabline
 
 
 """ Syntax Highlighting
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 
 """ Python
