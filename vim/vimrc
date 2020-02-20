@@ -240,20 +240,7 @@ Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 " =========================================================================== "
 
-" DEOPLETE ------------------------------------------------------------------ "
-silent! call deoplete#custom#option({
-    \ 'auto_complete_delay': 100,
-    \ 'smart_case': v:true,
-    \ 'auto_refresh_delay': 200,
-    \ })
-" 'refresh_always': v:true,
-let g:deoplete#sources#jedi#enable_cache = 1
-silent! call deoplete#custom#source('_',
-    \'disabled_syntaxes', ['Comment']
-    \)
-inoremap <expr> <C-Space>  deoplete#mappings#manual_complete()
-
-
+" --------------------------------------------------------------------------- "
 " Folding and shit
 nnoremap <space> za
 

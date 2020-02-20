@@ -11,3 +11,14 @@ setlocal expandtab
 setlocal foldlevel=99
 setlocal foldmethod=indent
 " setlocal completeopt=menuone,longest,preview
+
+silent! call deoplete#custom#option({
+    \ 'auto_complete_delay': 100,
+    \ 'smart_case': v:true,
+    \ 'auto_refresh_delay': 200,
+    \ })
+let g:deoplete#sources#jedi#enable_cache = 1
+silent! call deoplete#custom#source('_',
+    \'disabled_syntaxes', ['Comment']
+    \)
+inoremap <buffer> <expr> <C-Space>  deoplete#mappings#manual_complete()
