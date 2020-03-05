@@ -18,6 +18,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
+if [ -f "$HOME/.local_profile" ]; then
+    source $HOME/.local_profile
+fi
 
 export KEYTIMEOUT=1
 
