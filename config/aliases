@@ -124,6 +124,7 @@ fi
 # Directory Listing
 alias ls'ls -A $DIRECTORY_COLOR_ARGUMENTS'
 alias ll='ls -Al'
+alias rmsockets='rm -rf ~/.ssh/sockets/*'
 
 
 # ======================================================= #
