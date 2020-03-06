@@ -88,7 +88,7 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTre
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize=35
 let g:NERDTreeHighlightCursorLine=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'

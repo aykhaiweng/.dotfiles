@@ -31,17 +31,10 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 RPS1="%B${return_code}%b"
 
 precmd() {
-    if [[ -n $PYENV_SHELL ]]; then
-        local version
-        version=${(@)$(pyenv version)[1]}
-        if [[ $version = system ]]; then
-            local pyenv_version=""
-        else
-            local pyenv_version="(pyenv $version) "
-        fi
+    if [[ -n $VIRTUAL_ENV ]]; then
+        local pyenv_version="($(pyenv version-name)) "
     fi
 
     eval "$PROMPT_COMMAND"
-    # PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%{$reset_color%}%b "
-    PROMPT="${NEWLINE}($(pyenv_prompt_info)) ${ssh_host}${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%b "
+    PROMPT="${NEWLINE}${pyenv_version}${ssh_host}${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%b "
 }
