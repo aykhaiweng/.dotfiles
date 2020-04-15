@@ -41,11 +41,13 @@ let g:workspace_session_disable_on_args=1
 let g:workspace_autosave_ignore = [
     \ 'gitcommit',
     \ '__flygrep__',
+    \ 'netrw',
     \ 'nerdtree',
     \ 'tagbar' ]
 " Indentation
 Plug 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_char_list = ['|']
 " because I miss sublime text
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=1
@@ -85,20 +87,20 @@ let g:fzf_action = {
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
 " nerdtree
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
-let NERDTreeShowHidden=1
-let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeWinSize=35
-let g:NERDTreeHighlightCursorLine=1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeMinimalUI = 0
-let g:NERDTreeDirArrows = 1
+" Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
+" let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
+" let NERDTreeShowHidden=1
+" let g:NERDTreeQuitOnOpen=0
+" let g:NERDTreeWinSize=35
+" let g:NERDTreeHighlightCursorLine=1
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeMinimalUI = 1
+" let g:NERDTreeDirArrows = 1
 " devicons fun fun fun
-Plug 'ryanoasis/vim-devicons'
-let g:webdevicons_conceal_nerdtree_brackets=1
-let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+" Plug 'ryanoasis/vim-devicons'
+" let g:webdevicons_conceal_nerdtree_brackets=1
+" let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 
 
 """ git
@@ -107,8 +109,6 @@ let g:gitgutter_terminal_reports_focus=0
 let g:gitgutter_max_signs=1000
 " git wrapper for vim
 Plug 'tpope/vim-fugitive'
-" git Plugin for NerdTree
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 
 """ status
@@ -177,7 +177,7 @@ let g:lightline.component_type = {
 
 """ Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['vue', 'json']
+let g:polyglot_disabled = ['vue']
 
 
 """ Python
@@ -241,6 +241,7 @@ function! ToggleList(bufname, pfx)
     endif
 endfunction
 
+
 " Beautifiers
 autocmd FileType css noremap <buffer> <F6> :call CSSBeautify()<cr>
 autocmd FileType html noremap <buffer> <F6>:call HtmlBeautify()<cr>
@@ -254,13 +255,16 @@ autocmd FileType python noremap <buffer> <F6>:Black<cr>
 nnoremap <C-P> :FZF<CR>
 nnoremap <C-F> :Ag<CR>
 
+
 " NerdTree
-noremap <Leader>0 :NERDTreeFocus<CR>
-noremap <Leader>- :NERDTreeFind<CR>
-noremap <C-B> :NERDTreeToggle<CR>
+" noremap <Leader>0 :NERDTreeFocus<CR>
+" noremap <Leader>- :NERDTreeFind<CR>
+" noremap <C-B> :NERDTreeToggle<CR>
+
 
 " Folding and shit
 nnoremap <space> za
+
 
 " Vim-style tab navigation
 nnoremap tj  :tabfirst<CR>
@@ -284,21 +288,22 @@ nnoremap <silent> <leader>ee :call ToggleList("Quickfix List", 'c')<CR>
 " LOOK & FEEL --------------------------------------------------------------- "
 syntax on
 set termguicolors
-set t_Co=256
 set background=dark
+set t_Co=256
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
-let g:gruvbox_improved_strings=0
+let g:gruvbox_improved_strings=1
 let g:gruvbox_improved_warnings=1
+let g:gruvbox_hls_cursor='orange'
 silent! colorscheme gruvbox
 
 " current line highlights
-highlight CursorLine cterm=NONE ctermbg=black guibg=#000000
-highlight CursorColumn cterm=NONE ctermbg=black guibg=#000000
+highlight CursorLine cterm=NONE ctermbg=black guibg=#151515
+highlight CursorColumn cterm=NONE ctermbg=black guibg=#151515
 augroup CursorLine
     au!
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -306,6 +311,17 @@ augroup CursorLine
 augroup end
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
+
+" netrw
+let g:netrw_banner=1
+let g:netrw_liststyle=3
+let g:netrw_browse_split=4
+let g:netrw_altv = 0
+let g:netrw_winsize=20
+augroup ProjectDrawer
+	autocmd!
+	autocmd VimEnter * :Vexplore
+augroup END
 
 
 " EDITOR -------------------------------------------------------------------- "
