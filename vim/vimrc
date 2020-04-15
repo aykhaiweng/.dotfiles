@@ -177,7 +177,7 @@ let g:lightline.component_type = {
 
 """ Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['vue']
+let g:polyglot_disabled = ['vue', 'json']
 
 
 """ Python
