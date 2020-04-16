@@ -87,20 +87,20 @@ let g:fzf_action = {
     \ 'ctrl-i': 'split',
     \ 'ctrl-s': 'vsplit' }
 " nerdtree
-" Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
-" let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
-" let NERDTreeShowHidden=1
-" let g:NERDTreeQuitOnOpen=0
-" let g:NERDTreeWinSize=35
-" let g:NERDTreeHighlightCursorLine=1
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
-" let g:NERDTreeMinimalUI = 1
-" let g:NERDTreeDirArrows = 1
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
+let NERDTreeShowHidden=1
+let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeWinSize=35
+let g:NERDTreeHighlightCursorLine=1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
 " devicons fun fun fun
-" Plug 'ryanoasis/vim-devicons'
-" let g:webdevicons_conceal_nerdtree_brackets=1
-" let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+Plug 'ryanoasis/vim-devicons'
+let g:webdevicons_conceal_nerdtree_brackets=1
+let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 
 
 """ git
@@ -257,9 +257,9 @@ nnoremap <C-F> :Ag<CR>
 
 
 " NerdTree
-" noremap <Leader>0 :NERDTreeFocus<CR>
-" noremap <Leader>- :NERDTreeFind<CR>
-" noremap <C-B> :NERDTreeToggle<CR>
+noremap <Leader>0 :NERDTreeFocus<CR>
+noremap <Leader>- :NERDTreeFind<CR>
+noremap <C-B> :NERDTreeToggle<CR>
 
 
 " Folding and shit
@@ -315,13 +315,13 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 " netrw
 let g:netrw_banner=1
 let g:netrw_liststyle=3
-let g:netrw_browse_split=4
+let g:netrw_browse_split=0
 let g:netrw_altv = 0
 let g:netrw_winsize=20
-augroup ProjectDrawer
-	autocmd!
-	autocmd VimEnter * :Vexplore
-augroup END
+" augroup ProjectDrawer
+" 	autocmd!
+" 	autocmd VimEnter * :Explore
+" augroup END
 
 
 " EDITOR -------------------------------------------------------------------- "

@@ -84,37 +84,19 @@ main() {
         _echo "Your platform is not supported yet."
     fi
 
-    PYTHON2_VER="2.7.15"
-    PYTHON36_VER="3.6.5"
-    PYTHON37_VER="3.7.0"
-    PYPY36_VER="3.6-7.0.0"
+    PYTHON3_VER="3.8.1"
 
     # Now that all that is done, install python into pyenv
-    # installing pyenv 3.6.4 and 2.7.13
-    _echo "Installing $PYTHON2_VER with  pyenv..."
-    yes '' | pyenv install $PYTHON2_VER
-    _echo "Installing $PYTHON36_VER with pyenv..."
-    yes '' | pyenv install $PYTHON36_VER
-    _echo "Installing $PYTHON37_VER with pyenv..."
-    yes '' | pyenv install $PYTHON37_VER
-    _echo "Installing $PYPY36_VER with pyenv..."
-    yes '' | pyenv install $PYPY36_VER
-    _echo "Setting python $PYTHON36_VER $PYTHON37_VER $PYPY36_VER as the global default"
-    pyenv global $PYTHON36_VER $PYTHON37_VER $PYPY36_VER
+    _echo "Installing $PYTHON3_VER with pyenv..."
+    yes '' | pyenv install $PYTHON3_VER
+    _echo "Setting python $PYTHON3 as the global default"
+    pyenv global $PYTHON3
 
 
     # Setting up python for neovim
     _echo "Setting up virtualenv for neovim3"
-    pyenv virtualenv $PYTHON37_VER neovim37
-    pyenv activate neovim3_pypy
-    pip install neovim psutil
-    _echo "Setting up virtualenv for neovim3"
-    pyenv virtualenv $PYTHON36_VER neovim3
+    pyenv virtualenv $PYTHON3_VER neovim3
     pyenv activate neovim3
-    pip install neovim psutil jedi -U
-    _echo "Setting up virtualenv for neovim2"
-    pyenv virtualenv $PYTHON2_VER neovim2
-    pyenv activate neovim2
     pip install neovim psutil jedi -U
     pyenv deactivate
 
@@ -139,6 +121,10 @@ main() {
     _echo "Installing VIM Plugins..."
     nvim +PlugInstall +qa!
     vim +PlugInstall +qa!
+
+
+    # Installing Poetry
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
 
     # Installing KR
