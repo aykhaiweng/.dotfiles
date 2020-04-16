@@ -4,12 +4,8 @@
 # Linux Setup
 ###############################################################################
 
-
-# Get the color definitions
-source colordefinitions.sh
-
 _echo() {
-    echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${ORANGE}LINUX${NOCOLOR}] - $1"
+    echo "[aykhaiweng says] [LINUX] - $1"
 }
 
 _append_to_file() {
@@ -32,6 +28,12 @@ sudo -v
 
 
 main() {
+    if ! [ $KURA_FTS ] ; then
+        _echo "Setting up locales"
+        sudo locale-gen en_US.UTF-8
+        sudo timedatectl set-timezone Asia/Kuala_Lumpur
+    fi
+
     # Install essentials
     _echo "Installing essentials."
     _echo
@@ -44,7 +46,7 @@ main() {
     echo "|    2. python3-pip          9. gunicorn         |"
     echo "|    3. python-dev           10. git             |"
     echo "|    4. libpq-dev            11. memcached       |"
-    echo "|    5. postgresql           12. system-services |"
+    echo "|    5. NO MORE POSTGRESQL   12. system-services |"
     echo "|    6. NO MORE MYSQL        13. nodejs-legacy   |"
     echo "|    7. libjpeg8-dev         14. npm             |"
     echo "|                                                |"
@@ -56,20 +58,16 @@ main() {
     sudo apt install apt-transport-https -y
     sudo apt upgrade -y
     _echo "Installing essentials"
-    sudo apt install -y build-essential curl file \
-        make build-essential libssl-dev zlib1g-dev libbz2-dev \
+    sudo apt install -y  --assume-yes build-essential curl wget file \
         ca-certificates software-properties-common \
-        libreadline-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-        byacc \
-        xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
-        libpq-dev postgresql postgresql-contrib gettext \
-        libjpeg8-dev \
-        postgis binutils gdal-bin \
-        systemd nginx gunicorn memcached daphne \
-        nodejs \
-        sqlite3 libsqlite3-dev \
+        make build-essential libssl-dev zlib1g-dev libbz2-dev \
         autotools-dev autoconf \
         libffi-dev libssl-dev libxml2-dev libxslt1-dev \
+        libreadline-dev libncurses5-dev libncursesw5-dev llvm \
+        libffi-dev liblzma-dev python-openssl xz-utils tk-dev \
+        libpq-dev gettext \
+        libjpeg8-dev \
+        byacc binutils gdal-bin \
         silversearcher-ag \
         cmake zsh tmux xclip \
 
@@ -120,12 +118,6 @@ main() {
 
     # neovim installation
     sudo apt install neovim -y
-
-    if ! [ $KURA_FTS ] ; then
-        _echo "Setting up locales"
-        sudo locale-gen en_US.UTF-8
-        sudo timedatectl set-timezone Asia/Kuala_Lumpur
-    fi
 
     _echo "Setting up postgresql user for $USER with password 'topkek'"
     sudo -u postgres psql -c "create user $USER WITH SUPERUSER PASSWORD 'topkek';" postgres

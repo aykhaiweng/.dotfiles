@@ -5,11 +5,8 @@
 ###############################################################################
 
 
-# Get the color definitions
-source $THIS_DIR/colordefinitions.sh
-
 _echo() {
-	echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] [${CYAN}OSX${NOCOLOR}] - $1"
+	echo "[aykhaiweng says] [OSX] - $1"
 }
 
 
@@ -27,11 +24,11 @@ main() {
 	fi
 	# install the brew bundle
 	_echo "Installing Brewfile"
-	brew bundle --file="~/.dotfiles/osx/brew/Brewfile"
+	brew bundle --file="$SETUP_DIR/brew/Brewfile"
 
 	# Applying prefered settings
 	_echo "Applying prefered MacOSX settings"
-	source $THIS_DIR/osx/mac-osx-settings.sh
+	source $SETUP_DIR/osx/mac-osx-settings.sh
 }
 
 # invoke main

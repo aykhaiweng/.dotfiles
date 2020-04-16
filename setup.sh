@@ -1,11 +1,8 @@
 #!/bin/bash
 trap "exit" INT
 
-# Get the color definitions
-source colordefinitions.sh
-
 # declare current directory
-THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 _prompt_sudo() {
     # Prompt for sudo
@@ -14,7 +11,7 @@ _prompt_sudo() {
 
 _echo() {
     # Different echo colored based on the OS installed
-    echo "[${LIGHTCYAN}aykhaiweng${NOCOLOR} says] - $1"
+    echo "[aykhaiweng says] - $1"
 }
 
 _check_pyenv_versions() {
@@ -41,11 +38,11 @@ main() {
     if [[ $uname == 'Darwin' ]]; then
         _echo "Setting up for Darwin platform."
         export PYTHON_CONFIGURE_OPTS="--enable-framework"
-        source $THIS_DIR/osx/install.sh
+        source $SETUP_DIR/osx/install.sh
     elif [[ $uname == 'Linux' ]] || [[ $uname == '' ]]; then
         _echo "Setting up for Linux platform."
         export PYTHON_CONFIGURE_OPTS="--enable-shared"
-        source $THIS_DIR/linux/install.sh
+        source $SETUP_DIR/linux/install.sh
     else
         _echo "Your platform is not supported yet."
     fi
@@ -64,7 +61,7 @@ main() {
     sudo pip3 install --upgrade pip
     # prepare to symlink the files
     _echo "Now preparing to symlink files."
-    python3 $THIS_DIR/symlink.py
+    python3 $SETUP_DIR/symlink.py
     # run the aliases file to get the pyenv out
     _echo "Running the $HOME/.aliases file that we symlinked earlier"
     source ~/.aliases
@@ -111,7 +108,7 @@ main() {
     _echo "Downloading tpm for Tmux!"
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
     _echo "Downloading tmux-gitbar"
-    source $THIS_DIR/extras/install-tmux-gitbar.sh
+    source $SETUP_DIR/extras/install-tmux-gitbar.sh
 
     # Installing vim plug
     _echo "Installing vim-plug..."
