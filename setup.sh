@@ -59,6 +59,7 @@ main() {
     # updating pip and it's prerequisites
     _echo "Upgrading pip and installing prerequisites."
     sudo pip3 install --upgrade pip
+    # installing pipenv
     sudo pip3 install pipenv
     # prepare to symlink the files
     _echo "Now preparing to symlink files."
