@@ -59,6 +59,7 @@ main() {
     # updating pip and it's prerequisites
     _echo "Upgrading pip and installing prerequisites."
     sudo pip3 install --upgrade pip
+    sudo pip3 install pipenv
     # prepare to symlink the files
     _echo "Now preparing to symlink files."
     python3 $SETUP_DIR/symlink.py
@@ -83,21 +84,6 @@ main() {
 
     PYTHON3_VER="3.8.1"
 
-    # Now that all that is done, install python into pyenv
-    _echo "Installing $PYTHON3_VER with pyenv..."
-    yes '' | pyenv install $PYTHON3_VER
-    _echo "Setting python $PYTHON3 as the global default"
-    pyenv global $PYTHON3
-
-
-    # Setting up python for neovim
-    _echo "Setting up virtualenv for neovim3"
-    pyenv virtualenv $PYTHON3_VER neovim3
-    pyenv activate neovim3
-    pip install neovim psutil jedi -U
-    pyenv deactivate
-
-
     # FZF STUFF
     _echo "Installing FZF"
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -119,19 +105,15 @@ main() {
     nvim +PlugInstall +qa!
     vim +PlugInstall +qa!
 
-
     # Installing Poetry
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-
 
     # Installing KR
     curl https://krypt.co/kr | sh
 
-
     # Install Rmate
     sudo curl -o /usr/local/bin/rmate https://raw.githubusercontent.com/aurora/rmate/master/rmate
     sudo chmod +x /usr/local/bin/rmate
-
 
     # SSH STUFF
     # create an id_rsa file if it doesn't already exist
@@ -141,7 +123,6 @@ main() {
         _echo "Here is the key:"
         echo "$(cat $HOME/.ssh/id_ed25519.pub)"
     fi
-
 
     # finalize
     _echo "Reloading $HOME/.zshrc."

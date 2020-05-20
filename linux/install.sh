@@ -55,10 +55,10 @@ main() {
     echo
 
     sudo apt update -y
-    sudo apt install apt-transport-https -y
     sudo apt upgrade -y
+    sudo apt install apt-transport-https -y
     _echo "Installing essentials"
-    sudo apt install -y  --assume-yes build-essential curl wget file \
+    sudo apt install -y  --assume-yes apt-transport-https build-essential curl wget file \
         ca-certificates software-properties-common \
         make build-essential libssl-dev zlib1g-dev libbz2-dev \
         autotools-dev autoconf \
@@ -69,35 +69,13 @@ main() {
         libjpeg8-dev \
         byacc binutils gdal-bin \
         silversearcher-ag \
-        cmake zsh tmux xclip \
-
-    # Install KVM
-    _echo "Installing KVM"
-    sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager -y
-    sudo modprobe vhost_net 
-    sudo lsmod | grep vhost 
-    if ! [ $KURA_FTS ] ; then
-        _echo "Setting up KVM"
-        # echo "vhost_net" | sudo tee -a /etc/modules
-        # echo "iface eth0 inet manual" | sudo tee -a /etc/network/interfaces
-        # echo "iface br0 inet dhcp" | sudo tee -a /etc/network/interfaces
-        # echo "    bridge_ports eth0" | sudo tee -a /etc/network/interfaces
-        _append_to_file "vhost_net" "/etc/modules"
-        _append_to_file "iface eth0 inet manual" "/etc/network/interfaces"
-        _append_to_file "iface br0 inet dhcp" "/etc/network/interfaces"
-        _append_to_file "    bridge_ports eth0" "/etc/network/interfaces"
-        if [ $USER != "root" ] ; then
-            _echo "Adding users for KVM"
-            sudo adduser $USER libvirt
-            sudo adduser $USER libvirt-qemu
-        fi
-    fi
+        cmake zsh tmux neovim xclip \
 
     # Install Docker
     _echo "Installing Docker"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-    sudo apt update
+    sudo apt update -y
     apt-cache policy docker-ce
     sudo apt install docker-ce -y
 
@@ -109,28 +87,8 @@ main() {
     _echo "Installing Ansible"
     sudo apt install ansible -y
 
-    # Letsencrypt
-    _echo "Installing Letsencrypt"
-    sudo apt install letsencrypt -y
-
     # terminal essentials
     sudo apt install mosh -y
-
-    # neovim installation
-    sudo apt install neovim -y
-
-    _echo "Setting up postgresql user for $USER with password 'topkek'"
-    sudo -u postgres psql -c "create user $USER WITH SUPERUSER PASSWORD 'topkek';" postgres
-
-    # installing pyenv
-    if [ ! -d "$HOME/.pyenv" ] ; then
-        _echo "Installing pyenv"
-        git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-    fi
-    if [ ! -d "$HOME/.pyenv/plugins/pyenv-virtualenv" ] ; then
-        _echo "Installing pyenv-virtualenv"
-        git clone https://github.com/pyenv/pyenv-virtualenv.git $HOME/.pyenv/plugins/pyenv-virtualenv
-    fi
 }
 
 # invoke main

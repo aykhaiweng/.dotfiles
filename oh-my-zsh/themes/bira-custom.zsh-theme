@@ -32,9 +32,9 @@ RPS1="%B${return_code}%b"
 
 precmd() {
     if [[ -n $VIRTUAL_ENV ]]; then
-        local pyenv_version="($(pyenv version-name)) "
+        local _virtualenv="($VIRTUAL_ENV) "
     fi
 
     eval "$PROMPT_COMMAND"
-    PROMPT="${NEWLINE}${pyenv_version}${ssh_host}${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%b "
+    PROMPT="${NEWLINE}${_virtualenv}${ssh_host}${current_dir} ${git_branch}${NEWLINE}%B${user_symbol}%b "
 }
