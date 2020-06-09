@@ -37,7 +37,7 @@ read -n1 -r -p "Press any key to continue (or abort with Ctrl-C)... " key
 echo      ""
 echo -n   "Synchronizing... "
 
-python ~/.dotfiles/scripts/rsyncwrapper.py
+python3 ~/.dotfiles/scripts/rsyncwrapper.py
 
 echo      "done."
 echo      ""
@@ -50,6 +50,6 @@ ${FSWATCH_PATH} -0 -r . -l 1 -o\
     | while read -d "" event
 do
     echo -en "${green}" `date` "${nocolor}\"$event\" changed. Synchronizing... "
-    python ~/.dotfiles/scripts/rsyncwrapper.py
+    python3 ~/.dotfiles/scripts/rsyncwrapper.py
     echo "done."
 done

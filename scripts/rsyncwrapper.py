@@ -1,25 +1,17 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import argparse
 import getpass
 import os
 import subprocess
 import json
 
-"""
-rsync -v -zar -e ssh -q -T -o ConnectTimeout=10
--p 22 --delete
-/Users/aykhaiweng/Work/ouch-free/ aykhaiweng@34.87.84.87:'/home/aykhaiweng/rsync/ouch-free'
---exclude=.DS_Store --exclude=*.sublime* --exclude=*.pyc --exclude=__pycache__/ --exclude=_build --exclude=blib --exclude=volumes/database/ --exclude=volumes/public/ --exclude=volumes/ouch_core/ --exclude=Build --exclude=.git* --exclude=volumes/redis/ --exclude=volumes/certbot/
-"""
 
 RSYNC_BIN = "rsync"
 RSYNC_ARGS = [
     '-v',       # Increase verbosity
     '-zar',
-    '-e ssh',   # Specifying remote shell to use: SSH
     '-q',       # Surpress non-error messages
     '-p',       # Shows progress during transfer
-    # '-T',     # Create TEMP dir
     '-o',       # Maintain ownership
 ]
 DEFAULT_JSON_CONFIG_NAME = "rsync.json"
@@ -35,7 +27,6 @@ def search_parents_for_file(filename, cwd=None):
     """
     # Starting variables
     target_file = None
-    target_file_found = False
     cur_dir = cwd
 
     # Check if it is a full path
@@ -49,13 +40,13 @@ def search_parents_for_file(filename, cwd=None):
                 target_file = os.path.join(cur_dir, filename)
                 break
             else:
-                if cur_dir == parent_dir: #if dir is root dir
+                if cur_dir == parent_dir:  # if dir is root dir
                     break
                 else:
                     cur_dir = parent_dir
 
-    assert bool(target_file) == True, f"Unexpected Error, target_file not specified."
-    assert os.path.isfile(target_file) == True, f"Could not find config file (path: {target_file})"
+    assert bool(target_file) is True, "Unexpected Error, target_file not specified."
+    assert os.path.isfile(target_file) is True, f"Could not find config file (path: {target_file})"
 
     return target_file
 
@@ -72,24 +63,28 @@ def parse_json_config(file_path):
     parsed_arguments = []
     global_options = payload['options']
     global_excludes = payload['excludes']
+
     for local_path, remote_payloads in payload['remotes'].items():
         # Fallback
         if local_path == ".":
             # Use the directory of the file if the local path is .
             local_path = os.path.join(os.path.dirname(file_path), '.')
+
         elif os.path.isdir(local_path) is False:
             print(f"Path to \'{local_path}\' not found. Skipping...")
             continue
 
         for remote_payload in remote_payloads:
-            if remote_payload['enabled'] == False:
+            if remote_payload['enabled'] is False:
                 continue
+
             excludes = remote_payload['excludes'] + global_excludes
             options = remote_payload['options'] + global_options
             parsed_arguments.append({
                 "local_dir": local_path,
                 "excludes": excludes,
                 "options": options,
+                "ssh": remote_payload.get('ssh', "ssh"),
                 "remote_host": remote_payload['remote_host'],
                 "remote_path": remote_payload['remote_path'],
                 "remote_port": remote_payload.get('remote_port', None),
@@ -105,6 +100,9 @@ def build_command_list_for_rsync(rsync_bin, payload, direction='up', extras=[]):
     """
     # Base of the command
     command_list = [rsync_bin] + RSYNC_ARGS
+
+    # Add in SSH command
+    command_list += [f'-e \'{payload["ssh"]}\'']
 
     # Build port and local paths
     if payload['remote_port']:
@@ -133,7 +131,6 @@ def build_command_list_for_rsync(rsync_bin, payload, direction='up', extras=[]):
         command_list += remote_command
         command_list += local_command
 
-
     # Build the excludes
     for exclude in payload['excludes']:
         command_list += [f'--exclude={exclude}']
@@ -160,6 +157,7 @@ def execute_command_list(command_list):
     """
     Execute command list
     """
+    print(f"Executing: {command_list}")
     stdout = subprocess.run(command_list)
     if stdout.returncode != 0:
         print(stdout)
@@ -181,6 +179,7 @@ def main(*args, **kwargs):
 
     for c in command_lists:
         execute_command_list(c)
+
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=SCRIPT_HELP_TEXT)
