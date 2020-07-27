@@ -1,0 +1,6 @@
+[submodule "vendors/neovim"]
+	path = vendors/neovim
+	url = https://github.com/neovim/neovim
+[submodule "vendors/tmux"]
+	path = vendors/tmux
+	url = https://github.com/tmux/tmux
