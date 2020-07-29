@@ -1,32 +1,36 @@
 #!/usr/bin/env bash
 
-###########################################
-# GENERAL PURPOSE EXPORTED VARS / FUNCTIONS
-###########################################
-
 # Where the magic happens.
 export DOTFILES=~/.dotfiles
+export KURA_FTS=0
 
-# Logging stuff.
-function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
-function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
-function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; }
-function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
+# Initialize the genera
+source $DOTFILES/source/00_general_functions.sh
 
-# OS detection
-function is_osx() {
-  [[ "$OSTYPE" =~ ^darwin ]] || return 1
+
+###########################################
+# Functions for this file
+###########################################
+
+# copy command
+function copy_do() {
+  e_success "Copying ~/$1."
+  cp "$2" ~/
 }
-function is_ubuntu() {
-  [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
+# link command
+function link_do() {
+  e_success "Linking ~/$1."
+  ln -sf ${2#$HOME/} ~/
 }
-function is_ubuntu_desktop() {
-  dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
+# conf command
+function config_do() {
+  e_success "Linking ~/.config/$1."
+  ln -sf ../${2#$HOME/} ~/.config/
 }
-function get_os() {
-  for os in osx ubuntu ubuntu_desktop; do
-    is_$os; [[ $? == ${1:-0} ]] && echo $os
-  done
+# init command
+function init_do() {
+  e_header "Sourcing $(basename "$2")"
+  source "$2"
 }
 
 # Copy, link, init, etc.
@@ -100,6 +104,33 @@ elif [[ "$1" != "restart" ]]; then
   fi
 fi
 
-
 # Add binaries into the path
 [[ -d $DOTFILES/bin ]] && export PATH=$DOTFILES/bin:$PATH
+
+# Tweak file globbing.
+shopt -s dotglob
+shopt -s nullglob
+
+# Create caches dir and init subdir, if they don't already exist.
+mkdir -p "$DOTFILES/caches/init"
+
+# Create .config directory if the folder doesn't exist
+mkdir -p "$HOME/.config/"
+
+# If backups are needed, this is where they'll go.
+backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
+backup=
+
+# Execute code for each file in these subdirectories.
+do_stuff copy
+do_stuff link
+do_stuff config
+do_stuff init
+
+# Alert if backups were made.
+if [[ "$backup" ]]; then
+  echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
+fi
+
+# All done!
+e_header "All done!"

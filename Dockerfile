@@ -11,15 +11,16 @@ RUN usermod -aG sudo aykhaiweng
 RUN echo "aykhaiweng   ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers
 
 # Add dotfiles and chown
-ADD . /home/aykhaiweng/tmp/dotfiles
+ADD . /home/aykhaiweng/.dotfiles
 RUN chown -R aykhaiweng:aykhaiweng /home/aykhaiweng
+RUN ls /home/aykhaiweng/.dotfiles/
 
 # Switch aykhaiweng
 USER aykhaiweng
 ENV HOME /home/aykhaiweng
 
 # Change working directory
-WORKDIR /home/aykhaiweng/tmp/dotfiles
+WORKDIR /home/aykhaiweng/.dotfiles
 
 # Run setup
 RUN ./bin/dotfiles
