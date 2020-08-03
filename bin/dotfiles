@@ -4,6 +4,9 @@
 export DOTFILES=~/.dotfiles
 export KURA_FTS=0
 
+# initialize sudo
+sudo -v
+
 # Initialize the genera
 source $DOTFILES/source/00_general_functions.sh
 

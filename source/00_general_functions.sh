@@ -3,6 +3,14 @@
 ###########################################
 export DOTFILES=~/.dotfiles
 
+# encoding
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="UTF-8"
+
+# colors
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
 function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
@@ -24,3 +32,17 @@ function get_os() {
     is_$os; [[ $? == ${1:-0} ]] && echo $os
   done
 }
+
+# Shell detection
+function is_bash() {
+	[[ -n "$BASH_VERSION" ]] || return 1
+}
+function is_zsh() {
+	[[ -n "$ZSH_VERSION" ]] || return 1
+}
+
+is_osx && export DIRECTORY_COLOR_ARGUMENTS="-CF"
+is_ubuntu && export DIRECTORY_COLOR_ARGUMENTS="--color=always"
+
+alias ls='ls -A $DIRECTORY_COLOR_ARGUMENTS'
+alias ll='ls -Al'

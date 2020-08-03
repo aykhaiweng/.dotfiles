@@ -13,7 +13,6 @@ RUN echo "aykhaiweng   ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers
 # Add dotfiles and chown
 ADD . /home/aykhaiweng/.dotfiles
 RUN chown -R aykhaiweng:aykhaiweng /home/aykhaiweng
-RUN ls /home/aykhaiweng/.dotfiles/
 
 # Switch aykhaiweng
 USER aykhaiweng

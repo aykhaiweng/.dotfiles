@@ -20,4 +20,4 @@ function dotfiles() {
 
 src
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
