@@ -40,7 +40,7 @@ function init_do() {
 
 # Copy, link, init, etc.
 function do_stuff() {
-    # Saving these as local environments for now
+    # Saving these as local variables for now
     local source_folder=$1
     local target_folder=${2:-$HOME}
     local extra_find_args=$3
@@ -56,7 +56,8 @@ function do_stuff() {
         local file_list=$(find $dotfiles_relative_path -type f $extra_find_args | sed 's/^\.\///g' | sort)
 
         for source_file in $file_list; do
-            # Define the file_target without it's home prepend
+            # Define the file_target without it's home or dotfiles prepend, this is needed for
+            # functions that only require the relative path without the home prepend
             local file_target=$(echo $source_file | sed "s|^$dotfiles_relative_path||g")
             # Add the home prepend to the target
             local home_target=$target_folder$file_target
