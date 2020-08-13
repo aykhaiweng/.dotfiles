@@ -11,11 +11,14 @@ pyenv deactivate
 mkdir -p $DOTFILES/caches/vim
 
 # Installing vim-plug
-e_arrow "Installing vim-plug if it doesn't already exist"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim_plug_install_dir=$HOME/.vim/autoload/plug.vim
+if [[ ! -f $vim_plug_install_dir ]]; then
+	e_arrow "Installing vim-plug"
+	curl -fLo $vim_plug_install_dir --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 # Download Vim plugins.
-e_arrow "Attempting to run +PlugUpgrade and +PlugUpdate"
-if [[ "$(type -P vim)" ]]; then
+if [[ "$(type -p vim)" ]]; then
+	e_arrow "Running vim +PlugUpgrade and +PlugUpdate"
     vim +PlugUpgrade +PlugUpdate +qall
 fi

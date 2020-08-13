@@ -1,3 +1,9 @@
 [user]
   name = Au Yeong Khai Weng
   email = aykhaiweng@gmail.com
+[gpg]
+	program = /usr/local/bin/krgpg
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
