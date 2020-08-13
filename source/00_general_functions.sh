@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ###########################################
 # GENERAL PURPOSE EXPORTED VARS / FUNCTIONS
 ###########################################
@@ -10,6 +11,9 @@ export LC_CTYPE="UTF-8"
 # colors
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Add path to to dotfiles/bin
+[[ -d $DOTFILES/bin ]] && export PATH=$DOTFILES/bin:$PATH  # This might need to be run specifically if the repo hasn't been downloaded completely yet
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
@@ -41,8 +45,7 @@ function is_zsh() {
 	[[ -n "$ZSH_VERSION" ]] || return 1
 }
 
-is_osx && export DIRECTORY_COLOR_ARGUMENTS="-CF"
+is_osx && export DIRECTORY_COLOR_ARGUMENTS="C" && alias ls='ls -ACF'
 is_ubuntu && export DIRECTORY_COLOR_ARGUMENTS="--color=always"
 
-alias ls='ls -A $DIRECTORY_COLOR_ARGUMENTS'
-alias ll='ls -Al'
+alias ll='ls -l'

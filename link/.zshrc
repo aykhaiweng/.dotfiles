@@ -21,3 +21,5 @@ function dotfiles() {
 src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Added by Krypton
+export GPG_TTY=$(tty)

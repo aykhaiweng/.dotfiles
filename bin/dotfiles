@@ -7,9 +7,8 @@ export KURA_FTS=0
 # initialize sudo
 sudo -v
 
-# Initialize the genera
+# Initialize the general functions
 source $DOTFILES/source/00_general_functions.sh
-
 
 ###########################################
 # Functions for this file
@@ -17,22 +16,22 @@ source $DOTFILES/source/00_general_functions.sh
 
 # copy command
 function copy_do() {
-  e_success "Copying ~/$1."
+  e_success "[copy] Copying ~/$1"
   cp "$2" ~/
 }
 # link command
 function link_do() {
-  e_success "Linking ~/$1."
+  e_success "[link] Linking ~/$1"
   ln -sf ${2#$HOME/} ~/
 }
 # conf command
 function config_do() {
-  e_success "Linking ~/.config/$1."
+  e_success "[config] Linking ~/.config/$1"
   ln -sf ../${2#$HOME/} ~/.config/
 }
 # init command
 function init_do() {
-  e_header "Sourcing $(basename "$2")"
+  e_header "[init] Sourcing $(basename "$2")"
   source "$2"
 }
 
@@ -119,10 +118,6 @@ mkdir -p "$DOTFILES/caches/init"
 
 # Create .config directory if the folder doesn't exist
 mkdir -p "$HOME/.config/"
-
-# If backups are needed, this is where they'll go.
-backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
-backup=
 
 # Execute code for each file in these subdirectories.
 do_stuff copy

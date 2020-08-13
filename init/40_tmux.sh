@@ -5,5 +5,5 @@ e_arrow "Downloading tpm for Tmux!"
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 # Installing gitbar
-e_arror "Downloading tmux-gitbar"
+e_arrow "Downloading tmux-gitbar"
 git clone https://github.com/aurelien-rainone/tmux-gitbar.git $HOME/.tmux-gitbar

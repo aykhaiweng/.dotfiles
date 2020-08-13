@@ -5,36 +5,36 @@
         "revision": "f61ca8c408de4f758c7d28e0db687126795c1b30"
       },
       "homebrew/bundle": {
-        "revision": "94d474d9ab199720ff34560c82493e18da9b612d"
+        "revision": "538ffcbd24561213480e6f32a9ec087c91b25862"
       },
       "homebrew/cask": {
-        "revision": "98d4b203c2ea148fbb3c9c63cd627a7540ca35de"
+        "revision": "26bfea33b3baffa1ed72779bf426eadeaba457e2"
       },
       "homebrew/cask-fonts": {
-        "revision": "69332c763fe03333876b0ef76cc1dfc6660e2c86"
+        "revision": "45270c52e8b346c7bc26209c15f2d65d59b7317a"
       },
       "homebrew/core": {
-        "revision": "bebc62aedd16946466e8c78989768969e8b9641c"
+        "revision": "afb957233611612cb74dc89e84ed96d84c58a04d"
       }
     },
     "brew": {
       "fzf": {
-        "version": "0.21.1",
+        "version": "0.22.0",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/fzf-0.21.1.catalina.bottle.tar.gz",
-              "sha256": "733f79496c3246979ca05eeb5677a5fd9e8ec532e69e8b2012102cacddba8ae6"
+              "url": "https://homebrew.bintray.com/bottles/fzf-0.22.0.catalina.bottle.tar.gz",
+              "sha256": "cbb9e58e5e31c066239bef3997685b7d329e5b404d6f975cb5fdc7d2267bbe95"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/fzf-0.21.1.mojave.bottle.tar.gz",
-              "sha256": "3c03bb9715be153a0f776d06cf4acd436ad4faa4266f7bd875a0d37594291516"
+              "url": "https://homebrew.bintray.com/bottles/fzf-0.22.0.mojave.bottle.tar.gz",
+              "sha256": "dffc3afebed9d1cf1ca65bbd5c3bd691d58f642b834b3be620fb0019ac3ba947"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/fzf-0.21.1.high_sierra.bottle.tar.gz",
-              "sha256": "d15a616156eb92071f1cfc50f10366532af92ca1635d309162141ad67f785865"
+              "url": "https://homebrew.bintray.com/bottles/fzf-0.22.0.high_sierra.bottle.tar.gz",
+              "sha256": "2ffc38ada61090825862af5b7839a8297013a1f331ebfec94faeb6ca4541e35b"
             }
           }
         }
@@ -157,7 +157,7 @@
         }
       },
       "alacritty": {
-        "version": "0.4.3",
+        "version": "0.5.0",
         "options": {
           "full_name": "alacritty"
         }
@@ -277,7 +277,7 @@
         }
       },
       "ytmdesktop-youtube-music": {
-        "version": "1.11.0",
+        "version": "1.12.0",
         "options": {
           "full_name": "ytmdesktop-youtube-music"
         }
@@ -301,7 +301,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.4.9",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "bebc62aedd16946466e8c78989768969e8b9641c",
+        "Homebrew/homebrew-core": "afb957233611612cb74dc89e84ed96d84c58a04d",
         "CLT": "12.0.0.0.1.1595091463",
         "Xcode": "12.0",
         "macOS": "10.15.6"
