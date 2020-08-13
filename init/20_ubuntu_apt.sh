@@ -6,7 +6,7 @@ is_ubuntu || return 1
 export DEBIAN_FRONTEND=noninteractive 
 
 # Setting up the Timezone data
-e_arrow "Updating apt"
+e_success "Updating apt"
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 sudo dpkg-reconfigure --frontend noninteractive tzdata
 
@@ -15,10 +15,10 @@ e_success "Updating apt"
 sudo apt update -y
 sudo apt upgrade -y
 e_success "Installing essentials"
-sudo apt install -y  --assume-yes apt-transport-https build-essential curl wget file ca-certificates software-properties-common make build-essential libssl-dev zlib1g-dev libbz2-dev cmake zsh tmux neovim xclip
+sudo apt install -y  --assume-yes apt-transport-https build-essential curl wget file software-properties-common make build-essential libssl-dev zlib1g-dev libbz2-dev cmake zsh tmux neovim xclip
 
 # Install Docker
-_echo "Installing Docker"
+e_success "Installing Docker"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt update -y
