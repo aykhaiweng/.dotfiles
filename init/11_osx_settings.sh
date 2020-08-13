@@ -1,6 +1,8 @@
 # OSX-only stuff. Abort if not OSX.
 is_osx || return 1
 
+e_arrow "Setting defaults for MacOS system"
+
 # Remove press and hold for Mac cause Macshit
 defaults write -g ApplePressAndHoldEnabled -bool false
 

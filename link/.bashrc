@@ -13,11 +13,7 @@ function src() {
     fi
 }
 
-# Run dotfiles script, then source.
-function dotfiles() {
-    $DOTFILES/bin/dotfiles "$@" && src
-}
-
 src
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# End

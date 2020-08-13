@@ -13,13 +13,7 @@ function src() {
     fi
 }
 
-# Run dotfiles script, then source.
-function dotfiles() {
-    $DOTFILES/bin/dotfiles "$@" && src
-}
-
 src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Added by Krypton
-export GPG_TTY=$(tty)
+# End

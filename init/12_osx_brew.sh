@@ -2,6 +2,7 @@
 
 # OSX-only stuff. Abort if not OSX.
 is_osx || return 1
+[[ $SKIP_BREW -eq "1" ]] && e_arrow "Skipping Brew setup" && return 1
 
 # Install Homebrew.
 if [[ ! $(command -v brew) ]]; then
