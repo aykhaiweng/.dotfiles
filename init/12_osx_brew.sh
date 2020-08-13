@@ -5,8 +5,8 @@ is_osx || return 1
 
 # Install Homebrew.
 if [[ ! $(command -v brew) ]]; then
-  e_header "Installing Homebrew"
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    e_header "Installing Homebrew"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 # Exit if, for some reason, Homebrew is not installed.

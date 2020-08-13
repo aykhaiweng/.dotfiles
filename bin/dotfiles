@@ -16,65 +16,75 @@ source $DOTFILES/source/00_general_functions.sh
 
 # copy command
 function copy_do() {
-  e_success "[copy] Copying ~/$1"
-  cp "$2" ~/
+    e_success "[copy] Copying ~/$1"
+    cp "$2" ~/
 }
 # link command
 function link_do() {
-  e_success "[link] Linking ~/$1"
-  ln -sf ${2#$HOME/} ~/
+    e_success "[link] Linking ~/$1"
+    ln -sf ${2#$HOME/} ~/
 }
 # conf command
 function config_do() {
-  e_success "[config] Linking ~/.config/$1"
-  ln -sf ../${2#$HOME/} ~/.config/
+    e_success "[config] Linking ~/.config/$1"
+    ln -sf ../${2#$HOME/} ~/.config/
 }
 # init command
 function init_do() {
-  e_header "[init] Sourcing $(basename "$2")"
-  source "$2"
+    e_header "[init] Sourcing $(basename "$2")"
+    source "$2"
 }
 
 # Copy, link, init, etc.
 function do_stuff() {
-  local base dest skip
-  local files=($DOTFILES/$1/*)
-  [[ $(declare -f "$1_files") ]] && files=($($1_files "${files[@]}"))
-  # No files? abort.
-  if (( ${#files[@]} == 0 )); then return; fi
-  # Run _header function only if declared.
-  [[ $(declare -f "$1_header") ]] && "$1_header"
-  # Iterate over files.
-  for file in "${files[@]}"; do
-    base="$(basename $file)"
-    # Get dest path.
-    if [[ $(declare -f "$1_dest") ]]; then
-      dest="$("$1_dest" "$base")"
-    else
-      dest="$HOME/$base"
-    fi
-    # Run _test function only if declared.
-    if [[ $(declare -f "$1_test") ]]; then
-      # If _test function returns a string, skip file and print that message.
-      skip="$("$1_test" "$file" "$dest")"
-      if [[ "$skip" ]]; then
-        e_error "Skipping ~/$base, $skip."
-        continue
-      fi
-      # Destination file already exists in ~/. Back it up!
-      if [[ -e "$dest" ]]; then
-        e_arrow "Backing up ~/$base."
-        # Set backup flag, so a nice message can be shown at the end.
-        backup=1
-        # Create backup dir if it doesn't already exist.
-        [[ -e "$backup_dir" ]] || mkdir -p "$backup_dir"
-        # Backup file / link / whatever.
-        mv "$dest" "$backup_dir"
-      fi
-    fi
-    # Do stuff.
-    "$1_do" "$base" "$file"
-  done
+    local base dest skip
+    local files=($DOTFILES/$1/*)
+    [[ $(declare -f "$1_files") ]] && files=($($1_files "${files[@]}"))
+    # No files? abort.
+    if (( ${#files[@]} == 0 )); then return; fi
+    # Run _header function only if declared.
+    [[ $(declare -f "$1_header") ]] && "$1_header"
+    # Iterate over files.
+    for file in "${files[@]}"; do
+        base="$(basename $file)"
+        # Get dest path.
+        if [[ $(declare -f "$1_dest") ]]; then
+            dest="$("$1_dest" "$base")"
+        else
+            dest="$HOME/$base"
+        fi
+        # Run _test function only if declared.
+        if [[ $(declare -f "$1_test") ]]; then
+            # If _test function returns a string, skip file and print that message.
+            skip="$("$1_test" "$file" "$dest")"
+            if [[ "$skip" ]]; then
+                e_error "Skipping ~/$base, $skip."
+                continue
+            fi
+            # Destination file already exists in ~/. Back it up!
+            if [[ -e "$dest" ]]; then
+                e_arrow "Backing up ~/$base."
+                # Set backup flag, so a nice message can be shown at the end.
+                backup=1
+                # Create backup dir if it doesn't already exist.
+                [[ -e "$backup_dir" ]] || mkdir -p "$backup_dir"
+                # Backup file / link / whatever.
+                mv "$dest" "$backup_dir"
+            fi
+        fi
+        # Do stuff.
+        "$1_do" "$base" "$file"
+    done
+}
+
+function do_stuffv2() {
+    list=$(find $1 -type f | sed 's/^\.\///g')
+
+    for entry in $list; do
+        # entry is the path relative to .dotfiles
+        # cleanedVar is after removing the first directory
+        cleanedVar=$(echo $entry | sed "s/^$1/~/g")
+    done
 }
 
 
@@ -84,26 +94,26 @@ function do_stuff() {
 
 # If $DOTFILES doesn't exist, attempt to pull and update the git submodules
 if [[ ! -d $DOTFILES ]]; then
-  # Dotfiles directory doesn't exist? Clone it!
-  e_header "Downloading dotfiles"
-  git clone --branch dev --recursive git://github.com/aykhaiweng/.dotfiles.git $DOTFILES
-  cd $DOTFILES
+    # Dotfiles directory doesn't exist? Clone it!
+    e_header "Downloading dotfiles"
+    git clone --branch dev --recursive git://github.com/aykhaiweng/.dotfiles.git $DOTFILES
+    cd $DOTFILES
 elif [[ "$1" != "restart" ]]; then
-  # Make sure we have the latest files.
-  e_header "Updating dotfiles"
-  cd $DOTFILES
-  prev_head="$(git rev-parse HEAD)"
-  git pull
-  git submodule update --init --recursive --quiet
-  if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
-    if is_dotfiles_bin; then
-      e_header "Changes detected, restarting script"
-      exec "$0" restart
-    else
-      e_header "Changes detected, please re-run script"
-      exit
+    # Make sure we have the latest files.
+    e_header "Updating dotfiles"
+    cd $DOTFILES
+    prev_head="$(git rev-parse HEAD)"
+    git pull
+    git submodule update --init --recursive --quiet
+    if [[ "$(git rev-parse HEAD)" != "$prev_head" ]]; then
+        if is_dotfiles_bin; then
+            e_header "Changes detected, restarting script"
+            exec "$0" restart
+        else
+            e_header "Changes detected, please re-run script"
+            exit
+        fi
     fi
-  fi
 fi
 
 # Add binaries into the path
@@ -119,6 +129,10 @@ mkdir -p "$DOTFILES/caches/init"
 # Create .config directory if the folder doesn't exist
 mkdir -p "$HOME/.config/"
 
+# If backups are needed, this is where they'll go.
+backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
+backup=
+
 # Execute code for each file in these subdirectories.
 do_stuff copy
 do_stuff link
@@ -127,7 +141,7 @@ do_stuff init
 
 # Alert if backups were made.
 if [[ "$backup" ]]; then
-  echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
+    echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
 fi
 
 # All done!

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# argument handling
+source_folder=$1
+target_folder=${2:-~}
+
+echo $target_folder
+
+file_list=
+function generate_file_list() {
+    local source_folder=$1
+    file_list=$(find $source_folder -type f | sed 's/^\.\///g')
+}
+
+function do_stuffv2 {
+    generate_file_list $1
+    local source_folder=$1
+    local target_folder=$2
+    for source_file in $file_list; do
+        # sourceFile is the path relative to .dotfiles
+        # homeTarget is after removing the first directory
+
+        # Remove the source_folder from the path and replace it with home
+        local home_target=$(echo $source_file | sed "s|^$source_folder|$target_folder|g")
+        echo $home_target
+    done
+}
+
+do_stuffv2 $source_folder $target_folder

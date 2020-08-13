@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 ###########################################
 # GENERAL PURPOSE EXPORTED VARS / FUNCTIONS
 ###########################################
@@ -12,6 +13,9 @@ export LC_CTYPE="UTF-8"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
+# configuration options for pyenv
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
 # Add path to to dotfiles/bin
 [[ -d $DOTFILES/bin ]] && export PATH=$DOTFILES/bin:$PATH  # This might need to be run specifically if the repo hasn't been downloaded completely yet
 
@@ -23,18 +27,18 @@ function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 
 # OS detection
 function is_osx() {
-  [[ "$OSTYPE" =~ ^darwin ]] || return 1
+    [[ "$OSTYPE" =~ ^darwin ]] || return 1
 }
 function is_ubuntu() {
-  [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
+    [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
 }
 function is_ubuntu_desktop() {
-  dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
+    dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
 }
 function get_os() {
-  for os in osx ubuntu ubuntu_desktop; do
-    is_$os; [[ $? == ${1:-0} ]] && echo $os
-  done
+    for os in osx ubuntu ubuntu_desktop; do
+	    is_$os; [[ $? == ${1:-0} ]] && echo $os
+    done
 }
 
 # Shell detection

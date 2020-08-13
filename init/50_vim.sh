@@ -17,5 +17,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 # Download Vim plugins.
 e_arrow "Attempting to run +PlugUpgrade and +PlugUpdate"
 if [[ "$(type -P vim)" ]]; then
-  vim +PlugUpgrade +PlugUpdate +qall
+    vim +PlugUpgrade +PlugUpdate +qall
 fi
