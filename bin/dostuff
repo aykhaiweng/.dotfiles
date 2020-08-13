@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+test=0
+# Initialize the general functions
+source $DOTFILES/source/00_general_functions.sh
+
+# copy command
+function copy_do() {
+    e_success "[copy] Copying $1 -> $2"
+    if [ $test -ne 1 ]; then
+        cp -r "$1" "$2"
+    fi
+}
+# link command
+function link_do() {
+    if [[ -L $2 ]]; then
+        e_arrow "[link] $2 already exists."
+    else
+        e_success "[link] Linking $1 -> $2"
+        if [ $test -ne 1 ]; then
+            ln -s "$1" "$2"
+        fi
+    fi
+}
+# conf command
+function config_do() {
+    local new_target_folder="$HOME/.config/$3"
+    e_success "[config] Linking $1 to $new_target_folder"
+    if [ $test -ne 1 ]; then
+        ln -s "$1" "$new_target_folder"
+    fi
+}
+# init command
+function init_do() {
+    e_header "Sourcing $1"
+    if [ $test -ne 1 ]; then
+        source "$1"
+    fi
+}
+
+# Copy, link, init, etc.
+function do_stuff() {
+    # Saving these as local environments for now
+    local source_folder=$1
+    local target_folder=${2:-$HOME}
+    local extra_find_args=$3
+
+    e_header "Doing $source_folder"
+
+    # Replacing source_folder with the dotfiles related path
+    dotfiles_relative_path=$DOTFILES/$1
+
+    # Check if the path relative to the dotfiles exists before attempting anything
+    if [[ -d "$dotfiles_relative_path" ]]; then
+        # Create a recursive file list of all the files
+        local file_list=$(find $dotfiles_relative_path -type f $extra_find_args | sed 's/^\.\///g' | sort)
+
+        for source_file in $file_list; do
+            # Define the file_target without it's home prepend
+            local file_target=$(echo $source_file | sed "s|^$dotfiles_relative_path||g")
+            # Add the home prepend to the target
+            local home_target=$target_folder$file_target
+            # Check if the target file exists in $HOME directory
+            if [[ (-f $home_target || -d $home_target) && ! -L $home_target ]]; then
+                if [[ ! -d $backup_dir ]]; then
+                    # If the backup directory does not exist yet, create one
+                    mkdir -p "$backup_dir"
+                    backup=1
+                fi
+                e_arrow "[$source_folder] $home_target Already exists. Creating a backup"
+                cp -r "$home_target" "$backup_dir$target_file"
+            fi
+            "${source_folder}_do" "$source_file" "$home_target"
+        done
+    fi
+}
+
+# If backups are needed, this is where they'll go.
+backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
+backup=
+
+# Execute functions for each directory
+do_stuff copy $HOME
+do_stuff link $HOME
+do_stuff config $HOME
+do_stuff init $HOME '-name *.sh'
+
+# Alert if backups were made.
+if [[ "$backup" ]]; then
+     e_header "Backups were moved to $HOME/${backup_dir#$HOME/}"
+fi

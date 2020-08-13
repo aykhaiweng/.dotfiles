@@ -37,16 +37,27 @@ function is_ubuntu_desktop() {
 }
 function get_os() {
     for os in osx ubuntu ubuntu_desktop; do
-	    is_$os; [[ $? == ${1:-0} ]] && echo $os
+        is_$os; [[ $? == ${1:-0} ]] && echo $os
     done
 }
 
 # Shell detection
 function is_bash() {
-	[[ -n "$BASH_VERSION" ]] || return 1
+    [[ -n "$BASH_VERSION" ]] || return 1
 }
 function is_zsh() {
-	[[ -n "$ZSH_VERSION" ]] || return 1
+    [[ -n "$ZSH_VERSION" ]] || return 1
+}
+
+# File detection
+function is_symlink() {
+    [[ -L $1 ]] && return 1
+}
+function is_file() {
+    [[ -f $1 ]] && return 1
+}
+function is_directory() {
+    [[ -d $1 ]] && return 1
 }
 
 is_osx && export DIRECTORY_COLOR_ARGUMENTS="C" && alias ls='ls -ACF'

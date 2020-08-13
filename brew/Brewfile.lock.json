@@ -2,19 +2,19 @@
   "entries": {
     "tap": {
       "buo/cask-upgrade": {
-        "revision": "f61ca8c408de4f758c7d28e0db687126795c1b30"
+        "revision": "33e6d479ab21955126afd5d30620fc13c387ce5a"
       },
       "homebrew/bundle": {
-        "revision": "538ffcbd24561213480e6f32a9ec087c91b25862"
+        "revision": "3e9ebe1c94b361c05178cb69af3de0802272125f"
       },
       "homebrew/cask": {
-        "revision": "26bfea33b3baffa1ed72779bf426eadeaba457e2"
+        "revision": "1ad3df657d3ee1bd54395574e5de24fb4579dd8d"
       },
       "homebrew/cask-fonts": {
-        "revision": "45270c52e8b346c7bc26209c15f2d65d59b7317a"
+        "revision": "7348c351238aa0c3f472cc050199453db3a35c52"
       },
       "homebrew/core": {
-        "revision": "afb957233611612cb74dc89e84ed96d84c58a04d"
+        "revision": "7bb5de0758f75342981570378bd416cf4899b8a4"
       }
     },
     "brew": {
@@ -40,22 +40,22 @@
         }
       },
       "neovim": {
-        "version": "0.4.3",
+        "version": "0.4.4",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/neovim-0.4.3.catalina.bottle.tar.gz",
-              "sha256": "389ab254794ea04df8a106bf281c227c4fdee27c609d52951f32b9a0239031d6"
+              "url": "https://homebrew.bintray.com/bottles/neovim-0.4.4.catalina.bottle.tar.gz",
+              "sha256": "ade03fcf189ccd82e8b4627499113aed67a753b0e3ffa9662c15d7037f6ed617"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/neovim-0.4.3.mojave.bottle.tar.gz",
-              "sha256": "fb6cc38c45be4650a4a750a314cec27f6f7643dc7c22a1f5abae347e1b39b388"
+              "url": "https://homebrew.bintray.com/bottles/neovim-0.4.4.mojave.bottle.tar.gz",
+              "sha256": "e68135735b24df7e1318bb71c4fef6461884b2c7a166d756b4a21bd787a329a2"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/neovim-0.4.3.high_sierra.bottle.tar.gz",
-              "sha256": "b2f7450e005f4eb22bfaf650fe7741fa8629393a947b4dd48c9f91e7fc258113"
+              "url": "https://homebrew.bintray.com/bottles/neovim-0.4.4.high_sierra.bottle.tar.gz",
+              "sha256": "77773fc6e8ad7fd726e881850712f3995feef94548bfd6081599c5b682eb4411"
             }
           }
         }
@@ -205,7 +205,7 @@
         }
       },
       "kitty": {
-        "version": "0.18.2",
+        "version": "0.18.3",
         "options": {
           "full_name": "kitty"
         }
@@ -299,9 +299,9 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.9",
+        "HOMEBREW_VERSION": "2.4.11",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "afb957233611612cb74dc89e84ed96d84c58a04d",
+        "Homebrew/homebrew-core": "7bb5de0758f75342981570378bd416cf4899b8a4",
         "CLT": "12.0.0.0.1.1595091463",
         "Xcode": "12.0",
         "macOS": "10.15.6"
