@@ -21,7 +21,7 @@ function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; }
 function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 
 # If $DOTFILES doesn't exist, attempt to pull and update the git submodules
-if [[ ! -d $DOTFILES ]]; then
+if [[ ! -d "$DOTFILES/.git" ]]; then
     # Dotfiles directory doesn't exist? Clone it!
     e_header "Downloading dotfiles"
     git clone --branch dev --recursive git://github.com/aykhaiweng/.dotfiles.git $DOTFILES
