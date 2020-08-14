@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# SKIP THIS
+return 1
+
 # Ubuntu-only stuff. Abort if not Ubuntu.
 is_ubuntu || return 1
 [[ $SKIP_BREW -eq "1" ]] && e_arrow "Skipping Brew setup" && return 1

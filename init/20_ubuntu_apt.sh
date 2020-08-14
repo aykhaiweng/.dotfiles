@@ -3,7 +3,34 @@
 # Ubuntu-only stuff. Abort if not Ubuntu.
 is_ubuntu || return 1
 
+# Disable frontend for some installers
 export DEBIAN_FRONTEND=noninteractive
+
+# Commands
+apt_ppa=()
+apt_packages=(
+    apt-transport-https
+    build-essential
+    gnupg-agent
+    ca-certificates 
+    software-properties-common
+    make
+    cmake
+    zlib1g-dev
+    libbz2-dev
+    libffi-dev
+    libc6-dev
+    libssl-dev
+    libreadline-dev
+    libsqlite3-dev
+    wget
+    zsh
+    xclip
+    nodejs
+    silversearcher-ag
+    bat
+    fzf
+)
 
 # General install
 e_arrow "Running apt update"
@@ -12,31 +39,40 @@ e_arrow "Running apt autoremove"
 sudo apt autoremove -y
 e_arrow "Running apt upgrade"
 sudo apt upgrade -y
-e_success "Installing essentials"
-sudo apt install -y --assume-yes \
-    apt-transport-https build-essential \
-    wget gnupg-agent \
-    ca-certificates libssl-dev \
-    software-properties-common make cmake \
-    zlib1g-dev libbz2-dev libffi-dev libc6-dev
-    # libreadline-dev libsqlite3-dev
-    # zsh tmux vim neovim xclip nodejs silversearcher-ag bat fzf
 
-# Install latest vim
-# sudo add-apt-repository ppa:jonathonf/vim
-# sudo apt update -y
-# sudo apt install -y vim
+# Latest vim
+apt_ppa+=("ppa:jonathonf/vim")
+apt_packages+=(vim)
 
-# Install Docker
-# e_arrow "Installing Docker"
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
-# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-# sudo apt-get install -y docker-ce docker-ce-cli docker-compose containerd.io
+# Latest neovim
+apt_ppa+=("ppa:neovim-ppa/unstable")
+apt_packages+=(neovim)
+
+# Docker
+e_arrow "Installing Docker"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
+apt_ppa+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable")
+apt_packages+=(docker-ce)
+apt_packages+=(docker-ce-cli)
+apt_packages+=(docker-compose)
+apt_packages+=(containerd.io)
+
+# Adding apt repositories
+e_arrow "Adding apt repositories"
+for entry in $apt_ppa; do
+    sudo add-apt-repository -y $entry
+done
+
+# Install the apt packages
+e_arrow "Installing apt packages"
+for entry in $apt_packages; do
+    sudo apt install -qy $entry
+done
 
 # Install pyenv
-# if [[ -d "$HOME/.pyenv" ]]; then
-#     e_arrow "pyenv is already installed"
-# else
-#     e_success "Installing pyenv"
-#     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-# fi
+if [[ -d "$HOME/.pyenv" ]]; then
+    e_arrow "pyenv is already installed"
+else
+    e_success "Installing pyenv"
+    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+fi
