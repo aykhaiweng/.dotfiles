@@ -7,33 +7,27 @@ source $DOTFILES/source/00_general_functions.sh
 # copy command
 function copy_do() {
     e_success "[copy] Copying $1 -> $2"
-    if [ $test -ne 1 ]; then
+    if [[ $test -ne 1 ]]; then
         cp -r "$1" "$2"
     fi
 }
 # link command
 function link_do() {
-    if [[ -L $2 ]]; then
-        e_arrow "[link] $2 already exists."
-    else
-        e_success "[link] Linking $1 -> $2"
-        if [ $test -ne 1 ]; then
-            ln -s "$1" "$2"
+    e_success "[link] Linking $1 -> $2"
+    if [[ $test -ne 1 ]]; then
+        # Check if the folder exists
+        local target_dirname=$(dirname $2)
+        if [[ ! -d $target_dirname ]]; then
+            mkdir -p $target_dirname
         fi
-    fi
-}
-# conf command
-function config_do() {
-    local new_target_folder="$HOME/.config/$3"
-    e_success "[config] Linking $1 to $new_target_folder"
-    if [ $test -ne 1 ]; then
-        ln -s "$1" "$new_target_folder"
+        # Link the folders
+        ln -fs "$1" "$2"
     fi
 }
 # init command
 function init_do() {
     e_header "Sourcing $1"
-    if [ $test -ne 1 ]; then
+    if [[ $test -ne 1 ]]; then
         source "$1"
     fi
 }
@@ -83,8 +77,7 @@ backup=
 # Execute functions for each directory
 do_stuff copy $HOME
 do_stuff link $HOME
-do_stuff config $HOME
-do_stuff init $HOME '-name *.sh'
+do_stuff init $HOME '-name *.sh$'
 
 # Alert if backups were made.
 if [[ "$backup" ]]; then

@@ -15,7 +15,7 @@ e_success "Updating apt"
 sudo apt update -y
 sudo apt upgrade -y
 e_success "Installing essentials"
-sudo apt install -y  --assume-yes apt-transport-https build-essential curl wget file software-properties-common make build-essential libssl-dev zlib1g-dev libbz2-dev cmake zsh tmux neovim xclip
+sudo apt install -y  --assume-yes apt-transport-https build-essential curl wget file software-properties-common make build-essential libssl-dev zlib1g-dev libbz2-dev cmake zsh tmux neovim xclip node
 
 # Install Docker
 e_success "Installing Docker"
