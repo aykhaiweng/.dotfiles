@@ -9,6 +9,7 @@ if [[ ! $(command -v brew) ]]; then
     e_success "Installing Homebrew"
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     # This is required for adding the path in
+    e_arrow "Adding linuxbrew to PATH"
     source $DOTFILES/source/14_brew_path.sh
 fi
 
