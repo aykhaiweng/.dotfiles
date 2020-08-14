@@ -14,10 +14,10 @@ e_arrow "Running apt upgrade"
 sudo apt upgrade -y
 e_success "Installing essentials"
 sudo apt install -y --assume-yes \
-    apt-transport-https curl \
+    apt-transport-https build-essential \
     wget gnupg-agent \
     ca-certificates libssl-dev \
-    software-properties-common make cmake build-essential \
+    software-properties-common make cmake \
     zlib1g-dev libbz2-dev libffi-dev libc6-dev \
     # libreadline-dev libsqlite3-dev
     # zsh tmux vim neovim xclip nodejs silversearcher-ag bat
