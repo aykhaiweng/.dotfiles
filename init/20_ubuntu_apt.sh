@@ -59,13 +59,13 @@ apt_packages+=(containerd.io)
 
 # Adding apt repositories
 e_arrow "Adding apt repositories"
-for entry in $apt_ppa; do
-    sudo add-apt-repository -y $entry
+for entry in "${apt_ppa[@]}"; do
+    sudo add-apt-repository $entry
 done
 
 # Install the apt packages
 e_arrow "Installing apt packages"
-for entry in $apt_packages; do
+for entry in "${apt_packages[@]}"; do
     sudo apt install -qy $entry
 done
 
