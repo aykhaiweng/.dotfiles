@@ -10,7 +10,11 @@ e_arrow "Updating apt"
 sudo apt update -y
 sudo apt upgrade -y
 e_success "Installing essentials"
-sudo apt install -y --assume-yes apt-transport-https build-essential curl wget file software-properties-common make build-essential libssl-dev zlib1g-dev libbz2-dev cmake zsh tmux neovim xclip nodejs silversearcher-ag bat
+sudo apt install -y --assume-yes \
+    apt-transport-https build-essential \
+    software-properties-common make cmake build-essential libssl-dev zlib1g-dev libbz2-dev libffi-devel \
+    curl wget file \
+    zsh tmux neovim xclip nodejs silversearcher-ag bat
 
 # Install Docker
 e_arrow "Installing Docker"
