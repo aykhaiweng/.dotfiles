@@ -21,4 +21,9 @@ apt-cache policy docker-ce
 sudo apt install docker-ce docker-compose -y
 
 # Install pyenv
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+if [[ -d "$HOME/.pyenv" ]]; then
+    e_arrow "pyenv is already installed"
+else
+    e_success "Installing pyenv"
+    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+fi
