@@ -16,6 +16,7 @@ sudo apt install -y --assume-yes \
     ca-certificates libssl-dev \
     software-properties-common make cmake build-essential \
     zlib1g-dev libbz2-dev libffi-dev \
+    libreadline-dev libsqlite3-dev \
     zsh tmux vim neovim xclip nodejs silversearcher-ag bat
 
 # Install Docker
