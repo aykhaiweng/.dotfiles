@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
-# OSX-only stuff. Abort if not OSX.
-is_osx || return 1
+# Ubuntu-only stuff. Abort if not Ubuntu.
+is_ubuntu || return 1
 [[ $SKIP_BREW -eq "1" ]] && e_arrow "Skipping Brew setup" && return 1
 
 # Install Homebrew.
 if [[ ! $(command -v brew) ]]; then
     e_success "Installing Homebrew"
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    # This is required for adding the path in
+    source $DOTFILES/source/14_brew_path.sh
 fi
 
 # Exit if, for some reason, Homebrew is not installed.
