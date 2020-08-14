@@ -1,8 +1,10 @@
+brew "gcc"
+brew "sqlite3"
+#
 brew "bat"
 brew "docker"
 brew "docker-compose"
 brew "fzf"
-brew "gcc"
 brew "neovim"
 brew "node"
 brew "pipenv"
