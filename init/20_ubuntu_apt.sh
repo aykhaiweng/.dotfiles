@@ -6,9 +6,11 @@ is_ubuntu || return 1
 export DEBIAN_FRONTEND=noninteractive
 
 # General install
-e_arrow "Updating apt"
+e_arrow "Running apt update"
 sudo apt update -y
+e_arrow "Running apt autoremove"
 sudo apt autoremove -y
+e_arrow "Running apt upgrade"
 sudo apt upgrade -y
 e_success "Installing essentials"
 sudo apt install -y --assume-yes \
