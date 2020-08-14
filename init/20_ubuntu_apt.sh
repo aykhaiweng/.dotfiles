@@ -21,15 +21,15 @@ sudo apt install -y --assume-yes \
     # zsh tmux vim neovim xclip nodejs silversearcher-ag bat
 
 # Install Docker
-e_arrow "Installing Docker"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+# e_arrow "Installing Docker"
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 # Install pyenv
-if [[ -d "$HOME/.pyenv" ]]; then
-    e_arrow "pyenv is already installed"
-else
-    e_success "Installing pyenv"
-    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-fi
+# if [[ -d "$HOME/.pyenv" ]]; then
+#     e_arrow "pyenv is already installed"
+# else
+#     e_success "Installing pyenv"
+#     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+# fi
