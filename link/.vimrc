@@ -90,7 +90,7 @@ set rtp+=~/.fzf
 command! -bang -nargs=? -complete=dir FilesCustom call fzf#vim#files(<q-args>, {'options': "$FZF_DEFAULT_OPTS"}, <bang>0)
 
 " nerdtree
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
+Plug 'preservim/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
 let NERDTreeShowHidden=1
 let g:NERDTreeQuitOnOpen=0
@@ -99,11 +99,19 @@ let g:NERDTreeHighlightCursorLine=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrows = 0
+" Disable arrow icons at the left side of folders for NERDTree.
+let g:NERDTreeDirArrowExpandable = "\u00a0"
+let g:NERDTreeDirArrowCollapsible = "\u00a0"
+
+" git icons
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
-let g:webdevicons_conceal_nerdtree_brackets=1
-let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+let g:webdevicons_conceal_nerdtree_brackets=0
+let g:WebDevIconsNerdTreeBeforeGlyphPadding=" "
+let g:WebDevIconsNerdTreeAfterGlyphPadding="  "
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 
 
 """ git
@@ -279,7 +287,7 @@ nnoremap tn  :tabnew<CR>
 nnoremap tm  :tabm<Space>
 nnoremap tx  :tabclose<CR>
 vnoremap <silent> <F5> :sort i<CR>
-nnoremap <silent> <F5> :so $MYVIMRC<CR>:LightlineReload<CR>
+nnoremap <silent> <F5> :so $MYVIMRC<CR>:LightlineReload<CR>:call webdevicons#refresh()<CR>
 nnoremap <F8> :set tabstop=4 shiftwidth=4 expandtab<CR>:retab!<CR>
 
 nnoremap <Leader>lx :lclose<CR>
