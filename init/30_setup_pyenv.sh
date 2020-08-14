@@ -17,4 +17,5 @@ else
     e_success "Installing Python $PYTHON3_VER with pyenv..."
     yes '' | pyenv install $PYTHON3_VER
     pyenv global $PYTHON3_VER
+    pip install -U pip
 fi
