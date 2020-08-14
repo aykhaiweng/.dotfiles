@@ -18,15 +18,20 @@ sudo apt install -y --assume-yes \
     wget gnupg-agent \
     ca-certificates libssl-dev \
     software-properties-common make cmake \
-    zlib1g-dev libbz2-dev libffi-dev libc6-dev \
+    zlib1g-dev libbz2-dev libffi-dev libc6-dev
     # libreadline-dev libsqlite3-dev
-    # zsh tmux vim neovim xclip nodejs silversearcher-ag bat
+    # zsh tmux vim neovim xclip nodejs silversearcher-ag bat fzf
+
+# Install latest vim
+# sudo add-apt-repository ppa:jonathonf/vim
+# sudo apt update -y
+# sudo apt install -y vim
 
 # Install Docker
 # e_arrow "Installing Docker"
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
 # sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-# sudo apt-get install docker-ce docker-ce-cli containerd.io
+# sudo apt-get install -y docker-ce docker-ce-cli docker-compose containerd.io
 
 # Install pyenv
 # if [[ -d "$HOME/.pyenv" ]]; then
