@@ -10,7 +10,7 @@ fi
 
 e_arrow "Setting up virtualenv for Neovim"
 pyenv activate neovim3
-pip install -U pip neovim psutil pynvim
+pip install -U --quiet pip neovim psutil pynvim
 pyenv deactivate
 
 # Backups, swaps and undos are stored here.
