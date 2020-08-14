@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Dependencies
+source $DOTFILES/source/30_pyenv.sh
+
 # Setting up python for neovim
 if [[ $(pyenv versions | grep neovim3) ]]; then
     e_arrow "Virtualenv for neovim3 already exists"
