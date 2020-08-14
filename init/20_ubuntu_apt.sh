@@ -12,11 +12,12 @@ sudo apt autoremove -y
 sudo apt upgrade -y
 e_success "Installing essentials"
 sudo apt install -y --assume-yes \
-    apt-transport-https curl wget gnupg-agent \
+    apt-transport-https curl \
+    wget gnupg-agent \
     ca-certificates libssl-dev \
     software-properties-common make cmake build-essential \
-    zlib1g-dev libbz2-dev libffi-dev \
-    libreadline-dev libsqlite3-dev
+    zlib1g-dev libbz2-dev libffi-dev libc6-dev \
+    # libreadline-dev libsqlite3-dev
     # zsh tmux vim neovim xclip nodejs silversearcher-ag bat
 
 # Install Docker
