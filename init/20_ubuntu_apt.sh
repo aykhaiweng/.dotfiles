@@ -8,13 +8,15 @@ export DEBIAN_FRONTEND=noninteractive
 # General install
 e_arrow "Updating apt"
 sudo apt update -y
+sudo apt autoremove -y
 sudo apt upgrade -y
 e_success "Installing essentials"
 sudo apt install -y --assume-yes \
-    apt-transport-https build-essential \
-    software-properties-common make cmake build-essential libssl-dev zlib1g-dev libbz2-dev libffi-devel \
-    curl wget file \
-    zsh tmux neovim xclip nodejs silversearcher-ag bat
+    apt-transport-https curl wget gnupg-agent \
+    ca-certificates libssl-dev \
+    software-properties-common make cmake build-essential \
+    zlib1g-dev libbz2-dev libffi-dev \
+    zsh tmux vim neovim xclip nodejs silversearcher-ag bat
 
 # Install Docker
 e_arrow "Installing Docker"
