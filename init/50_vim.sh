@@ -25,6 +25,6 @@ fi
 
 # Download Vim plugins.
 if [[ "$(type -p vim)" ]]; then
-    e_arrow "Running vim +PlugUpgrade and +PlugUpdate"
-    vim +PlugUpgrade +PlugUpdate +qall
+    e_arrow "Running vim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins"
+    nvim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins +qall
 fi
