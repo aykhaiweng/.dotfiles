@@ -20,11 +20,9 @@ sudo apt install -y --assume-yes \
 
 # Install Docker
 e_arrow "Installing Docker"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt update -y
-apt-cache policy docker-ce
-sudo apt install docker-ce docker-compose -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 # Install pyenv
 if [[ -d "$HOME/.pyenv" ]]; then
