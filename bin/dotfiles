@@ -11,7 +11,8 @@ sudo -v
 # FIRST TIME SETUP THERE SHOULD BE NO DEPENDENCIES HERE
 ########################################################
 
-is_ubuntu && sudo apt install git
+# Special use for Ubuntu only
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || sudo apt install git
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
