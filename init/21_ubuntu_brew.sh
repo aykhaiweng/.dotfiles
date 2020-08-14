@@ -18,4 +18,4 @@ fi
 e_arrow "Updating Homebrew"
 brew doctor
 brew update
-brew bundle --file "$DOTFILES/brew/Brewfile"
+brew bundle --file "$DOTFILES/brew/Brewfile-linux"
