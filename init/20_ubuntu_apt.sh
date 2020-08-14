@@ -27,4 +27,5 @@ sudo apt install docker-ce docker-compose -y
 
 # Install pyenv
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
 exec $SHELL

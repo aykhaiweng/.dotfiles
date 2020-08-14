@@ -83,10 +83,12 @@ let g:deoplete#enable_at_startup = 1
 " fzfinder
 Plug 'junegunn/fzf.vim' ", { 'on': ['FZF', 'Buffers', 'Marks'] }
 set rtp+=~/.fzf
-let g:fzf_action = {
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-i': 'split',
-    \ 'ctrl-s': 'vsplit' }
+" let g:fzf_action = {
+"     \ 'ctrl-t': 'tab split',
+"     \ 'ctrl-i': 'split',
+"     \ 'ctrl-s': 'vsplit' }
+command! -bang -nargs=? -complete=dir FilesCustom call fzf#vim#files(<q-args>, {'options': "$FZF_DEFAULT_OPTS"}, <bang>0)
+
 " nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
 let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.DS_Store$', '__pycache__']
@@ -253,7 +255,7 @@ autocmd FileType python noremap <buffer> <F6>:Black<cr>
 
 
 " FZF
-nnoremap <C-P> :FZF<CR>
+nnoremap <C-P> :Files<CR>
 nnoremap <C-F> :Ag<CR>
 
 
