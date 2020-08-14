@@ -12,7 +12,7 @@ sudo -v
 ########################################################
 
 # Special use for Ubuntu only
-[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] && sudo apt install -y -qq git
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] && sudo apt install -y -qq git && sudo apt autoremove -y
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
