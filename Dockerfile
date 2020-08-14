@@ -1,12 +1,12 @@
 FROM ubuntu
-MAINTAINER Au Yeong Khai Weng
+MAINTAINER Au Yeong Khai Weng <aykhaiweng@gmail.com>
 
 # OS updates and install
 RUN apt-get -qq update
-RUN apt-get install git sudo zsh -qq -y
+RUN apt-get install sudo apt-utils -qq -y
 
 # Create test user and add to sudoers
-RUN useradd -m -s /bin/zsh aykhaiweng
+RUN useradd -m aykhaiweng
 RUN usermod -aG sudo aykhaiweng
 RUN echo "aykhaiweng   ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers
 
@@ -18,10 +18,4 @@ RUN chown -R aykhaiweng:aykhaiweng /home/aykhaiweng
 USER aykhaiweng
 ENV HOME /home/aykhaiweng
 
-# Change working directory
-WORKDIR /home/aykhaiweng/.dotfiles
-
-# Run setup
-RUN ./bin/dotfiles
-
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "/home/aykhaiweng/.dotfiles/bin/dotfiles"]
