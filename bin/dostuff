@@ -83,6 +83,3 @@ if [[ "$backup" ]]; then
      e_header "Backups were moved to $HOME/${backup_dir#$HOME/}"
 fi
 
-# Reload shell
-e_header "Reloading $SHELL"
-exec $SHELL

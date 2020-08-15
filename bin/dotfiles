@@ -67,3 +67,7 @@ e_header "All done!"
 e_success "Enjoy :)"
 echo ""
 echo ""
+
+
+# Reload shell
+exec $SHELL
