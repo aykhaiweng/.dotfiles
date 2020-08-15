@@ -14,10 +14,9 @@ fi
 e_arrow "Setting up virtualenv for Neovim"
 e_arrow "Activating neovim3 virtualenv"
 pyenv activate neovim3
-e_arrow "Updating pip in neovim3 virtualenv"
-pip install -U --quiet pip neovim psutil pynvim
+e_arrow "Installing pip in neovim3 virtualenv"
+pip install -U pip neovim psutil pynvim
 e_arrow "Exiting neovim3 virtualenv"
-pyenv deactivate
 
 # Backups, swaps and undos are stored here.
 mkdir -p $DOTFILES/caches/vim
@@ -34,3 +33,5 @@ if [[ "$(type -p vim)" ]]; then
     e_arrow "Running vim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins"
     nvim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins +qall
 fi
+
+pyenv deactivate
