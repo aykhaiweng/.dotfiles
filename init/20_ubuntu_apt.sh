@@ -30,7 +30,6 @@ apt_packages=(
     npm
     silversearcher-ag
     bat
-    fzf
 )
 
 # General install
