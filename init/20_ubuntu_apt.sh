@@ -27,6 +27,7 @@ apt_packages=(
     zsh
     xclip
     nodejs
+    npm
     silversearcher-ag
     bat
     fzf
