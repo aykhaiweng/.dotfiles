@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ -d '$HOME/.fzf' ]]; then
+if [[ -d $HOME/.fzf ]]; then
+    echo "FZF LOADED"
     export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border=rounded --inline-info'
 
     export FZF_DEFAULT_COMMAND="ag --ignore '*.pyc' --ignore '*/*.pyc' --ignore-dir '*pycache*' --ignore-dir '.tox' --hidden --skip-vcs-ignores -g ''"
