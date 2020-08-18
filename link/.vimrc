@@ -208,7 +208,7 @@ let g:jedi#goto_assignments_command = "<leader>ja"
 let g:jedi#goto_definitions_command = "<leader>jd"
 let g:jedi#documentation_command = "<leader>jl"
 " beautifier
-Plug 'psf/black', {'for': 'python'}
+" Plug 'psf/black', {'for': 'python'}
 
 
 """ HTML & CSS
