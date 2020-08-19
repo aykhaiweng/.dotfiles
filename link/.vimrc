@@ -253,15 +253,6 @@ function! ToggleList(bufname, pfx)
 endfunction
 
 
-" Beautifiers
-autocmd FileType css noremap <buffer> <F6> :call CSSBeautify()<cr>
-autocmd FileType html noremap <buffer> <F6>:call HtmlBeautify()<cr>
-autocmd FileType javascript noremap <buffer> <F6>:call JsBeautify()<cr>
-autocmd FileType vue noremap <buffer> <leader>jsb :call HtmlBeautify()<cr>
-autocmd FileType json noremap <buffer> <F6>:call JsonBeautify()<cr>
-autocmd FileType python noremap <buffer> <F6>:Black<cr>
-
-
 " FZF
 nnoremap <C-P> :Files<CR>
 nnoremap <C-F> :Ag<CR>
