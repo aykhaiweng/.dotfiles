@@ -9,16 +9,16 @@ Run the script below:
 # What the `/bin/dotfiles` script does
 So, the `/bin/dotfiles` script is the primary entrypoint for creating the environment that I often use for work.
 
-# ~/.dotfiles/bin/
+### ~/.dotfiles/bin/
 All the files in here are executables that can be accessed from the CLI
 
-# ~/.dotfiles/source/
+### ~/.dotfiles/source/
 These things are ran every time a shell spins up
 
-# ~/.dotfiles/link/
+### ~/.dotfiles/link/
 These files are symbolically linked to ~/ and the files it overwrites are backed up
 
-# ~/.dotfiles/copy/
+### ~/.dotfiles/copy/
 These files are copied to ~/
 
 # Considerations
