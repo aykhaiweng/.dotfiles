@@ -24,7 +24,7 @@ function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 if [[ ! -d "$DOTFILES/.git" ]]; then
     # Dotfiles directory doesn't exist? Clone it!
     e_header "Downloading dotfiles"
-    git clone --branch dev --recursive git://github.com/aykhaiweng/.dotfiles.git $DOTFILES
+    git clone --branch master --recursive git://github.com/aykhaiweng/.dotfiles.git $DOTFILES
     cd $DOTFILES
 elif [[ "$1" != "restart" ]]; then
     # Make sure we have the latest files.
