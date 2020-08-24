@@ -19,8 +19,8 @@ These files are symbolically linked to ~/ and the files it overwrites are backed
 ### ~/.dotfiles/copy/
 These files are copied to ~/
 
-# Considerations
+## Considerations
 [TO BE ADDED]
 
-# Special Thanks!
+## Special Thanks!
 [Ben Alman @cowboy](https://github.com/cowboy/dotfiles) - Most of this guide is composed of ideas taken from his .dotfiles script.
