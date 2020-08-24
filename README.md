@@ -6,7 +6,6 @@ All the files in here are run according to sorting order upon running the `bin/d
 # First Time Install
 Run the script below:
 `wget --no-cache -O - https://raw.githubusercontent.com/aykhaiweng/.dotfiles/master/bin/dotfiles | sh`
-
 # What the `/bin/dotfiles` script does
 So, the `/bin/dotfiles` script is the primary entrypoint for creating the environment that I often use for work.
 
@@ -24,3 +23,6 @@ These files are copied to ~/
 
 # Considerations
 [TO BE ADDED]
+
+# Special Thanks!
+[Ben Alman @cowboy](https://github.com/cowboy/dotfiles) - Most of this guide is composed of ideas taken from his .dotfiles script.
