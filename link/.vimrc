@@ -83,11 +83,11 @@ let g:deoplete#enable_at_startup = 1
 " fzfinder
 Plug 'junegunn/fzf.vim' ", { 'on': ['FZF', 'Buffers', 'Marks'] }
 set rtp+=~/.fzf
-" let g:fzf_action = {
-"     \ 'ctrl-t': 'tab split',
-"     \ 'ctrl-i': 'split',
-"     \ 'ctrl-s': 'vsplit' }
-command! -bang -nargs=? -complete=dir FilesCustom call fzf#vim#files(<q-args>, {'options': "$FZF_DEFAULT_OPTS"}, <bang>0)
+command! -bang -nargs=* AgTest
+  \ call fzf#vim#grep(
+  \   'ag --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview('right:50%:hidden', '?')
+  \ )
 
 " nerdtree
 Plug 'preservim/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
