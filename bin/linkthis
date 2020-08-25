@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# Initialize the general functions
+source $DOTFILES/source/00_general_functions.sh
+
+# Argument Required
+if [[ ! $1 ]]; then
+    e_error "Filename argument required"
+    exit
+else
+    target=$1
+    target_file=$(pwd)/$target
+fi
+
+# The file cannot bea symbolic link
+if [[ ! -f $target_file ]]; then
+    e_error "$target_file is not a file"
+    exit
+fi
+
+# The file cannot bea symbolic link
+if [[ -L $target_file ]]; then
+    e_error "$target_file is a symbolic link"
+    exit
+fi
+
+
+# Constructing directory relative to the dotfiles
+link_dir=$DOTFILES/link/
+
+# Removing the home path from the target_file
+cleaned_path=$(echo $target_file | sed "s|$HOME/||g")
+
+# dotfiles directory
+link_file=$link_dir$cleaned_path
+
+# Check if the file exists and let the user decide if he wants to overwrite it or not
+if [[ -f $link_file ]]; then
+    e_arrow "A file already exists at $link_file. Would you like to overwrite it?"
+    read -p '    (y/n): ' choice
+    if [[ $choice == 'y' || $choice == 'Y' ]]; then
+        rm $link_file
+    else
+        exit
+    fi
+fi
+
+# Check if the link_dir exists
+if [[ ! -d $(dirname $link_file) ]]; then
+    e_success "Creating folder for $(dirname $link_file)"
+    mkdir -p $(dirname $link_file)
+fi
+
+# Move $target_file to $link_file
+mv $target_file $link_file
+ln -s $link_file $target_file
+e_success "$target_file successfully moved and linked from $link_file"

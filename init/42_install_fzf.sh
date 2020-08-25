@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -d '$HOME/.fzf' ]]; then
+if [[ -d $HOME/.fzf ]]; then
     e_arrow "FZF is already installed"
 else
     e_success "Installing FZF"
