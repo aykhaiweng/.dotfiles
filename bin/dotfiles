@@ -2,7 +2,7 @@
 
 # Where the magic happens.
 export DOTFILES=~/.dotfiles
-export KURA_FTS=0
+export KURA_FTS=1
 
 # initialize sudo
 sudo -v
@@ -22,11 +22,13 @@ function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 
 # If $DOTFILES doesn't exist, attempt to pull and update the git submodules
 if [[ ! -d "$DOTFILES/.git" ]]; then
+    export KURA_FTS=1
     # Dotfiles directory doesn't exist? Clone it!
     e_header "Downloading dotfiles"
     git clone --branch master --recursive git://github.com/aykhaiweng/.dotfiles.git $DOTFILES
     cd $DOTFILES
 elif [[ "$1" != "restart" ]]; then
+    export KURA_FTS=0
     # Make sure we have the latest files.
     e_header "Updating dotfiles"
     cd $DOTFILES
@@ -63,8 +65,13 @@ mkdir -p "$HOME/.config/"
 dostuff
 
 # All done!
-e_header "All done!"
-e_success "Enjoy :)"
+e_header "Setup complete"
+echo ""
+e_header "Things you might wanna run after this script is done:"
+e_arrow "nvim +PlugUpdate"
+e_arrow "chsh"
+echo ""
+e_success "All done!"
 echo ""
 echo ""
 

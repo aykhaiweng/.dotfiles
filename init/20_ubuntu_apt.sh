@@ -58,7 +58,7 @@ apt_packages+=(docker-compose)
 # Adding apt repositories
 e_arrow "Adding apt repositories"
 for entry in "${apt_ppa[@]}"; do
-    sudo add-apt-repository $entry
+    sudo add-apt-repository -y $entry
 done
 
 # Install the apt packages

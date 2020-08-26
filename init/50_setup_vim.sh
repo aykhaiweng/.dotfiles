@@ -30,7 +30,7 @@ if [[ ! -f $vim_plug_install_dir ]]; then
 fi
 
 # Download nvim plugins.
-if [[ "$(type -p nvim)" ]]; then
-    e_arrow "Running nvim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins"
-    nvim +'PlugUpgrade' +'PlugUpdate --sync' +qall
-fi
+# if [[ "$(type -p nvim)" ]]; then
+#     e_arrow "Running nvim +PlugUpgrade +PlugUpdate +UpdateRemotePlugins"
+#     nvim +'PlugUpgrade' +'PlugUpdate --sync' +qall
+# fi
