@@ -17,7 +17,8 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # Add path to to dotfiles/bin
-[[ -d $DOTFILES/bin ]] && export PATH=$DOTFILES/bin:$PATH  # This might need to be run specifically if the repo hasn't been downloaded completely yet
+[[ -d $DOTFILES/bin ]] && export PATH=$DOTFILES/bin:$PATH  # Add the dotfiles' bin folder
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH  # Add a .local/bin to the path if found
 
 # Logging stuff.
 function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
