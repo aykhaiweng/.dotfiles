@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ssh-keygen -o -a 100 -t ed25519 $@
