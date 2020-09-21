@@ -104,7 +104,7 @@ let g:NERDTreeDirArrowExpandable = "\u00a0"
 let g:NERDTreeDirArrowCollapsible = "\u00a0"
 
 " git icons
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " devicons fun fun fun
 Plug 'ryanoasis/vim-devicons'
 let g:webdevicons_conceal_nerdtree_brackets=0
