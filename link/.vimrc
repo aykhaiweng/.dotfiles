@@ -1,5 +1,6 @@
 set encoding=utf-8
 set nocompatible              " required
+
 filetype off                  " required
 let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python3"
 let mapleader=","
@@ -77,6 +78,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 
+inoremap <buffer> <expr> <C-Space>  deoplete#mappings#manual_complete()
 
 """ Explorers
 " fzfinder
@@ -195,17 +197,22 @@ let g:polyglot_disabled = ['vue', 'json']
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 " JEDI
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'davidhalter/jedi', {'for': 'python'}
+let g:deoplete#sources#jedi#statement_length = 60
+let g:deoplete#sources#jedi#enable_typeinfo = 1
+let g:deoplete#sources#jedi#enable_short_types = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+let g:deoplete#sources#jedi#enable_cache = 1
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 1
+let g:jedi#show_call_signatures = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_select_first = 0
+let g:jedi#use_tabs_not_buffers = 0  " Opens a tab using Go To command
 let g:jedi#goto_command = "<leader>jc"
+let g:jedi#rename_command = "<leader>jr"
 let g:jedi#goto_assignments_command = "<leader>ja"
 let g:jedi#goto_definitions_command = "<leader>jd"
-let g:jedi#documentation_command = "<leader>jl"
 " beautifier
 " Plug 'psf/black', {'for': 'python'}
 
@@ -214,7 +221,7 @@ let g:jedi#documentation_command = "<leader>jl"
 Plug 'mattn/emmet-vim', {'for': ['html', 'js', 'css', 'vue']}
 " ternjs
 Plug 'carlitux/deoplete-ternjs', {'for': ['html', 'js', 'css', 'vue']}
-Plug 'ternjs/tern_for_vim', {'do': 'npm install -g tern', 'for': ['html', 'js', 'css', 'vue', 'json']}
+Plug 'ternjs/tern_for_vim', {'do': 'sudo npm install -g tern', 'for': ['html', 'js', 'css', 'vue', 'json']}
 
 
 """ Docker
