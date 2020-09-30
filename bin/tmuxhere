@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
 if [[ "$1" ]]; then
-    this_dirname=$1
+    this_dir=$1
 else
-    this_dirname=$(basename $(pwd))
+    this_dir=$(pwd)
 fi
 
-cleaned_dirname=$(echo $this_dirname | sed "s/[\.]//g")
+cleaned_dirname=$(echo $(basename $this_dir) | sed "s/[\.]//g")
 if [[ $(tmux ls -F "#S" | grep $cleaned_dirname) ]]; then
     echo "Session already exists"
 else
-    tmux new -s $cleaned_dirname
+    tmux new -s $cleaned_dirname -c $this_dir
 fi
-tmux new -s $cleaned_dirname
