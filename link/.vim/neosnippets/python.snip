@@ -8,9 +8,9 @@ options     head
 
 
 snippet     pa
-abbr        print("${1:attribute_name}{attribute}".format(${1:attribute_name}))
+abbr        print("${1:ATTRIBUTENAME}={attribute}".format(attribute=$1))
 options     head
-     print("${1:ATTRIBUTENAME}={attribute}".format(attribute_name=$1))
+     print("${1:ATTRIBUTENAME}={attribute}".format(attribute=$1))
 
 
 snippet     authorme
