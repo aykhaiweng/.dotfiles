@@ -5,10 +5,6 @@
 ###########################################
 export DOTFILES=~/.dotfiles
 
-# encoding
-export LC_ALL="C.UTF-8"
-export LC_CTYPE="UTF-8"
-
 # colors
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
