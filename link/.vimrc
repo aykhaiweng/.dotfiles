@@ -360,7 +360,7 @@ set shortmess=a      " Decrease the message size
 set cmdheight=1      " Change height of the cmd prompt
 set redrawtime=20000 " Fixes syntax highlighting on large files
 set noshowmode       " No showmode
-set cursorline       " Show the cursorline
+" set cursorline       " Show the cursorline
 set mouse=a          " MOUSE MODE
 set showtabline=2    " Show tabline
 set guioptions-=e    " Don't use GUI tabline
