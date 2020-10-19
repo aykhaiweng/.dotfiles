@@ -84,11 +84,6 @@ inoremap <buffer> <expr> <C-Space>  deoplete#mappings#manual_complete()
 " fzfinder
 Plug 'junegunn/fzf.vim' ", { 'on': ['FZF', 'Buffers', 'Marks'] }
 set rtp+=~/.fzf
-command! -bang -nargs=* AgTest
-  \ call fzf#vim#grep(
-  \   'ag --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview('right:50%:hidden', '?')
-  \ )
 
 " nerdtree
 Plug 'preservim/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind', 'NERDTreeFocus'] }
@@ -100,7 +95,7 @@ let g:NERDTreeHighlightCursorLine=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrows = 0
+let g:NERDTreeDirArrows = 1
 " Disable arrow icons at the left side of folders for NERDTree.
 let g:NERDTreeDirArrowExpandable = "\u00a0"
 let g:NERDTreeDirArrowCollapsible = "\u00a0"
