@@ -10,26 +10,35 @@ export DEBIAN_FRONTEND=noninteractive
 apt_ppa=()
 apt_packages=(
     apt-transport-https
+    bat
     build-essential
-    gnupg-agent
     ca-certificates 
-    software-properties-common
-    make
     cmake
-    zlib1g-dev
+    curl
+    gnupg-agent
     libbz2-dev
-    libffi-dev
     libc6-dev
-    libssl-dev
+    libffi-dev
+    liblzma-dev
+    libncurses5-dev
     libreadline-dev
     libsqlite3-dev
-    wget
-    zsh
-    xclip
+    libssl-dev
+    libxml2-dev
+    libxmlsec1-dev
+    llvm
+    make
     nodejs
     npm
     silversearcher-ag
-    bat
+    software-properties-common
+    tk-dev
+    wget
+    wget
+    xclip
+    xz-utils
+    zlib1g-dev
+    zsh
 )
 
 # General install
