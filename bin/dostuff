@@ -75,8 +75,8 @@ backup=
 
 # Execute functions for each directory
 do_stuff copy $HOME
-do_stuff link $HOME
 do_stuff init $HOME '-name *.sh'
+do_stuff link $HOME
 
 # Alert if backups were made.
 if [[ "$backup" ]]; then
