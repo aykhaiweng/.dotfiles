@@ -10,7 +10,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # configuration options for pyenv
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
+# export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # Add path to to dotfiles/bin
 [[ -d $DOTFILES/bin ]] && export PATH=$DOTFILES/bin:$PATH  # Add the dotfiles' bin folder

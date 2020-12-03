@@ -4,10 +4,10 @@
 source $DOTFILES/source/30_pyenv.sh
 
 # Enable configuration options for Python
-is_osx && export PYTHON_CONFIGURE_OPTS="--enable-framework" 
-is_ubuntu && export PYTHON_CONFIGURE_OPTS="--enable-shared" 
+is_osx && export PYTHON_CONFIGURE_OPTS="--enable-framework"
+is_ubuntu && export PYTHON_CONFIGURE_OPTS="--enable-shared"
 
-PYTHON3_VER="3.8.5"
+PYTHON3_VER="3.9.0"
 
 # Now that all that is done, install python into pyenv
 # installing pyenv 3.6.4 and 2.7.13
