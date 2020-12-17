@@ -21,6 +21,7 @@ apt_packages=(
     libffi-dev
     liblzma-dev
     libncurses5-dev
+    libpq-dev
     libreadline-dev
     libsqlite3-dev
     libssl-dev
@@ -62,7 +63,6 @@ e_arrow "Installing Docker"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Docker's official GPG key
 apt_ppa+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable")
 apt_packages+=(docker.io)
-apt_packages+=(docker-compose)
 
 # Adding apt repositories
 e_arrow "Adding apt repositories"
