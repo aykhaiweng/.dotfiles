@@ -13,9 +13,11 @@ apt_packages=(
     bat
     build-essential
     ca-certificates 
+    certbot
     cmake
     curl
     gnupg-agent
+    jq
     libbz2-dev
     libc6-dev
     libffi-dev
