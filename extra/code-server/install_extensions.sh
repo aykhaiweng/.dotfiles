@@ -10,9 +10,9 @@ export VSCODE_EXTENSIONS_DIRECTORY="~/.config/Code"
 
 # VSCode stuff
 echo "> Pulling the extensions.json and settings.json from $VSCODE_SYNC_GISTURL"
-source $DOTFILES/extra/vscode/10_pull_vscode_extensions_from_gist.sh
+source $DOTFILES/extra/code-server/vscode/10_pull_vscode_extensions_from_gist.sh
 echo "> Attempting to install extensions from $VSCODE_STAGING_DIRECTORY/extensions.list"
-source $DOTFILES/extra/vscode/20_use_vs_code_to_install_extensions.sh /tmp/code/extensions.list
+source $DOTFILES/extra/code-server/vscode/20_use_vs_code_to_install_extensions.sh /tmp/code/extensions.list
 
 # Code-server stuff
 echo "> Making the missing .code-server dir"
