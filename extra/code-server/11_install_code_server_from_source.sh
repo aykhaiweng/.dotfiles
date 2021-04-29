@@ -16,6 +16,7 @@ else
 fi
 
 
+yarn
 yarn build
 yarn build:vscode
 yarn release
