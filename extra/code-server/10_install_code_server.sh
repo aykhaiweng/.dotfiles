@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CODE_SERVER_VERSION="3.9.3"
+CODE_SERVER_VERSION="3.10.2"
 CODE_SERVER_DOWNLOAD_URL="https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VERSION}/code-server-${CODE_SERVER_VERSION}-linux-amd64.tar.gz"
 
 echo "> Downloading from $CODE_SERVER_DOWNLOAD_URL"
