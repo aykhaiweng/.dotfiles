@@ -6,7 +6,6 @@ let g:python3_host_prog=$HOME."/.pyenv/versions/neovim3/bin/python3"
 let mapleader=","
 call plug#begin('~/.vim/plugged')
 
-
 set rtp+=~/.vim/my-colors
 Plug 'morhetz/gruvbox'
 
@@ -78,7 +77,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 
-inoremap <buffer> <expr> <C-Space>  deoplete#mappings#manual_complete()
+inoremap <expr> <C-Space> deoplete#manual_complete()
 
 """ Explorers
 " fzfinder
@@ -106,7 +105,7 @@ let g:NERDTreeDirArrowCollapsible = "\u00a0"
 Plug 'ryanoasis/vim-devicons'
 let g:webdevicons_conceal_nerdtree_brackets=0
 let g:WebDevIconsNerdTreeBeforeGlyphPadding=" "
-let g:WebDevIconsNerdTreeAfterGlyphPadding="  "
+let g:WebDevIconsNerdTreeAfterGlyphPadding=" "
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 
 
@@ -207,7 +206,7 @@ let g:jedi#use_tabs_not_buffers = 0  " Opens a tab using Go To command
 let g:jedi#goto_command = "<leader>jc"
 let g:jedi#rename_command = "<leader>jr"
 let g:jedi#goto_assignments_command = "<leader>ja"
-let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#goto_definitions_command = "F12"
 " beautifier
 " Plug 'psf/black', {'for': 'python'}
 
